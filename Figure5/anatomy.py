@@ -92,8 +92,8 @@ def regenerate(output, *, nwb_root=None):
     surface = pd.read_csv(HERE / 'sources/anatomy/surface_electrodes.csv.gz')
     entries = derive_entry_points(surface, read_nrrd(ATLAS_PATH), read_labels(ATLAS_LABELS_PATH))
     output.mkdir(parents=True, exist_ok=True)
-    locations.to_csv(output / 'mousev2_analysis_units.csv.gz', index=False, compression={'method': 'gzip', 'mtime': 0})
-    entries.to_csv(output / 'mousev2_ccf_surface_entry_points.csv', index=False)
+    locations.to_csv(output / 'mousev2_analysis_units.csv.gz', index=False, compression={'method': 'gzip', 'mtime': 0}, lineterminator='\n')
+    entries.to_csv(output / 'mousev2_ccf_surface_entry_points.csv', index=False, lineterminator='\n')
     for name, keys in [('mousev2_analysis_units.csv.gz', ['unit_id']),
                        ('mousev2_ccf_surface_entry_points.csv', ['subject_id', 'probe'])]:
         expected = pd.read_csv(HERE / 'sources' / name).sort_values(keys).reset_index(drop=True)

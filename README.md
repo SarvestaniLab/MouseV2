@@ -1,4 +1,112 @@
-## Overview
+# MouseV2: a single complex V2 in mouse visual cortex
+
+Data, analysis code, and figure reproductions for:
+
+> Rowley DP, Cassity MB, Park J, Gillis R, Corbo J, *et al.*, Groblewski PA, Lecoq JA,
+> Sedigh-Sarvestani M. **A single complex V2 as an alternative hypothesis for the
+> organization of mouse higher visual cortex.** *bioRxiv* (2026).
+> [doi:10.1101/2024.10.10.617533](https://doi.org/10.1101/2024.10.10.617533)
+
+The paper proposes that the cortex surrounding mouse V1, usually divided into about
+eight higher visual areas (HVAs), may instead be a single, complex second visual area
+(V2). It combines retinotopic simulations with a new Allen Institute
+[OpenScope](https://www.allenneuraldynamics.org/projects/openscope) dataset of
+electrophysiological and two-photon recordings across V1. This repository is the
+single place for the paper's public data links and analysis code.
+
+## Contents
+
+| Paper figure | What it shows | Code | Data |
+| --- | --- | --- | --- |
+| **Figure 2** | Retinotopic (elastic-net) simulations of a single complex V2 | `Figure2/` *(coming soon)* | Simulated |
+| **Figure 4** | The OpenScope dataset and example neurons | [`ephys_getting_started.ipynb`](ephys_getting_started.ipynb), [`02_ophys_getting_started.ipynb`](02_ophys_getting_started.ipynb) | [DANDI:001568](https://dandiarchive.org/dandiset/001568), [DANDI:001709](https://dandiarchive.org/dandiset/001709) |
+| **Figure 5** | A within-V1 benchmark for functional differences among HVAs | [`Figure5/`](Figure5/) | Bundled tables; raw recordings from [DANDI:001568](https://dandiarchive.org/dandiset/001568) and the [Allen Visual Coding – Neuropixels](https://allensdk.readthedocs.io/en/latest/visual_coding_neuropixels.html) dataset |
+
+```
+MouseV2/
+├── README.md                        this page, plus full dataset documentation below
+├── ephys_getting_started.ipynb      stream and explore one Neuropixels session
+├── 02_ophys_getting_started.ipynb   stream and explore one two-photon session
+├── Figure5/                         self-contained reproduction of Figure 5
+│   ├── README.md                    build, full reconstruction, and raw re-extraction
+│   ├── Figure5.py                   quick build from the bundled, hash-locked tables
+│   ├── reproduce.py                 full reconstruction (5,000 bootstrap replicates)
+│   └── ...
+└── Figure2/                         (coming soon) retinotopy simulations
+```
+
+## Getting started
+
+Each part of the repository has **its own Python environment**, so each can pin the
+library versions its results were produced with. Create a separate virtual
+environment for each part you want to run, from the repository root.
+
+```bash
+git clone https://github.com/SarvestaniLab/MouseV2.git
+cd MouseV2
+```
+
+### Explore the OpenScope data (Figure 4)
+
+The notebooks stream one session directly from DANDI. No download, account, or API
+key is needed. Python 3.10 or later:
+
+```bash
+python -m venv .venv-notebooks
+source .venv-notebooks/bin/activate        # Windows: .venv-notebooks\Scripts\activate
+pip install dandi pynwb remfile h5py numpy pandas matplotlib jupyterlab
+jupyter lab
+```
+
+### Reproduce Figure 5
+
+Figure 5 uses Python 3.12 and the exact versions in
+[`Figure5/requirements.txt`](Figure5/requirements.txt):
+
+```bash
+python3.12 -m venv .venv-figure5           # Windows: py -3.12 -m venv .venv-figure5
+source .venv-figure5/bin/activate          # Windows: .venv-figure5\Scripts\activate
+pip install -r Figure5/requirements.txt
+python Figure5/Figure5.py
+```
+
+This rebuilds the figure from the bundled analysis tables and checks every numerical
+output against its locked SHA-256 hash. For a typeset-identical figure, install the
+Liberation Sans font first. [`Figure5/README.md`](Figure5/README.md) covers the font,
+the full statistical reconstruction, and re-extraction from the raw NWB recordings.
+
+## Data
+
+| Dataset | Contents | Access |
+| --- | --- | --- |
+| OpenScope MouseV2 – Ephys | Neuropixels 1.0 recordings at four V1 locations; 8 mice | [DANDI:001568](https://dandiarchive.org/dandiset/001568) |
+| OpenScope MouseV2 – Ophys | Two-photon mesoscope imaging at 12 V1 locations; 6 mice | [DANDI:001709](https://dandiarchive.org/dandiset/001709) |
+| Allen Brain Observatory Visual Coding – Neuropixels | V1 and HVA recordings ([Siegle et al., 2021](https://doi.org/10.1038/s41586-020-03171-x)); used in Figure 5 | [AllenSDK documentation](https://allensdk.readthedocs.io/en/latest/visual_coding_neuropixels.html) |
+
+Both OpenScope dandisets are open and documented in detail
+[below](#the-openscope-dataset).
+
+## Citation
+
+If you use this code or the OpenScope dataset, please cite:
+
+```bibtex
+@article{rowley2026mousev2,
+  title   = {A single complex {V2} as an alternative hypothesis for the organization
+             of mouse higher visual cortex},
+  author  = {Rowley, Declan P. and Cassity, Mary Beth and Park, Jimin and others
+             and Sedigh-Sarvestani, Madineh},
+  journal = {bioRxiv},
+  year    = {2026},
+  doi     = {10.1101/2024.10.10.617533}
+}
+```
+
+---
+
+## The OpenScope dataset
+
+### Overview
 
 This dataset was collected by the Allen Institute as part of [OpenScope](https://www.allenneuraldynamics.org/projects/openscope) to test the unified mouse V2 hypothesis presented in [(Rowley et al., 2026)](https://www.biorxiv.org/content/10.1101/2024.10.10.617533v4). By releasing the dataset, we hope to allow others to independently test this hypothesis and other hypotheses surrounding mouse visual cortex organization.
 
@@ -15,7 +123,7 @@ Generic probe placement (left) and two-photon imaging planes locations (right) a
 
 Visual area boundaries for V1 were obtained using intrinsic signal imaging (ISI). For a more detailed description of ISI, please see page 3 of the Visual Coding Overview [here](https://community.brain-map.org/t/documentation-brain-observatory/3026).
 
-## Stimuli
+### Stimuli
 
 To assess the spatial and feature tuning of V1 neurons recorded at different retinotopic V1 locations, the following stimulus set was used: 
 - The stimuli for the electrophysiological recordings includes
@@ -31,9 +139,9 @@ An example truncated ephys session is shown below.
 
 https://github.com/user-attachments/assets/1c861f92-a653-4379-990b-01a02dc8050d
 
-## Recording methods and data structure
-### Ephys
-#### Data recording methods
+### Recording methods and data structure
+#### Ephys
+##### Data recording methods
 
 **Animal preparation and behavioral apparatus** Five male and 3 female wild type mice (99 to 114 days old) were used. They were prepared with a SHIELD cranial implant for repeated probe access, then habituated to the behavioral apparatus. Mice were head-fixed on a treadmill on which they could run freely, and viewed visual stimuli presented on a monitor to the right eye. Sessions were passive: no reward was delivered and mice were not restricted. Running speed and pupil position were recorded throughout. 
 
@@ -47,7 +155,7 @@ The behavioral and imaging apparatus for the ephys dataset is shown below.
 
 **Data pre-processing** Spikes were sorted with Kilosort 4. Data is distributed in the Neurodata Without Borders format, with each unit (neuron) containing the spike times and the probe it was recorded from. 
 
-#### Data structure
+##### Data structure
 
 For session 817335, 
 
@@ -59,8 +167,8 @@ An example breakdown of trials and times for one of the ephys sessions is shown 
 
 <img width="4601" height="753" alt="817335_ephys_plot" src="https://github.com/user-attachments/assets/21a1acaf-042d-4b6a-8de3-b0feb9ffdedf" />
 
-### Ophys
-#### Data recording methods
+#### Ophys
+##### Data recording methods
 
  
 **Animal preparation and behavioral apparatus** were as described in the [Allen Brain Observatory Visual Coding: Overview technical whitepaper](https://s3.amazonaws.com/webflow-prod-assets/689cfbd308fa7373b604d290/68ee796f6f627db2434e459c_Documentation_Brain_Observatory-Visual_Coding_Overview.pdf).  Six female transgenic mice (96 to 145 days old, Cux2-CreERT2/wt;Camk2a-tTA/wt;Ai93(TITL-GCaMP6f)/wt), expressing GCaMP6f in excitatory neurons of layers 2/3 and 4, were used. They were prepared with a cranial window and headbar, then habituated to the behavioral apparatus. Mice were head-fixed on a treadmill on which they could run freely, and viewed visual stimuli presented on a monitor to the right eye. Sessions were passive: no reward was delivered and mice were not restricted. Running speed and pupil position were recorded throughout.
@@ -75,7 +183,7 @@ The behavioral and imaging apparatus for the ophys dataset is shown below.
 
 **Data pre-processing** was performed in accordance with the [AIND multiplane-ophys pipeline](https://github.com/AllenNeuralDynamics/aind-multiplane-ophys-pipeline). Frames were first de-interleaved into their constituent planes, which were motion-corrected in Suite2p. Regions of interest were detected and fluorescence extracted using a combination of Cellpose and Suite2p, neuropil contamination was subtracted, ΔF/F traces were computed, and spiking events were inferred for each ROI with the OASIS deconvolution library. Processed data are distributed in Neurodata Without Borders format, with each imaging plane stored as a separate processing module containing raw, neuropil-corrected, ΔF/F and event traces, segmentation masks and summary images.
 
-#### Data structure
+##### Data structure
 
 **One NWB file = one session.**<br>**One clock per session.** Every array carries its own timestamps, in seconds. Streams start at different times and run at different rates, so align on timestamps, not by index.
 
@@ -87,7 +195,7 @@ An example breakdown of trials and times for one of the ophys sessions is shown 
 
 <img width="4601" height="753" alt="809092_ophys_plot" src="https://github.com/user-attachments/assets/9105fce1-ff95-44d3-af36-49092eea584c" />
 
-## Data access with DANDI CLI
+### Data access with DANDI CLI
 
 
 The project is split across two dandisets, one per recording modality, **001568** for Ephys and **001709** for Ophys. <br>
@@ -104,7 +212,7 @@ and [streaming](https://docs.dandiarchive.org/user-guide-using/accessing-data/st
 pip install dandi pynwb remfile h5py
 ```
 
-### File paths
+#### File paths
 
 Named from the subject and the session start time, with the modality in both the
 session token and the suffix:
@@ -130,7 +238,7 @@ with DandiAPIClient() as client:
         print(f"{asset.size / 1e9:5.2f} GB  {asset.path}")
 ```
 
-### Stream one file
+#### Stream one file
 
 ```python
 import h5py, pynwb, remfile
@@ -158,7 +266,7 @@ nwbfile = io.read()
 keeps the signature that makes the resulting URL readable. Call `io.close()` and
 `handle.close()` when done.
 
-### Download one file
+#### Download one file
 **Command line**
 ```bash
 dandi download "dandi://DANDI/001568/sub-810531/sub-810531_ses-ecephys-810531-2025-09-17-15-14-30_ecephys.nwb"

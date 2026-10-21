@@ -293,7 +293,7 @@ def main():
                 rows.append({'session_id': sid, 'unit_id': unit.ecephys_unit_id,
                              'released_timescale_ac': unit.timescale_ac,
                              'released_err_ac': unit.err_ac, 'released_spike_count_ac': unit.spike_count_ac, **result})
-        pd.DataFrame(rows).to_csv(output / 'allen_timescale_audit.csv', index=False)
+        pd.DataFrame(rows).to_csv(output / 'allen_timescale_audit.csv', index=False, lineterminator='\n')
         print('Audit written; published Allen fits remain the canonical source values.')
         return
     frames = {}; audit = {'sessions': {'mousev2': [], 'allen': []}, 'inputs': [], 'outputs': {},
@@ -313,7 +313,7 @@ def main():
         for label, table in result.items(): frames.setdefault(label, []).append(table)
     for label, parts in frames.items():
         path = output / f'{label}.csv.gz'
-        pd.concat(parts, ignore_index=True).to_csv(path, index=False, compression={'method': 'gzip', 'mtime': 0})
+        pd.concat(parts, ignore_index=True).to_csv(path, index=False, compression={'method': 'gzip', 'mtime': 0}, lineterminator='\n')
         audit['outputs'][label] = sha256(path)
     import scipy
     import h5py

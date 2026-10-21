@@ -8,11 +8,12 @@ import hashlib
 import gzip
 import json
 import os
+import tempfile
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CANONICAL = ROOT / "MouseV2-Figure5"
+CANONICAL = ROOT / "Figure5"
 INPUT_ROOT = ROOT
 OUTPUT = CANONICAL
 STEM = OUTPUT / "Figure5"
@@ -20,20 +21,20 @@ STEM = OUTPUT / "Figure5"
 # These are the repository inputs opened by the renderer. Generated files in
 # OUTPUT are intentionally omitted: they are checked separately after export.
 REQUIRED_INPUTS = [
-    "MouseV2-Figure5/sources/mousev2_ccf_surface_entry_points.csv",
-    "MouseV2-Figure5/data/response_registry_floor5.csv.gz",
-    "MouseV2-Figure5/data/bootstrap_effects.csv.gz",
-    "MouseV2-Figure5/data/draw_specific_point_fits.csv",
-    "MouseV2-Figure5/data/primary_effects.csv",
-    "MouseV2-Figure5/data/matched_control.csv",
-    "MouseV2-Figure5/data/display_counts.csv",
-    "MouseV2-Figure5/sources/Figure5_caption.md",
-    "MouseV2-Figure5/data/estimates_and_tests.csv",
-    "MouseV2-Figure5/sources/Original_handmade_cortical_vectors.svg",
-    "MouseV2-Figure5/sources/reference/allen_ccf_2017_surface/labelDescription_ITKSNAPColor.txt",
-    "MouseV2-Figure5/sources/reference/allen_ccf_2017_surface/top.nrrd",
-    "MouseV2-Figure5/sources/reference/allen_harris_2019_connectivity/harris_visualmedial_scores.csv",
-    "MouseV2-Figure5/sources/reference/allen_harris_2019_connectivity/normalized_connection_density_ipsi_ctx.csv",
+    "Figure5/sources/mousev2_ccf_surface_entry_points.csv",
+    "Figure5/data/response_registry_floor5.csv.gz",
+    "Figure5/data/bootstrap_effects.csv.gz",
+    "Figure5/data/draw_specific_point_fits.csv",
+    "Figure5/data/primary_effects.csv",
+    "Figure5/data/matched_control.csv",
+    "Figure5/data/display_counts.csv",
+    "Figure5/sources/Figure5_caption.md",
+    "Figure5/data/estimates_and_tests.csv",
+    "Figure5/sources/Original_handmade_cortical_vectors.svg",
+    "Figure5/sources/reference/allen_ccf_2017_surface/labelDescription_ITKSNAPColor.txt",
+    "Figure5/sources/reference/allen_ccf_2017_surface/top.nrrd",
+    "Figure5/sources/reference/allen_harris_2019_connectivity/harris_visualmedial_scores.csv",
+    "Figure5/sources/reference/allen_harris_2019_connectivity/normalized_connection_density_ipsi_ctx.csv",
 ]
 
 LOCKED_TABLES = {
@@ -63,7 +64,7 @@ def sha256(path: Path) -> str:
 
 
 def input_path(relative):
-    if relative.startswith("MouseV2-Figure5/data/"):
+    if relative.startswith("Figure5/data/"):
         return INPUT_ROOT / relative
     return ROOT / relative
 
@@ -115,12 +116,12 @@ def validate() -> None:
     manifest = json.loads(manifest_path.read_text())
     manifest.update(
         canonical=True,
-        canonical_entrypoint="MouseV2-Figure5/Figure5.py",
+        canonical_entrypoint="Figure5/Figure5.py",
         canonical_version="v17-corrected-tests",
-        input_root=os.path.relpath(INPUT_ROOT, ROOT),
+        input_root=Path(os.path.relpath(INPUT_ROOT, ROOT)).as_posix(),
         validation="exact hashes" if INPUT_ROOT == ROOT else "numeric equivalence: rtol=1e-10, atol=1e-12",
     )
-    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n")
+    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", newline="\n")
 
 
 def main() -> None:
@@ -143,7 +144,7 @@ def main() -> None:
     EXPECTED_OUTPUTS += [OUTPUT / ('Figure5_' + name) for name in ('legend.md', 'layout_manifest.json')]
     preflight()
     os.environ.setdefault("SOURCE_DATE_EPOCH", "1790989200")
-    os.environ.setdefault("MPLCONFIGDIR", "/tmp/neuropixels-platform-paper-matplotlib")
+    os.environ.setdefault("MPLCONFIGDIR", os.path.join(tempfile.gettempdir(), "neuropixels-platform-paper-matplotlib"))
 
     import matplotlib
 
@@ -153,10 +154,10 @@ def main() -> None:
     import figure_data
     renderer.OUTPUT = OUTPUT
     renderer.STEM = STEM
-    renderer.VARIANCE_STATS = input_path('MouseV2-Figure5/data/estimates_and_tests.csv')
-    panels.REGISTRY = input_path('MouseV2-Figure5/data/response_registry_floor5.csv.gz')
-    panels.DISPLAY_COUNTS = input_path('MouseV2-Figure5/data/display_counts.csv')
-    figure_data.PRIMARY = figure_data.CONTROL = INPUT_ROOT / 'MouseV2-Figure5/data'
+    renderer.VARIANCE_STATS = input_path('Figure5/data/estimates_and_tests.csv')
+    panels.REGISTRY = input_path('Figure5/data/response_registry_floor5.csv.gz')
+    panels.DISPLAY_COUNTS = input_path('Figure5/data/display_counts.csv')
+    figure_data.PRIMARY = figure_data.CONTROL = INPUT_ROOT / 'Figure5/data'
 
     renderer.main()
     validate()

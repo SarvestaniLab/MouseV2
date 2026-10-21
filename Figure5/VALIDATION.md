@@ -4,7 +4,7 @@ Validated on 2026-10-14 before publishing this consolidation.
 
 ## Full statistical reconstruction
 
-`python MouseV2-Figure5/reproduce.py --output-dir <empty-directory>` completed
+`python Figure5/reproduce.py --output-dir <empty-directory>` completed
 with all 5,000 bootstrap/shuffle replicates and the original random seeds.
 Both anatomical products matched their frozen references. All seven analysis
 tables matched: display counts byte-for-byte, and the other six numerically

@@ -4,7 +4,7 @@
   "sources": [
     {
       "label": "mouse_ttfs",
-      "path": "MouseV2-Figure5/sources/metrics/mouse_ttfs.csv.gz",
+      "path": "Figure5/sources/metrics/mouse_ttfs.csv.gz",
       "bytes": 11060,
       "sha256": "fdfc3875b15001a9f04caa3bf8a406ed1a7bfd35b39f7cb8a87e8dc89a02b038",
       "origin": "MouseV2 flash-response metric pipeline; Figure 5 column projection; original parsed CSV values, with no analytical transformation",
@@ -25,7 +25,7 @@
     },
     {
       "label": "allen_ttfs",
-      "path": "MouseV2-Figure5/sources/metrics/allen_ttfs.csv.gz",
+      "path": "Figure5/sources/metrics/allen_ttfs.csv.gz",
       "bytes": 116109,
       "sha256": "915babfb883b52be53f25527e701e3b6bcf8763a2843285bd713fb2948e1197e",
       "origin": "Allen Visual Coding Neuropixels flash-response metric pipeline; Figure 5 column projection; original parsed CSV values, with no analytical transformation",
@@ -45,7 +45,7 @@
     },
     {
       "label": "mouse_f1_f0",
-      "path": "MouseV2-Figure5/sources/metrics/mouse_f1_f0.csv.gz",
+      "path": "Figure5/sources/metrics/mouse_f1_f0.csv.gz",
       "bytes": 244036,
       "sha256": "7c5779a422ad8b03e714270768a3ed1a15c176b35149e7578ee1e11f6344e7cb",
       "origin": "MouseV2 drifting-grating common-support metric pipeline; Figure 5 column projection; original parsed CSV values, with no analytical transformation",
@@ -65,7 +65,7 @@
     },
     {
       "label": "allen_f1_f0",
-      "path": "MouseV2-Figure5/sources/metrics/allen_f1_f0.csv.gz",
+      "path": "Figure5/sources/metrics/allen_f1_f0.csv.gz",
       "bytes": 123985,
       "sha256": "05b4fb2455b5d70d91748f5aec7c4b59862b8cd6ba219c77462296617fdd53fe",
       "origin": "Allen Visual Coding Neuropixels harmonized grating metric pipeline; Figure 5 column projection; original parsed CSV values, with no analytical transformation",
@@ -84,7 +84,7 @@
     },
     {
       "label": "mouse_timescale",
-      "path": "MouseV2-Figure5/sources/metrics/mouse_timescale.csv.gz",
+      "path": "Figure5/sources/metrics/mouse_timescale.csv.gz",
       "bytes": 844442,
       "sha256": "9d7a33f01b2635adc68f4957c24bf821d1a7d7f47ed91b49f0178d0253a1adb1",
       "origin": "MouseV2 matched-trial timescale pipeline; Figure 5 column projection; original parsed CSV values, with no analytical transformation",
@@ -106,7 +106,7 @@
     },
     {
       "label": "allen_units",
-      "path": "MouseV2-Figure5/sources/metrics/allen_units.csv.gz",
+      "path": "Figure5/sources/metrics/allen_units.csv.gz",
       "bytes": 2611831,
       "sha256": "8f34e9604e64d440026408cf8e95b555eb409234272c7cebcd21a8fb42322c77",
       "origin": "Allen Visual Coding Neuropixels released unit table; Figure 5 column projection; original parsed CSV values, with no analytical transformation",
@@ -133,12 +133,12 @@
     },
     {
       "label": "mouse_analysis_units",
-      "path": "MouseV2-Figure5/sources/mousev2_analysis_units.csv.gz",
+      "path": "Figure5/sources/mousev2_analysis_units.csv.gz",
       "bytes": 48892,
       "sha256": "4edf1e5826408b3ece227446ec37d60be4e2b32132e6dffd30f96545590a4f97",
       "origin": "Full unit-to-electrode locations rebuilt from the 2026-09-02 historical anatomical snapshot; prepare.py applies VISp eligibility",
       "previous_design_snapshot": {
-        "path": "MouseV2-Figure5/sources/mousev2_analysis_units.csv.gz",
+        "path": "Figure5/sources/mousev2_analysis_units.csv.gz",
         "sha256": "7ead176714079d9aaa052906b5d447e43995e59284ddf04fca280aa92ef581f0",
         "bytes": 13127,
         "origin": "Value-free unit and recording assignments preserved from the original CCF preflight registry"
@@ -146,14 +146,14 @@
     },
     {
       "label": "mouse_ccf_surface_entries",
-      "path": "MouseV2-Figure5/sources/mousev2_ccf_surface_entry_points.csv",
+      "path": "Figure5/sources/mousev2_ccf_surface_entry_points.csv",
       "bytes": 3040,
       "sha256": "41846a329afeef2f617ecaa7d29a5016a4749e1e0e6b71854dfa45dba9605138",
       "origin": "Frozen anatomical summary from the MouseV2 CCF electrode snapshot"
     },
     {
       "label": "allen_ccf_surface",
-      "path": "MouseV2-Figure5/sources/reference/allen_ccf_2017_surface/top.nrrd",
+      "path": "Figure5/sources/reference/allen_ccf_2017_surface/top.nrrd",
       "bytes": 11929,
       "sha256": "ed9d17a3cb988d0289de0cea0a4795703b52d3da4f5dfbd5b0d7c99596c40acd",
       "origin": "Allen CCF 2017 cortical-coordinate assets",
@@ -161,7 +161,7 @@
     },
     {
       "label": "allen_ccf_labels",
-      "path": "MouseV2-Figure5/sources/reference/allen_ccf_2017_surface/labelDescription_ITKSNAPColor.txt",
+      "path": "Figure5/sources/reference/allen_ccf_2017_surface/labelDescription_ITKSNAPColor.txt",
       "bytes": 38724,
       "sha256": "9891579be2004846b2f1ac55dd96482deba8836e0eee83ff38defe0d68c7e21e",
       "origin": "Allen CCF 2017 cortical-coordinate assets",
@@ -169,7 +169,7 @@
     },
     {
       "label": "harris_connection_density",
-      "path": "MouseV2-Figure5/sources/reference/allen_harris_2019_connectivity/normalized_connection_density_ipsi_ctx.csv",
+      "path": "Figure5/sources/reference/allen_harris_2019_connectivity/normalized_connection_density_ipsi_ctx.csv",
       "bytes": 19649,
       "sha256": "c7c4d76ab8547fa0fa1f3355a9f6a5542f5f0ea4ee294c462bd774c897c524d5",
       "origin": "Harris et al. 2019 Allen Institute release",
@@ -177,40 +177,40 @@
     },
     {
       "label": "harris_hierarchy_scores",
-      "path": "MouseV2-Figure5/sources/reference/allen_harris_2019_connectivity/harris_visualmedial_scores.csv",
+      "path": "Figure5/sources/reference/allen_harris_2019_connectivity/harris_visualmedial_scores.csv",
       "bytes": 208,
       "sha256": "3c71f6fabee9ea4b81147dec6accbab5e5ad3742321df81f5191e68848571e8b",
       "origin": "Curated visual-medial scores from Harris et al. 2019 hierarchy_summary_CreConf.xlsx"
     },
     {
       "label": "anatomy_electrodes",
-      "path": "MouseV2-Figure5/sources/anatomy/electrodes.csv.gz",
+      "path": "Figure5/sources/anatomy/electrodes.csv.gz",
       "bytes": 101062,
       "sha256": "ca69261b67983bd94bc663b57d3536349cffed62b44dedde5091207be8d4dc1c",
       "origin": "2026-09-02 unit-inclusion AP electrode table; NWB provenance in raw_sources.json"
     },
     {
       "label": "anatomy_unit_electrodes",
-      "path": "MouseV2-Figure5/sources/anatomy/unit_electrodes.csv.gz",
+      "path": "Figure5/sources/anatomy/unit_electrodes.csv.gz",
       "bytes": 75701,
       "sha256": "64c71903c4ac03f6500231505ab9454de6208ba83bbec35546c86c57410cfd38",
       "origin": "2026-09-02 unit-to-AP-electrode links; NWB provenance in raw_sources.json"
     },
     {
       "label": "anatomy_surface_electrodes",
-      "path": "MouseV2-Figure5/sources/anatomy/surface_electrodes.csv.gz",
+      "path": "Figure5/sources/anatomy/surface_electrodes.csv.gz",
       "bytes": 92710,
       "sha256": "7d67f681ce44662e0bb067dcca0a22107a215d11a06012a6e8aa2ae7ead07032",
       "origin": "2026-09-25 AP electrode coordinates for the illustration; NWB provenance in raw_sources.json"
     }
   ],
   "regenerated_outputs": {
-    "MouseV2-Figure5/data/response_registry_floor5.csv.gz": "28e846acfc42899625647fac87eab785c808e89d29662dc5b6ab49ba43b2e742",
-    "MouseV2-Figure5/data/bootstrap_effects.csv.gz": "a44947e22e3bed0c8afc3074284d348b2e1248242bbb8e7219ac40aca8313c69",
-    "MouseV2-Figure5/data/draw_specific_point_fits.csv": "7967c79c54ecf1cffe9e1b60cc8b225bdd069612535e71677b3cb7de62a39852",
-    "MouseV2-Figure5/data/primary_effects.csv": "43c77f426cf00cbc8f9d22480c4935848bff7413f7019ebc3366b669d264990a",
-    "MouseV2-Figure5/data/matched_control.csv": "2c9490a7181b170f2d6903fdfbdc934d8c585656d0ab6f8d84f3418c26dfe621",
-    "MouseV2-Figure5/data/display_counts.csv": "fc05de25a7c98176c922f95d139f6f40fea95e6ed5f8e1399f44f1e37bea0b1b",
-    "MouseV2-Figure5/data/estimates_and_tests.csv": "336ea9b6026494598ea596736ed800aaa29137482bac48de1595c7c7ebdd8241"
+    "Figure5/data/response_registry_floor5.csv.gz": "28e846acfc42899625647fac87eab785c808e89d29662dc5b6ab49ba43b2e742",
+    "Figure5/data/bootstrap_effects.csv.gz": "a44947e22e3bed0c8afc3074284d348b2e1248242bbb8e7219ac40aca8313c69",
+    "Figure5/data/draw_specific_point_fits.csv": "7967c79c54ecf1cffe9e1b60cc8b225bdd069612535e71677b3cb7de62a39852",
+    "Figure5/data/primary_effects.csv": "43c77f426cf00cbc8f9d22480c4935848bff7413f7019ebc3366b669d264990a",
+    "Figure5/data/matched_control.csv": "2c9490a7181b170f2d6903fdfbdc934d8c585656d0ab6f8d84f3418c26dfe621",
+    "Figure5/data/display_counts.csv": "fc05de25a7c98176c922f95d139f6f40fea95e6ed5f8e1399f44f1e37bea0b1b",
+    "Figure5/data/estimates_and_tests.csv": "336ea9b6026494598ea596736ed800aaa29137482bac48de1595c7c7ebdd8241"
   }
 }

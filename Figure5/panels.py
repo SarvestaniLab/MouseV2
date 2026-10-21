@@ -16,10 +16,10 @@ from scipy.stats import gaussian_kde
 import schematics as schematic
 import figure_data as results
 
-OUT = ROOT / 'MouseV2-Figure5'
+OUT = ROOT / 'Figure5'
 STEM = OUT / 'Figure5'
-REGISTRY = ROOT / 'MouseV2-Figure5/data/response_registry_floor5.csv.gz'
-DISPLAY_COUNTS = ROOT / 'MouseV2-Figure5/data/display_counts.csv'
+REGISTRY = ROOT / 'Figure5/data/response_registry_floor5.csv.gz'
+DISPLAY_COUNTS = ROOT / 'Figure5/data/display_counts.csv'
 
 
 def heading(fig, x, letter, title):
@@ -108,9 +108,10 @@ def main(output_dir=None, hierarchy="harris2019", *, figure_number=5,
         STEM.with_name(STEM.name + '_spread_bootstrap.csv.gz'),
         index=False,
         compression={"method": "gzip", "mtime": 0},
+        lineterminator='\n',
     )
     pd.DataFrame(schematic.hierarchy_connections()).to_csv(
-        STEM.with_name(STEM.name + '_anatomical_connections.csv'), index=False)
+        STEM.with_name(STEM.name + '_anatomical_connections.csv'), index=False, lineterminator='\n')
     results.V1_COLORS.update({'A': '#B2182B', 'E': '#B59B19', 'C': '#008C95', 'B': '#5263A8'})
     results.DISPLAY.update({'A': 'Ant.', 'E': 'Lat.', 'C': 'Post.', 'B': 'Med.'})
     # Share categorical identity colors across all maps, nodes, and distributions.
@@ -177,7 +178,7 @@ def main(output_dir=None, hierarchy="harris2019", *, figure_number=5,
             annotation.set_text({'Anterior': 'Ant.', 'Lateral': 'Lat.',
                                  'Posterior': 'Post.', 'Medial': 'Med.'}[name])
     assert all(row['n_animals'] == 8 for row in probe_positions)
-    pd.DataFrame(probe_positions).to_csv(STEM.with_name(STEM.name + '_probe_positions.csv'), index=False)
+    pd.DataFrame(probe_positions).to_csv(STEM.with_name(STEM.name + '_probe_positions.csv'), index=False, lineterminator='\n')
     # Align schematic group centers with A, preserving relative illustrative spreads.
     anatomical_scores = schematic.hierarchy_scores(hierarchy)
     anatomical_v1 = anatomical_scores['V1']
@@ -327,16 +328,16 @@ def main(output_dir=None, hierarchy="harris2019", *, figure_number=5,
         estimate_records.append(dict(metric=metric, effect='matched_hva_minus_v1_mean',
                                      estimate=cr.hva_minus_v1, low=cr.hva_minus_v1_low,
                                      high=cr.hva_minus_v1_high))
-    pd.DataFrame(spread_records).to_csv(STEM.with_name(STEM.name + '_mean_spreads.csv'), index=False)
+    pd.DataFrame(spread_records).to_csv(STEM.with_name(STEM.name + '_mean_spreads.csv'), index=False, lineterminator='\n')
     counts = pd.DataFrame(records)
     old = pd.read_csv(DISPLAY_COUNTS)
     old = old.loc[old.figure.eq('Figure4_CDE_rerun')]
     joined = counts.merge(old, on=['metric', 'population', 'category'], suffixes=('_new', '_original'), validate='one_to_one')
     assert len(joined) == len(counts) == len(old)
     assert joined.n_cells_new.eq(joined.n_cells_original).all(), 'Display population changed'
-    counts.to_csv(STEM.with_name(STEM.name + '_display.csv'), index=False)
+    counts.to_csv(STEM.with_name(STEM.name + '_display.csv'), index=False, lineterminator='\n')
     estimates = pd.DataFrame(estimate_records)
-    estimates.to_csv(STEM.with_name(STEM.name + '_estimates.csv'), index=False)
+    estimates.to_csv(STEM.with_name(STEM.name + '_estimates.csv'), index=False, lineterminator='\n')
     # Print-size typography is deliberately larger than proportional reduction.
     from matplotlib.text import Text, Annotation
     from matplotlib.lines import Line2D
@@ -408,7 +409,7 @@ Numerical source selected above. Siegle et al. (2021), https://pmc.ncbi.nlm.nih.
     for r in estimates.itertuples():
         legend += f'| {r.metric} | {r.effect} | {r.estimate:.6g} | [{r.low:.6g}, {r.high:.6g}] |\n'
     legend = legend.replace('Figure 4', f'Figure {figure_number}')
-    STEM.with_name(STEM.name + '_legend.md').write_text(legend)
+    STEM.with_name(STEM.name + '_legend.md').write_text(legend, encoding='utf-8', newline='\n')
     sources = [REGISTRY, results.PRIMARY / 'primary_effects.csv', results.PRIMARY / 'draw_specific_point_fits.csv',
                results.CONTROL / 'matched_control.csv', results.PRIMARY / 'bootstrap_effects.csv.gz', schematic.PROBE_ENTRIES_PATH, schematic.ATLAS_PATH, schematic.ATLAS_LABELS_PATH,
                schematic.CONNECTION_DENSITY_PATH, schematic.HARRIS_SCORES_PATH]
@@ -430,10 +431,10 @@ Numerical source selected above. Siegle et al. (2021), https://pmc.ncbi.nlm.nih.
                     'color': 'source area, using the Figure 4 area palette'},
                 'schematic_alignment': {'V1_reference_score': float(anatomical_v1), 'mean_HVA_reference_score': float(anatomical_hva), 'meaning': 'Page-height alignment only; functional metric values remain illustrative'},
                 'schematic_layout': {'A_map': [.060, .725, .190, .22], 'A_hierarchy': [.245, .725, .260, .22], 'B_map': [.555, .725, .130, .22], 'B_benchmark': [.735, .725, .245, .22]},
-                'renderer': str(Path(__file__).relative_to(ROOT)), 'display_count_check': 'All 27 category counts match original.',
-                'sources': {os.path.relpath(p, ROOT): hashlib.sha256(p.read_bytes()).hexdigest() for p in sources}}
+                'renderer': Path(__file__).relative_to(ROOT).as_posix(), 'display_count_check': 'All 27 category counts match original.',
+                'sources': {Path(os.path.relpath(p, ROOT)).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in sources}}
     manifest['figure_number'] = figure_number
     manifest['artboard_points'] = (fig.get_size_inches() * 72).tolist()
-    STEM.with_name(STEM.name + '_layout_manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
+    STEM.with_name(STEM.name + '_layout_manifest.json').write_text(json.dumps(manifest, indent=2) + '\n', newline='\n')
     print(STEM.with_suffix('.pdf'))
     print('Verified all 27 display counts against the original figure.')
