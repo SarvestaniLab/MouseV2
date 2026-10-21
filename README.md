@@ -11,7 +11,7 @@ The paper proposes that the cortex surrounding mouse V1, usually divided into ab
 eight higher visual areas (HVAs), may instead be a single, complex second visual area
 (V2). It combines retinotopic simulations with a new Allen Institute
 [OpenScope](https://www.allenneuraldynamics.org/projects/openscope) dataset of
-electrophysiological and two-photon recordings across V1. This repository is the
+electrophysiological[https://openscopedatafront.web.app/projects/cross_species_v2_ephys] and two-photon recordings[https://openscopedatafront.web.app/projects/cross_species_v2_ophys] across V1. This repo is the
 single place for the paper's public data links and analysis code.
 
 ## Contents
