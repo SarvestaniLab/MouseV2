@@ -16,10 +16,10 @@ from scipy.stats import gaussian_kde
 import schematics as schematic
 import figure_data as results
 
-OUT = ROOT / 'MouseV2-Figure5'
+OUT = ROOT / 'Figure5'
 STEM = OUT / 'Figure5'
-REGISTRY = ROOT / 'MouseV2-Figure5/data/response_registry_floor5.csv.gz'
-DISPLAY_COUNTS = ROOT / 'MouseV2-Figure5/data/display_counts.csv'
+REGISTRY = ROOT / 'Figure5/data/response_registry_floor5.csv.gz'
+DISPLAY_COUNTS = ROOT / 'Figure5/data/display_counts.csv'
 
 
 def heading(fig, x, letter, title):

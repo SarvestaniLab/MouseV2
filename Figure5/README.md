@@ -12,7 +12,7 @@ Use Python 3.12 in a separate environment from the original Allen environment:
 ```bash
 python3.12 -m venv .venv
 source .venv/bin/activate
-python -m pip install -r MouseV2-Figure5/requirements.txt
+python -m pip install -r Figure5/requirements.txt
 ```
 
 The renderer uses the system **Liberation Sans** font (Liberation Fonts 2 for
@@ -28,7 +28,7 @@ this folder with the folder prefix omitted.
 For a quick build from the bundled, locked analysis tables:
 
 ```bash
-python MouseV2-Figure5/Figure5.py
+python Figure5/Figure5.py
 ```
 
 The current `Figure5.png`, `Figure5.pdf`, and `Figure5.svg` live beside
@@ -39,7 +39,7 @@ To reconstruct anatomical assignments, the eligible-unit registry, all
 statistical results, and a new figure from the bundled metric-level sources:
 
 ```bash
-python MouseV2-Figure5/reproduce.py
+python Figure5/reproduce.py
 ```
 
 This runs 5,000 bootstrap/shuffle replicates with the original seeds. It is
@@ -47,13 +47,13 @@ substantially slower than the quick build. Progress is printed by analysis
 stage. Results go to the ignored `work/reproduction/` directory:
 
 - `anatomy/`: regenerated unit locations and probe entry points;
-- `MouseV2-Figure5/data/`: regenerated registry and statistical tables;
+- `Figure5/data/`: regenerated registry and statistical tables;
 - `figure/`: the figure rendered **from those regenerated tables**;
 - `reproduction.json`: commands, runtime, and verification status.
 
 The reference inputs and current exports are preserved. A failed comparison
 stops the run. Once the statistical tables are complete, resume verification
-and rendering with `python MouseV2-Figure5/reproduce.py --resume`. Resume
+and rendering with `python Figure5/reproduce.py --resume`. Resume
 checks append to `resume_events.jsonl`, preserving the original
 `reproduction.json`. If the original run stopped before writing that report,
 resuming does not reconstruct its missing provenance.
@@ -73,11 +73,11 @@ Create a separate **Python 3.10** environment and install
 used for extraction. Download the public recordings anonymously, then extract:
 
 ```bash
-python MouseV2-Figure5/extract.py download-mouse \
+python Figure5/extract.py download-mouse \
   --mouse-root /path/to/001568
-python MouseV2-Figure5/extract.py download-allen \
+python Figure5/extract.py download-allen \
   --allen-root /path/to/allen_sessions
-python MouseV2-Figure5/extract.py run \
+python Figure5/extract.py run \
   --mouse-root /path/to/001568 \
   --allen-root /path/to/allen_sessions \
   --hash-raw
@@ -105,9 +105,9 @@ smaller audits, which cannot substitute for a complete extraction.
 After a complete extraction, return to the rendering environment and run:
 
 ```bash
-python MouseV2-Figure5/reproduce.py \
-  --metrics-dir MouseV2-Figure5/work/metrics \
-  --output-dir MouseV2-Figure5/work/from-nwb
+python Figure5/reproduce.py \
+  --metrics-dir Figure5/work/metrics \
+  --output-dir Figure5/work/from-nwb
 ```
 
 The original Allen timescale estimates and unit metadata are published-source
@@ -116,10 +116,10 @@ optional raw audit is available; it writes comparisons without replacing the
 published fits:
 
 ```bash
-python MouseV2-Figure5/extract.py audit-allen-timescales \
+python Figure5/extract.py audit-allen-timescales \
   --cohorts allen --sessions 798911424 \
   --allen-root /path/to/allen_sessions \
-  --output-dir MouseV2-Figure5/work/allen-timescale-audit
+  --output-dir Figure5/work/allen-timescale-audit
 ```
 
 See [METHODS.md](METHODS.md) for the estimands, source boundaries, anatomical
@@ -146,15 +146,15 @@ for the completed full reconstruction and raw-recording checks.
 To check source integrity or run the focused tests:
 
 ```bash
-python MouseV2-Figure5/prepare.py check
-python -m unittest discover -s MouseV2-Figure5/tests -v
+python Figure5/prepare.py check
+python -m unittest discover -s Figure5/tests -v
 ```
 
 The small synthetic NWB-reader test additionally requires h5py; run it in the
 extraction environment with:
 
 ```bash
-python -m unittest discover -s MouseV2-Figure5/tests -k nwb -v
+python -m unittest discover -s Figure5/tests -k nwb -v
 ```
 
 The full 5,000-replicate reproduction is the integration check, rather than part
