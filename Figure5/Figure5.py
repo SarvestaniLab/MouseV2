@@ -8,6 +8,7 @@ import hashlib
 import gzip
 import json
 import os
+import tempfile
 from pathlib import Path
 
 
@@ -117,10 +118,10 @@ def validate() -> None:
         canonical=True,
         canonical_entrypoint="Figure5/Figure5.py",
         canonical_version="v17-corrected-tests",
-        input_root=os.path.relpath(INPUT_ROOT, ROOT),
+        input_root=Path(os.path.relpath(INPUT_ROOT, ROOT)).as_posix(),
         validation="exact hashes" if INPUT_ROOT == ROOT else "numeric equivalence: rtol=1e-10, atol=1e-12",
     )
-    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n")
+    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", newline="\n")
 
 
 def main() -> None:
@@ -143,7 +144,7 @@ def main() -> None:
     EXPECTED_OUTPUTS += [OUTPUT / ('Figure5_' + name) for name in ('legend.md', 'layout_manifest.json')]
     preflight()
     os.environ.setdefault("SOURCE_DATE_EPOCH", "1790989200")
-    os.environ.setdefault("MPLCONFIGDIR", "/tmp/neuropixels-platform-paper-matplotlib")
+    os.environ.setdefault("MPLCONFIGDIR", os.path.join(tempfile.gettempdir(), "neuropixels-platform-paper-matplotlib"))
 
     import matplotlib
 

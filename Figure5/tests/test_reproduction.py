@@ -149,7 +149,7 @@ class ReproductionTests(unittest.TestCase):
                 source = prepare._control_population(registry, metric)
                 plan = prepare._resampling_plan(source, per_session=False)
                 table = prepare._resample_animals(source, rng, prepared=plan)
-            digest = hashlib.sha256(table[reference['columns']].to_csv(index=False).encode()).hexdigest()
+            digest = hashlib.sha256(table[reference['columns']].to_csv(index=False, lineterminator='\n').encode()).hexdigest()
             self.assertEqual(digest, fixture['sha256'], fixture)
 
     def test_nwb_spikes_use_ids_not_row_numbers(self):

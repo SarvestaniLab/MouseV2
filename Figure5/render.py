@@ -518,14 +518,15 @@ def canonical_style(fig) -> None:
 
 
 def write_caption() -> None:
-    caption = CAPTION_SOURCE.read_text()
+    caption = CAPTION_SOURCE.read_text(encoding="utf-8")
     panel_f = """**F)** Location-associated variance, expressed as bias-corrected one-way omega-squared (ω², %), for intra-V1 recording location and inter-HVA area identity, followed by their signed inter-HVA minus intra-V1 difference (blue diamonds). The difference is expressed in percentage points and its 95% interval is calculated from independent-population whole-animal bootstrap differences. No shuffle-test significance symbol is assigned to this contrast. All three contrast intervals include zero; this does not establish equivalence. Points and whiskers show estimates and individual 95% percentile intervals from 5,000 whole-animal bootstrap replicates (not simultaneous intervals). Unlike E’s balanced, session-adjusted category-mean SDs, F uses raw neuronal responses with equal cell weights and no session adjustment; negative estimates are retained. Significance annotations use matching within-session location-block shuffles (5,000 permutations; one-sided tests with Bonferroni correction across the six component tests: three metrics × two populations): * p < .05, ** p < .01, *** p < .001; n.s., p ≥ .05. All neurons in a session/location move together; tests assume exchangeability of available labels within sessions. For MouseV2 timescale, the observed and shuffled ω² statistics average ten draw-specific values, using one coherent label permutation per session across draws. Annotations use adjusted p-values, calculated as min(1, 6 × raw p). Adjusted inter-HVA p-values are 0.002400 for TTFS and 0.001200 for timescale; all remaining component tests have adjusted p ≥ .05. These tests concern each location effect, not the difference between intra-V1 and inter-HVA effects; nonsignificance does not establish absence of an effect. Summary shuffle statistics and exact p-values are supplied in Figure5_F_estimates_and_tests.csv.
 
 """
     caption = caption.replace("Timescale estimation uses", panel_f + "Timescale estimation uses")
-    STEM.with_name(STEM.name + "_legend.md").write_text(caption)
+    STEM.with_name(STEM.name + "_legend.md").write_text(caption, encoding="utf-8", newline="\n")
     (OUTPUT / "Figure5_F_condensed_caption.md").write_text(
-        "**F)** Location-associated variance (bias-corrected ω²) within V1, across HVAs, and their difference (inter-HVA − intra-V1; blue diamonds, in percentage points). Whiskers show individual 95% whole-animal bootstrap intervals. Asterisks indicate one-sided within-session location-block shuffle tests, Bonferroni-adjusted across six component tests (** indicates adjusted p < .01; n.s., adjusted p ≥ .05). Difference intervals include zero for all metrics; this does not establish equivalence.\n"
+        "**F)** Location-associated variance (bias-corrected ω²) within V1, across HVAs, and their difference (inter-HVA − intra-V1; blue diamonds, in percentage points). Whiskers show individual 95% whole-animal bootstrap intervals. Asterisks indicate one-sided within-session location-block shuffle tests, Bonferroni-adjusted across six component tests (** indicates adjusted p < .01; n.s., adjusted p ≥ .05). Difference intervals include zero for all metrics; this does not establish equivalence.\n",
+        encoding="utf-8", newline="\n",
     )
 
 
@@ -545,25 +546,25 @@ def finalize_manifest() -> None:
             "axes_linewidth_pt": .7,
         },
         "cartoons": {
-            "source": str(VECTOR_SOURCE.relative_to(ROOT)),
+            "source": VECTOR_SOURCE.relative_to(ROOT).as_posix(),
             "sha256": hashlib.sha256(VECTOR_SOURCE.read_bytes()).hexdigest(),
             "geometry": "Exact SVG Bezier paths and original marker coordinates/radii.",
             "empirical_coordinates": False,
         },
-        "panel_F_source": os.path.relpath(VARIANCE_STATS, ROOT),
+        "panel_F_source": Path(os.path.relpath(VARIANCE_STATS, ROOT)).as_posix(),
         "multiplicity": {
             "method": "Bonferroni", "family": "3 metrics × 2 populations",
             "n_tests": 6, "formula": "min(1, 6 × raw p)",
             "bootstrap_intervals": "individual 95%; not simultaneous",
         },
     })
-    path.write_text(json.dumps(manifest, indent=2) + "\n")
+    path.write_text(json.dumps(manifest, indent=2) + "\n", newline="\n")
 
 
 def main() -> None:
     base.main(OUTPUT, "harris2019", figure_number=5,
               artboard_points=(ARTBOARD_WIDTH, 574.601), style_callback=canonical_style)
-    adjusted_variance_table().to_csv(OUTPUT / "Figure5_F_estimates_and_tests.csv", index=False)
+    adjusted_variance_table().to_csv(OUTPUT / "Figure5_F_estimates_and_tests.csv", index=False, lineterminator="\n")
     write_caption()
     finalize_manifest()
 

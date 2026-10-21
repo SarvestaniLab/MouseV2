@@ -706,7 +706,7 @@ def _write_csv(table: pd.DataFrame, root: Path, relative: str, *, gzip_output: b
     path = root / relative
     path.parent.mkdir(parents=True, exist_ok=True)
     compression = {"method": "gzip", "mtime": 0} if gzip_output else None
-    table.to_csv(path, index=False, compression=compression)
+    table.to_csv(path, index=False, compression=compression, lineterminator="\n")
     return path
 
 

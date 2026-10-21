@@ -1,0 +1,4 @@
+# Figure 5 verifies its inputs and outputs by SHA-256 of the exact bytes.
+# Never convert line endings in that folder (Git for Windows defaults to
+# core.autocrlf=true, which would otherwise rewrite LF as CRLF on checkout).
+Figure5/** -text
