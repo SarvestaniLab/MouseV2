@@ -29,9 +29,7 @@ To assess the spatial and feature tuning of V1 neurons recorded at different ret
 
 An example truncated ephys session is shown below.
 
-<p align="center">
-  <video src="https://github.com/user-attachments/assets/1c861f92-a653-4379-990b-01a02dc8050d" width="30%"></video>
-</p>
+https://github.com/user-attachments/assets/1c861f92-a653-4379-990b-01a02dc8050d
 
 ## Recording methods and data structure
 ### Ephys
