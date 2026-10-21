@@ -1,24 +1,34 @@
-# MouseV2 Figure 5
+# Figure 5
 
 This folder contains the code and compact source tables needed to reproduce
-Figure 5 of the unified-V2 manuscript. The original Allen figure folders are
-unchanged. No exploratory scripts, private filesystem paths, or files from
-another branch are needed for the default reproduction.
+Figure 5 of [Rowley et al.](https://www.biorxiv.org/content/10.1101/2024.10.10.617533v4)
+(*Large-scale OpenScope recordings provide a within-area benchmark for
+functional heterogeneity*). It is self-contained: no exploratory scripts,
+private filesystem paths, or files from elsewhere in this repository are
+needed for the default reproduction.
 
 ## First-time setup
 
-Use Python 3.12 in a separate environment from the original Allen environment:
+Figure 5 has its own pinned environment. Use Python 3.12 in a virtual
+environment kept separate from the one used for the data notebooks:
 
 ```bash
-python3.12 -m venv .venv
-source .venv/bin/activate
+python3.12 -m venv .venv-figure5
+source .venv-figure5/bin/activate        # Windows: .venv-figure5\Scripts\activate
 python -m pip install -r Figure5/requirements.txt
 ```
 
-The renderer uses the system **Liberation Sans** font (Liberation Fonts 2 for
-the committed exports). Install it before rendering, for example with
-`sudo apt install fonts-liberation2` on Debian/Ubuntu. Font versions can alter
-text rasterization; numerical checks are independent of fonts.
+On Windows, use `py -3.12 -m venv .venv-figure5` if `python3.12` is not on
+your PATH.
+
+The renderer uses the **Liberation Sans** font (Liberation Fonts 2 for the
+committed exports). Install it before rendering: on Debian/Ubuntu,
+`sudo apt install fonts-liberation2`; on macOS, `brew install --cask
+font-liberation`; on Windows, install the TTF files from the
+[Liberation Fonts releases](https://github.com/liberationfonts/liberation-fonts/releases).
+Without it, matplotlib falls back to DejaVu Sans and prints `findfont`
+warnings; the figure still builds and every numerical check still passes, but
+some labels are wider than in the published figure.
 
 Run these commands from the repository root. Scripts also work from inside
 this folder with the folder prefix omitted.

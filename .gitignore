@@ -1,0 +1,8 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv*/
+.ipynb_checkpoints/
+
+# Figure 5 reproduction and extraction outputs (see Figure5/README.md)
+Figure5/work/
