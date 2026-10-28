@@ -1,0 +1,30 @@
+[project]
+name = "mousev2-retinotopy"
+version = "0.1.0"
+description = "Elastic-net simulations of retinotopic organization beyond mouse V1"
+requires-python = ">=3.8,<3.9"
+dependencies = [
+    "numpy==1.24.3",
+    "pandas==2.0.3",
+    "scipy==1.10.1",
+    "tensorflow==2.13.0",
+    # The tensorflow package is a small metapackage on native Windows. Keep
+    # its platform implementation explicit so the lock cannot omit it.
+    "tensorflow-intel==2.13.0; sys_platform == 'win32'",
+    # TensorFlow 2.13 does not cap this transitive dependency, while newer
+    # releases no longer provide the Windows/Python 3.8 wheel used here.
+    "tensorflow-io-gcs-filesystem==0.31.0",
+]
+
+[dependency-groups]
+notebooks = [
+    "imageio==2.35.1",
+    "ipykernel==6.29.5",
+    "matplotlib==3.7.5",
+    "opencv-python-headless==4.11.0.86",
+    "pillow==10.4.0",
+    "scikit-image==0.21.0",
+]
+
+[tool.uv]
+package = false

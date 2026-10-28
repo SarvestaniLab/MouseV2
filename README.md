@@ -18,7 +18,7 @@ single place for the paper's public data links and analysis code.
 
 | Paper figure | What it shows | Code | Data |
 | --- | --- | --- | --- |
-| **Figure 2** | Retinotopic (elastic-net) simulations of a single complex V2 | `Figure2/` *(coming soon)* | Simulated |
+| **Figure 2** | Retinotopic (elastic-net) simulations of a single complex V2 | [`Figure2/`](Figure2/) *(review draft)* | Simulated |
 | **Figure 4** | The OpenScope dataset and example neurons | [`ephys_getting_started.ipynb`](ephys_getting_started.ipynb), [`02_ophys_getting_started.ipynb`](02_ophys_getting_started.ipynb) | [DANDI:001568](https://dandiarchive.org/dandiset/001568), [DANDI:001709](https://dandiarchive.org/dandiset/001709) |
 | **Figure 5** | A within-V1 benchmark for functional differences among HVAs | [`Figure5/`](Figure5/) | Bundled tables; raw recordings from [DANDI:001568](https://dandiarchive.org/dandiset/001568) and the [Allen Visual Coding – Neuropixels](https://allensdk.readthedocs.io/en/latest/visual_coding_neuropixels.html) dataset |
 
@@ -32,7 +32,7 @@ MouseV2/
 │   ├── Figure5.py                   quick build from the bundled, hash-locked tables
 │   ├── reproduce.py                 full reconstruction (5,000 bootstrap replicates)
 │   └── ...
-└── Figure2/                         (coming soon) retinotopy simulations
+└── Figure2/                         retinotopy simulations and frozen Figure 2 composition
 ```
 
 ## Getting started
@@ -45,6 +45,21 @@ environment for each part you want to run, from the repository root.
 git clone https://github.com/SarvestaniLab/MouseV2.git
 cd MouseV2
 ```
+
+### Reproduce Figure 2
+
+Figure 2 uses its own locked Python 3.8 environment and frozen model checkpoints:
+
+```bash
+cd Figure2
+uv sync --locked --group notebooks
+uv run --locked --group notebooks python fig2/compose_figure.py
+cd ..
+```
+
+See [Figure 2 reproduction instructions](Figure2/REPRODUCING.md) for model training
+and tests, and [known limitations](Figure2/KNOWN_LIMITATIONS.md) for outstanding
+scientific and release reviews. This is a review draft, not a finalized release.
 
 ### Explore the OpenScope data (Figure 4)
 

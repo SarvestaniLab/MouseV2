@@ -1,0 +1,304 @@
+{
+  "paper_doi": "10.1371/journal.pone.0213924",
+  "legacy_repository": "https://github.com/zhuangjun1981/retinotopic_mapping",
+  "legacy_commit": "0d886a6a137a3a9f0509ab8c5c767f09aff4dae3",
+  "source_arrays": {
+    "isi1_altitude.npy": {
+      "well_known_file_id": 745544088,
+      "sha256": "054d2b24644bf2e0a076365dae16854ec3b93178352c3023ef068bac50b37af6",
+      "shape": [
+        60,
+        600,
+        600
+      ],
+      "dtype": "float64"
+    },
+    "isi1_azimuth.npy": {
+      "well_known_file_id": 745545159,
+      "sha256": "2c2f169b06ee7207294b233ff56b4c8c951ba77e6375de30392f77e90d641ea3",
+      "shape": [
+        60,
+        600,
+        600
+      ],
+      "dtype": "float64"
+    },
+    "isi2_altitude.npy": {
+      "well_known_file_id": 745546232,
+      "sha256": "e34c862b1b38d2a0c3b160171dc0187e198d0eb9550c6449e30bff651d981f0e",
+      "shape": [
+        60,
+        600,
+        600
+      ],
+      "dtype": "float64"
+    },
+    "isi2_azimuth.npy": {
+      "well_known_file_id": 745596342,
+      "sha256": "e0722ce2c4243863714bb70ffc3a31e88a3843aebbb4df81b1160034c7860a81",
+      "shape": [
+        60,
+        600,
+        600
+      ],
+      "dtype": "float64"
+    }
+  },
+  "mice": 60,
+  "sessions_per_mouse": 2,
+  "pixels_per_mm": 100.0,
+  "area_policy": "dedicated_visual",
+  "included_areas": [
+    "V1",
+    "RL",
+    "LM",
+    "AM",
+    "PM",
+    "P",
+    "AL",
+    "MMA",
+    "MMP"
+  ],
+  "excluded_available_labels": {
+    "RLL": "posterior barrel cortex",
+    "LLA": "possible audiovisual/auditory-border cortex without direct V1 input"
+  },
+  "excluded_external_regions": {
+    "POR": "outside the Waters labels and excluded by design"
+  },
+  "excluded_areas": [
+    "RLL",
+    "LLA",
+    "POR"
+  ],
+  "li_status": "not among the 11 Waters template labels",
+  "occupancy_levels": {
+    "25%": 0.25,
+    "50%": 0.5,
+    "75%": 0.75
+  },
+  "occupancy_gaussian_sigma_pixels": 1.0,
+  "patch_occurrence": {
+    "V1": {
+      "session_1": 60,
+      "session_2": 60,
+      "both_sessions": 60
+    },
+    "RL": {
+      "session_1": 60,
+      "session_2": 60,
+      "both_sessions": 60
+    },
+    "LM": {
+      "session_1": 59,
+      "session_2": 57,
+      "both_sessions": 56
+    },
+    "AM": {
+      "session_1": 59,
+      "session_2": 53,
+      "both_sessions": 52
+    },
+    "PM": {
+      "session_1": 60,
+      "session_2": 60,
+      "both_sessions": 60
+    },
+    "P": {
+      "session_1": 48,
+      "session_2": 48,
+      "both_sessions": 41
+    },
+    "RLL": {
+      "session_1": 27,
+      "session_2": 21,
+      "both_sessions": 14
+    },
+    "AL": {
+      "session_1": 60,
+      "session_2": 60,
+      "both_sessions": 60
+    },
+    "LLA": {
+      "session_1": 35,
+      "session_2": 29,
+      "both_sessions": 19
+    },
+    "MMA": {
+      "session_1": 56,
+      "session_2": 49,
+      "both_sessions": 45
+    },
+    "MMP": {
+      "session_1": 58,
+      "session_2": 57,
+      "both_sessions": 55
+    }
+  },
+  "published_patch_occurrence_session1_session2_both": {
+    "V1": [
+      60,
+      60,
+      60
+    ],
+    "RL": [
+      60,
+      60,
+      60
+    ],
+    "LM": [
+      59,
+      57,
+      56
+    ],
+    "AM": [
+      59,
+      53,
+      52
+    ],
+    "PM": [
+      60,
+      60,
+      60
+    ],
+    "P": [
+      37,
+      35,
+      30
+    ],
+    "RLL": [
+      52,
+      40,
+      38
+    ],
+    "AL": [
+      58,
+      57,
+      56
+    ],
+    "LLA": [
+      35,
+      28,
+      18
+    ],
+    "MMA": [
+      54,
+      48,
+      42
+    ],
+    "MMP": [
+      58,
+      55,
+      54
+    ]
+  },
+  "patch_occurrence_exact_match": {
+    "V1": true,
+    "RL": true,
+    "LM": true,
+    "AM": true,
+    "PM": true,
+    "P": false,
+    "RLL": false,
+    "AL": false,
+    "LLA": false,
+    "MMA": false,
+    "MMP": false
+  },
+  "all_patch_occurrences_match_published_notebook": false,
+  "production_ready": false,
+  "template_centers_row_column": {
+    "V1": [
+      413.35104840705776,
+      299.932286694247
+    ],
+    "RL": [
+      255.69695842247233,
+      259.6758441075249
+    ],
+    "LM": [
+      406.5713057187903,
+      186.529023935789
+    ],
+    "AM": [
+      276.15749429368503,
+      355.4111082931778
+    ],
+    "PM": [
+      349.31809011432415,
+      375.46603900470745
+    ],
+    "P": [
+      512.0094022834116,
+      309.74345198119545
+    ],
+    "RLL": [
+      208.03030303030303,
+      174.6969696969697
+    ],
+    "AL": [
+      337.48632926119836,
+      173.09685863874344
+    ],
+    "LLA": [
+      328.14436363636366,
+      128.8258181818182
+    ],
+    "MMA": [
+      275.1544502617801,
+      419.1861256544503
+    ],
+    "MMP": [
+      316.84251839738346,
+      448.8905968928863
+    ]
+  },
+  "contour_enclosed_projected_area_mm2_including_v1": {
+    "25%": 10.428020637300259,
+    "50%": 8.071402282171151,
+    "75%": 6.560382851201097
+  },
+  "waters_mean_template_v1_projected_area_mm2": 2.8281,
+  "waters_mean_v1_projected_area_mm2": 2.8281,
+  "waters_population_v1_contour_projected_area_mm2": {
+    "25%": 3.914107939025855,
+    "50%": 3.122008263334598,
+    "75%": 2.4105438395787604
+  },
+  "registered_zhuang_v1_projected_area_in_waters_mm2": 2.803017617109469,
+  "peri_v1_projected_area_mm2_subtracting_waters_mean_template_v1": {
+    "25%": 7.599920637300259,
+    "50%": 5.243302282171151,
+    "75%": 3.732282851201097
+  },
+  "peri_v1_projected_area_mm2_subtracting_waters_mean_v1": {
+    "25%": 7.599920637300259,
+    "50%": 5.243302282171151,
+    "75%": 3.732282851201097
+  },
+  "peri_v1_projected_area_mm2_subtracting_waters_population_v1_50": {
+    "25%": 7.306012373965661,
+    "50%": 4.9493940188365535,
+    "75%": 3.438374587866499
+  },
+  "peri_v1_projected_area_mm2_subtracting_registered_zhuang_v1": {
+    "25%": 7.62500302019079,
+    "50%": 5.268384665061682,
+    "75%": 3.757365234091628
+  },
+  "mousewise_extrastriate_only_thresholded_projected_area_mm2": {
+    "25%": 7.6902,
+    "50%": 4.4754,
+    "75%": 2.938
+  },
+  "mousewise_extrastriate_only_expected_projected_area_mm2": 5.4793078125,
+  "similarity_transform_to_zhuang_svg": [
+    -3.502351218078616,
+    -0.15180764700815216,
+    -2.5533002498261244,
+    -0.07502614146699545
+  ],
+  "similarity_fit_symmetric_mean_squared_error": 0.043415998669285735,
+  "nominal_svg": "WatersOccupancy50_borders.svg",
+  "waters_v1_svg": "WatersOccupancy50_WatersV1_borders.svg"
+}

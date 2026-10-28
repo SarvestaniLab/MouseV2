@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "frozen_on": "2026-10-21",
+  "source_commit": "105bb2c233c9af00552bbacce0fb1b2d84a9134b",
+  "selection": "Figure 2 current default saved primary example and panel B comparator",
+  "training_surface": "data/waters2019/derived/WatersV1_NormalConditionalMedian_borders.svg",
+  "rendering_surface": "data/waters2019/derived/WatersV1_IndividualV1Median_borders.svg",
+  "geometry_note": "Current Figure 2 renderer uses individual-V1 geometry; saved runs were trained on conditional-normal geometry. This freeze preserves both, without asserting that they match.",
+  "retraining_verified": false,
+  "runs": {
+    "primary": {
+      "directory": "data/publication/figure2/primary",
+      "metadata_status": "reconstructed from saved sweep.json; not an original training manifest",
+      "b1": 0.00014,
+      "b2": 10.0,
+      "b3": 0.0001,
+      "seed": 4,
+      "iterations": 1500,
+      "magnification": -0.5,
+      "prototype_count": 2000,
+      "map_h": 80,
+      "map_w": 8,
+      "boundary_retinotopy": "synthetic-waters-supported",
+      "training_surface": "data/waters2019/derived/WatersV1_NormalConditionalMedian_borders.svg",
+      "final_checkpoint": "y-0.00014-10-0.0001-01500.data",
+      "source_sweep": "artifacts/figure2_remake/primary_fit/seed-004/sweep.json",
+      "source_sweep_sha256": "db84f142488b472400a6367b040acde6a223dcd23ad1e91eb0b8f7141a123eba"
+    },
+    "high_smoothness": {
+      "directory": "data/publication/figure2/high_smoothness",
+      "metadata_status": "reconstructed from saved sweep.json; not an original training manifest",
+      "b1": 0.001,
+      "b2": 10.0,
+      "b3": 0.0001,
+      "seed": 4,
+      "iterations": 1500,
+      "magnification": -0.5,
+      "prototype_count": 2000,
+      "map_h": 80,
+      "map_w": 8,
+      "boundary_retinotopy": "synthetic-waters-supported",
+      "training_surface": "data/waters2019/derived/WatersV1_NormalConditionalMedian_borders.svg",
+      "final_checkpoint": "y-0.001-10-0.0001-01500.data",
+      "source_sweep": "artifacts/figure2_remake/high_b1_fit/seed-004/sweep.json",
+      "source_sweep_sha256": "7ce755a9ae6729fd7c46b6bf6e3edc184959f1b36a56300e09d86c33c0cf4916"
+    }
+  },
+  "files": {
+    "data/publication/figure2/primary/boundary.csv": {
+      "sha256": "2e67c1ec459bcbf9d90800986bbcf04b51f4670caf13b59419fee2b197c492f1",
+      "source": "artifacts/figure2_remake/primary_fit/seed-004/b1-1.400e-04/boundary.csv"
+    },
+    "data/publication/figure2/primary/vf.csv": {
+      "sha256": "8eea752110a1751b12be344de53f7e6c28df8e3d9b107c8d1cc20b63e223a1c4",
+      "source": "artifacts/figure2_remake/primary_fit/seed-004/b1-1.400e-04/vf.csv"
+    },
+    "data/publication/figure2/primary/init.csv": {
+      "sha256": "40510788be4e1372091fcb1bb755d1893a832bf5bfc5b735eae83b0c44a6f212",
+      "source": "artifacts/figure2_remake/primary_fit/seed-004/b1-1.400e-04/init.csv"
+    },
+    "data/publication/figure2/primary/y-0.00014-10-0.0001-01500.data": {
+      "sha256": "5e9bdac151b34bf73f461131d52f14b71677c51da9a51f593f78c0073ba75a4e",
+      "source": "artifacts/figure2_remake/primary_fit/seed-004/b1-1.400e-04/y-0.00014-10-0.0001-01500.data"
+    },
+    "data/publication/figure2/primary/run-manifest.json": {
+      "sha256": "da34b465c9fe2e6332be5aa88d4def8e6ca01e6faa049127f7528a5f584b8128",
+      "source": "reconstructed metadata"
+    },
+    "data/publication/figure2/high_smoothness/boundary.csv": {
+      "sha256": "2e67c1ec459bcbf9d90800986bbcf04b51f4670caf13b59419fee2b197c492f1",
+      "source": "artifacts/figure2_remake/high_b1_fit/seed-004/b1-1.000e-03/boundary.csv"
+    },
+    "data/publication/figure2/high_smoothness/vf.csv": {
+      "sha256": "8eea752110a1751b12be344de53f7e6c28df8e3d9b107c8d1cc20b63e223a1c4",
+      "source": "artifacts/figure2_remake/high_b1_fit/seed-004/b1-1.000e-03/vf.csv"
+    },
+    "data/publication/figure2/high_smoothness/init.csv": {
+      "sha256": "40510788be4e1372091fcb1bb755d1893a832bf5bfc5b735eae83b0c44a6f212",
+      "source": "artifacts/figure2_remake/high_b1_fit/seed-004/b1-1.000e-03/init.csv"
+    },
+    "data/publication/figure2/high_smoothness/y-0.001-10-0.0001-01500.data": {
+      "sha256": "a7e9e108ecb512cdc2f16e90852cff68f2baa33a17c5aa91e82f9884e9de2e51",
+      "source": "artifacts/figure2_remake/high_b1_fit/seed-004/b1-1.000e-03/y-0.001-10-0.0001-01500.data"
+    },
+    "data/publication/figure2/high_smoothness/run-manifest.json": {
+      "sha256": "77c345c96eaf7244932241a69fb394f8b74b470c8b4d585459c6bcf8d1a68134",
+      "source": "reconstructed metadata"
+    },
+    "data/waters2019/derived/WatersV1_NormalConditionalMedian_borders.svg": {
+      "sha256": "cbbf3f7a3d3357a3dd31a03941a12a999eb91e8e4776a4bf4c040840c0ef819b",
+      "source": "data/waters2019/derived/WatersV1_NormalConditionalMedian_borders.svg"
+    },
+    "data/waters2019/derived/WatersV1_IndividualV1Median_borders.svg": {
+      "sha256": "903b915e203380dce09cd384efdcee2be579ce9a5665406fc19c94ce41d1087b",
+      "source": "data/waters2019/derived/WatersV1_IndividualV1Median_borders.svg"
+    },
+    "data/reference/MouseV1_synthetic_boundary_Waters_supported_80.csv": {
+      "sha256": "16a0209f861197737158c8a9d60dd7cd7591171045323a4bbb555c13828e08c1",
+      "source": "data/reference/MouseV1_synthetic_boundary_Waters_supported_80.csv"
+    }
+  }
+}

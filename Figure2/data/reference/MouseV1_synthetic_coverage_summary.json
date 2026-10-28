@@ -1,0 +1,79 @@
+{
+  "name": "Garrett-inspired Wagor-extrema synthetic V1 coverage envelope",
+  "purpose": "low-precision conceptual model boundary; not an anatomical or data-fitted V1 border",
+  "azimuth_extent_deg": [
+    0.0,
+    140.0
+  ],
+  "elevation_extent_deg": [
+    -40.0,
+    59.99999734895833
+  ],
+  "peak_vertical_extent_azimuth_deg": 60.025,
+  "parameterization": "shape-preserving piecewise-cubic (PCHIP)",
+  "parameters": {
+    "upper_anchor_points_deg": [
+      [
+        0.0,
+        40.0
+      ],
+      [
+        25.0,
+        57.0
+      ],
+      [
+        60.0,
+        60.0
+      ],
+      [
+        90.0,
+        57.0
+      ],
+      [
+        120.0,
+        38.0
+      ],
+      [
+        140.0,
+        -13.0
+      ]
+    ],
+    "lower_anchor_points_deg": [
+      [
+        0.0,
+        -16.0
+      ],
+      [
+        25.0,
+        -29.0
+      ],
+      [
+        65.0,
+        -40.0
+      ],
+      [
+        68.0,
+        -40.0
+      ],
+      [
+        82.0,
+        -24.0
+      ],
+      [
+        110.0,
+        -17.0
+      ],
+      [
+        140.0,
+        -13.0
+      ]
+    ],
+    "closure": "vertical segment at azimuth 0 and common posterior tip"
+  },
+  "evidence_hierarchy": {
+    "broad_shape": "Garrett et al. 2014 Figure 6C",
+    "extrema": "Wagor et al. 1980 Figure 4A",
+    "detailed_outline": "synthetic by design"
+  },
+  "interpretation": "The curve fills unsupported portions of the reconstructed Wagor coverage and suppresses straight raster edges, clipping plateaus, sharp field-fit notches, and pixel-scale contour detail."
+}

@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "status": "review-draft",
+  "files": [
+    {
+      "source": ".python-version",
+      "destination": ".python-version"
+    },
+    {
+      "source": "pyproject.toml",
+      "destination": "pyproject.toml"
+    },
+    {
+      "source": "uv.lock",
+      "destination": "uv.lock"
+    },
+    {
+      "source": "elastictopy/__init__.py",
+      "destination": "elastictopy/__init__.py"
+    },
+    {
+      "source": "elastictopy/elastic_net_mouse.py",
+      "destination": "elastictopy/elastic_net_mouse.py"
+    },
+    {
+      "source": "elastictopy/helpers.py",
+      "destination": "elastictopy/helpers.py"
+    },
+    {
+      "source": "elastictopy/mouse_surface.py",
+      "destination": "elastictopy/mouse_surface.py"
+    },
+    {
+      "source": "elastictopy/legacy_plotting.py",
+      "destination": "elastictopy/legacy_plotting.py"
+    },
+    {
+      "source": "elastictopy/vf.py",
+      "destination": "elastictopy/vf.py"
+    },
+    {
+      "source": "scripts/run_mouse_v2.py",
+      "destination": "scripts/run_mouse_v2.py"
+    },
+    {
+      "source": "scripts/check_environment.py",
+      "destination": "scripts/check_environment.py"
+    },
+    {
+      "source": "tests/test_edge_regularizers.py",
+      "destination": "tests/test_edge_regularizers.py"
+    },
+    {
+      "source": "tests/test_registered_border.py",
+      "destination": "tests/test_registered_border.py"
+    },
+    {
+      "source": "data/reference/MouseV1_synthetic_boundary_Waters_row0_anchored_80.csv",
+      "destination": "data/reference/MouseV1_synthetic_boundary_Waters_row0_anchored_80.csv"
+    },
+    {
+      "source": "data/reference/MouseV1_synthetic_boundary_Waters_row0_anchored_80.json",
+      "destination": "data/reference/MouseV1_synthetic_boundary_Waters_row0_anchored_80.json"
+    },
+    {
+      "source": "data/reference/MouseV1_synthetic_boundary_Waters_supported_80.csv",
+      "destination": "data/reference/MouseV1_synthetic_boundary_Waters_supported_80.csv"
+    },
+    {
+      "source": "data/reference/MouseV1_synthetic_coverage_summary.json",
+      "destination": "data/reference/MouseV1_synthetic_coverage_summary.json"
+    },
+    {
+      "source": "data/waters2019/derived/WatersV1_IndividualV1Median_borders.svg",
+      "destination": "data/waters2019/derived/WatersV1_IndividualV1Median_borders.svg"
+    },
+    {
+      "source": "data/waters2019/derived/WatersV1_IndividualV1Median_borders.json",
+      "destination": "data/waters2019/derived/WatersV1_IndividualV1Median_borders.json"
+    },
+    {
+      "source": "data/waters2019/derived/WatersV1_NormalConditionalMedian_borders.svg",
+      "destination": "data/waters2019/derived/WatersV1_NormalConditionalMedian_borders.svg"
+    },
+    {
+      "source": "data/waters2019/derived/WatersV1_RegisteredMouseMedian_borders.svg",
+      "destination": "data/waters2019/derived/WatersV1_RegisteredMouseMedian_borders.svg"
+    },
+    {
+      "source": "publication/templates/README.md",
+      "destination": "README.md"
+    },
+    {
+      "source": "publication/templates/DATA.md",
+      "destination": "DATA.md"
+    },
+    {
+      "source": "publication/templates/REPRODUCING.md",
+      "destination": "REPRODUCING.md"
+    },
+    {
+      "source": "publication/templates/KNOWN_LIMITATIONS.md",
+      "destination": "KNOWN_LIMITATIONS.md"
+    },
+    {
+      "source": "publication/templates/CITATION.cff",
+      "destination": "CITATION.cff"
+    },
+    {
+      "source": "publication/templates/.gitignore",
+      "destination": ".gitignore"
+    },
+    {
+      "source": "data/publication/figure2/README.md",
+      "destination": "data/publication/figure2/README.md"
+    },
+    {
+      "source": "data/publication/figure2/freeze.json",
+      "destination": "data/publication/figure2/freeze.json"
+    },
+    {
+      "source": "data/publication/figure2/high_smoothness/boundary.csv",
+      "destination": "data/publication/figure2/high_smoothness/boundary.csv"
+    },
+    {
+      "source": "data/publication/figure2/high_smoothness/init.csv",
+      "destination": "data/publication/figure2/high_smoothness/init.csv"
+    },
+    {
+      "source": "data/publication/figure2/high_smoothness/run-manifest.json",
+      "destination": "data/publication/figure2/high_smoothness/run-manifest.json"
+    },
+    {
+      "source": "data/publication/figure2/high_smoothness/vf.csv",
+      "destination": "data/publication/figure2/high_smoothness/vf.csv"
+    },
+    {
+      "source": "data/publication/figure2/high_smoothness/y-0.001-10-0.0001-01500.data",
+      "destination": "data/publication/figure2/high_smoothness/y-0.001-10-0.0001-01500.data"
+    },
+    {
+      "source": "data/publication/figure2/primary/boundary.csv",
+      "destination": "data/publication/figure2/primary/boundary.csv"
+    },
+    {
+      "source": "data/publication/figure2/primary/init.csv",
+      "destination": "data/publication/figure2/primary/init.csv"
+    },
+    {
+      "source": "data/publication/figure2/primary/run-manifest.json",
+      "destination": "data/publication/figure2/primary/run-manifest.json"
+    },
+    {
+      "source": "data/publication/figure2/primary/vf.csv",
+      "destination": "data/publication/figure2/primary/vf.csv"
+    },
+    {
+      "source": "data/publication/figure2/primary/y-0.00014-10-0.0001-01500.data",
+      "destination": "data/publication/figure2/primary/y-0.00014-10-0.0001-01500.data"
+    },
+    {
+      "source": "scripts/verify_figure2_freeze.py",
+      "destination": "scripts/verify_figure2_freeze.py"
+    },
+    {
+      "source": "tests/test_figure2_freeze.py",
+      "destination": "tests/test_figure2_freeze.py"
+    },
+    {
+      "source": "fig2/common.py",
+      "destination": "fig2/common.py"
+    },
+    {
+      "source": "fig2/compose_figure.py",
+      "destination": "fig2/compose_figure.py"
+    },
+    {
+      "source": "fig2/zhuang_v1.py",
+      "destination": "fig2/zhuang_v1.py"
+    },
+    {
+      "source": "scripts/make_figure2_updated.py",
+      "destination": "scripts/make_figure2_updated.py"
+    },
+    {
+      "source": "data/ZhuangTracing9_borders.svg",
+      "destination": "data/ZhuangTracing9_borders.svg"
+    },
+    {
+      "source": "data/waters2019/derived/manifest.json",
+      "destination": "data/waters2019/derived/manifest.json"
+    },
+    {
+      "source": "data/zhuang2017/ZhuangFig9_panel_c_altitudes_interpolated.mat",
+      "destination": "data/zhuang2017/ZhuangFig9_panel_c_altitudes_interpolated.mat"
+    },
+    {
+      "source": "data/zhuang2017/ZhuangFig9_panel_d_azimuth_interpolated.mat",
+      "destination": "data/zhuang2017/ZhuangFig9_panel_d_azimuth_interpolated.mat"
+    },
+    {
+      "source": "data/zhuang2017/ZhuangFig9_panel_d_border_mask.mat",
+      "destination": "data/zhuang2017/ZhuangFig9_panel_d_border_mask.mat"
+    }
+  ]
+}

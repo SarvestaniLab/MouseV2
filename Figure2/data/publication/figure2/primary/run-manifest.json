@@ -1,0 +1,17 @@
+{
+  "metadata_status": "reconstructed from saved sweep.json; not an original training manifest",
+  "b1": 0.00014,
+  "b2": 10.0,
+  "b3": 0.0001,
+  "seed": 4,
+  "iterations": 1500,
+  "magnification": -0.5,
+  "prototype_count": 2000,
+  "map_h": 80,
+  "map_w": 8,
+  "boundary_retinotopy": "synthetic-waters-supported",
+  "training_surface": "data/waters2019/derived/WatersV1_NormalConditionalMedian_borders.svg",
+  "final_checkpoint": "y-0.00014-10-0.0001-01500.data",
+  "source_sweep": "artifacts/figure2_remake/primary_fit/seed-004/sweep.json",
+  "source_sweep_sha256": "db84f142488b472400a6367b040acde6a223dcd23ad1e91eb0b8f7141a123eba"
+}
