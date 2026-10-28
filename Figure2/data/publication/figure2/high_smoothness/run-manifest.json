@@ -1,0 +1,55 @@
+{
+  "b1": 0.002,
+  "b2": 20.0,
+  "b3": 0.001,
+  "code_revision": "0f8c70be4cb6646b34264f369113b4fe8380d270",
+  "elapsed_seconds": 327.27003059722483,
+  "final_checkpoint": "y-0.002-20-0.001-02000.data",
+  "input_assets": {
+    "boundary_retinotopy": {
+      "mode": "synthetic-rebalanced",
+      "path": "results/waters_overnight_7h_20260916/source/data/reference/MouseV1_synthetic_boundary_Waters_row0_anchored_80.csv",
+      "sha256": "5062b841c1154947db499d8678c116fe6fbfd5a03182efe010a9a5f70eccd4ad"
+    },
+    "cortical_surface": {
+      "path": "results/waters_overnight_7h_20260916/source/data/waters2019/derived/WatersV1_IndividualV1Median_borders.svg",
+      "sha256": "903b915e203380dce09cd384efdcee2be579ce9a5665406fc19c94ce41d1087b"
+    },
+    "visual_field": {
+      "path": "results/waters_overnight_7h_20260916/source/inputs/vf-exact-2000.csv",
+      "sha256": "2b9df804c9771b66a687ace8d3c0b44444f899217a2a373de7d12a0b9d946cd3"
+    }
+  },
+  "parameters": {
+    "boundary_retinotopy": "synthetic-rebalanced",
+    "cyclic_along": true,
+    "ecc0": 0.05,
+    "ecc1": 144.0,
+    "eta0": 0.1,
+    "k0": 30.0,
+    "kr": 0.003,
+    "magnification": -0.05,
+    "map_h": 80,
+    "map_w": 8,
+    "n_iterations": 2000,
+    "n_prototypes": 2000,
+    "save_interval": 100
+  },
+  "python": "3.8.20",
+  "requested_device": "cpu",
+  "seed": 13,
+  "source_sha256": {
+    "elastictopy/elastic_net_mouse.py": "4a74bc5d1b4b67faa8f34a827117a89ba51ec5c25f24297274ef0df9f58392e7",
+    "elastictopy/helpers.py": "33c64c5613ff685c714e2b4a8817e700757be363256d1a5784fe37ebd61bc0b5",
+    "elastictopy/mouse_surface.py": "3593ba2856e85d782ddde0e9fcfc23c6289a7ad1cc9b0b7bc655bb0cfc6f5242",
+    "elastictopy/retinotopy.py": "0a9d5e80b5e9cb5d3891e24b561940449f44db1966bb80a8b13772bb37a02ad8",
+    "elastictopy/vf.py": "c8979164e584c8e5af2be24d98ebda8bda6e93665b5d4e99146a10954df67a63",
+    "scripts/run_mouse_v2.py": "b9b3d65f25a689cc543217acdac4537b6d93ff3306f2108ca611c8bb360fc4e1",
+    "scripts/sweep_regularizers.py": "04fe8bf67ced5cb50cbef6af066264e8054f2d41c5053041714ca75ae09b2ac1"
+  },
+  "tensorflow": "2.13.0",
+  "threads_per_worker": 1,
+  "visible_gpus": [],
+  "working_tree_dirty_at_launch": true,
+  "publication_metadata_note": "Asset paths made repository-relative; original manifest checksum recorded in freeze.json."
+}
