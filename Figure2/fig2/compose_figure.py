@@ -5,9 +5,12 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 import matplotlib.pyplot as plt
 
-from common import PROJECT_ROOT, add_input_arguments, build_from_args, save_figure
+from fig2.common import PROJECT_ROOT, add_input_arguments, build_from_args, save_figure
 
 
 def main() -> None:

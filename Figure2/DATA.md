@@ -6,7 +6,7 @@ licenses and attribution for all derived inputs before the final release.
 
 | Inputs | Role and provenance | Remaining work |
 | --- | --- | --- |
-| `data/publication/figure2/` | Frozen model checkpoints and inputs, reconstructed run metadata, and checksums | Verify retraining parity and review training/rendering geometry |
+| `data/publication/figure2/` | Frozen model checkpoints and inputs, original run metadata with portable paths, and checksums | Verify retraining parity |
 | `data/reference/MouseV1_synthetic*` | Schematic visual-field boundary and companion metadata; informed by Wagor and Garrett with Waters anchoring | Finalize source citations and distinguish synthetic assumptions from observations |
 | `data/waters2019/derived/WatersV1_*` | Waters-derived cortical borders; companion JSON where available | Confirm redistribution and document raw-to-derived preparation |
 | `data/zhuang2017/*.mat`, `data/ZhuangTracing9_borders.svg` | Three historical Zhuang interpolation/mask arrays and tracing used by Figure 2F | Confirm source provenance and redistribution permission |

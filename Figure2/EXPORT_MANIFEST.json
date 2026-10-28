@@ -135,10 +135,6 @@
       "destination": "data/publication/figure2/high_smoothness/vf.csv"
     },
     {
-      "source": "data/publication/figure2/high_smoothness/y-0.001-10-0.0001-01500.data",
-      "destination": "data/publication/figure2/high_smoothness/y-0.001-10-0.0001-01500.data"
-    },
-    {
       "source": "data/publication/figure2/primary/boundary.csv",
       "destination": "data/publication/figure2/primary/boundary.csv"
     },
@@ -153,10 +149,6 @@
     {
       "source": "data/publication/figure2/primary/vf.csv",
       "destination": "data/publication/figure2/primary/vf.csv"
-    },
-    {
-      "source": "data/publication/figure2/primary/y-0.00014-10-0.0001-01500.data",
-      "destination": "data/publication/figure2/primary/y-0.00014-10-0.0001-01500.data"
     },
     {
       "source": "scripts/verify_figure2_freeze.py",
@@ -201,6 +193,30 @@
     {
       "source": "data/zhuang2017/ZhuangFig9_panel_d_border_mask.mat",
       "destination": "data/zhuang2017/ZhuangFig9_panel_d_border_mask.mat"
+    },
+    {
+      "source": "data/publication/figure2/primary/y-0.00035-20-0.001-02000.data",
+      "destination": "data/publication/figure2/primary/y-0.00035-20-0.001-02000.data"
+    },
+    {
+      "source": "data/publication/figure2/high_smoothness/y-0.002-20-0.001-02000.data",
+      "destination": "data/publication/figure2/high_smoothness/y-0.002-20-0.001-02000.data"
+    },
+    {
+      "source": "fig2/manuscript_partition.py",
+      "destination": "fig2/manuscript_partition.py"
+    },
+    {
+      "source": "scripts/make_figure2_manuscript.py",
+      "destination": "scripts/make_figure2_manuscript.py"
+    },
+    {
+      "source": "data/publication/figure2/partition-reference.npz",
+      "destination": "data/publication/figure2/partition-reference.npz"
+    },
+    {
+      "source": "tests/test_manuscript_figure2.py",
+      "destination": "tests/test_manuscript_figure2.py"
     }
   ]
 }

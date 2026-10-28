@@ -23,4 +23,6 @@ def verify(root=ROOT):
 
 if __name__ == "__main__":
     result = verify()
-    print("Verified {} frozen Figure 2 inputs; seed 4, iteration 1500.".format(len(result["files"])))
+    print("Verified {} frozen Figure 2 inputs; seed {}, iteration {}.".format(
+        len(result["files"]), result["runs"]["primary"]["seed"],
+        result["runs"]["primary"]["iterations"]))

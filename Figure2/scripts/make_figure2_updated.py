@@ -532,8 +532,8 @@ def build_figure(
     surface[:, :, 1] *= -1.0
     modern_audits = {}
     if modern_partition:
-        from fig2.plot_garrett_watershed_visual_footprints import parcellate
-        from scripts.waters_organization_score import normalize_visual
+        from fig2.manuscript_partition import parcellate
+        from fig2.manuscript_partition import normalize_visual
         for key, run in (("high", high_b1), ("primary", primary)):
             normalized = normalize_visual(run["full"], np.isfinite(run["full"][:, 1:]).all(axis=2))
             modern_audits[key] = parcellate({"full": normalized}, surface,
@@ -724,7 +724,7 @@ def build_figure(
     )
     partition_full = fitted_full
     if modern_partition:
-        from scripts.waters_organization_score import normalize_visual
+        from fig2.manuscript_partition import normalize_visual
         partition_full = normalize_visual(fitted_full, np.isfinite(fitted_full[:, 1:]).all(axis=2))
     parcellation = modern_audits["primary"] if modern_partition else garrett_area_parcellation(
         partition_full,

@@ -1,102 +1,100 @@
 {
   "schema_version": 1,
-  "frozen_on": "2026-10-21",
-  "source_commit": "105bb2c233c9af00552bbacce0fb1b2d84a9134b",
-  "selection": "Figure 2 current default saved primary example and panel B comparator",
-  "training_surface": "data/waters2019/derived/WatersV1_NormalConditionalMedian_borders.svg",
+  "frozen_on": "2026-10-28",
+  "selection": "Figure 2 in 2026_10_01_biorxiv_DPR.pdf, page 6: seed 13, eight areas, no forced apex cut",
+  "manuscript_sha256": "455393432b31d23c97f30d9852e19a9f702a4e4f933ef6a153676089a721c88d",
+  "training_surface": "data/waters2019/derived/WatersV1_IndividualV1Median_borders.svg",
   "rendering_surface": "data/waters2019/derived/WatersV1_IndividualV1Median_borders.svg",
-  "geometry_note": "Current Figure 2 renderer uses individual-V1 geometry; saved runs were trained on conditional-normal geometry. This freeze preserves both, without asserting that they match.",
+  "geometry_note": "Training and rendering use the same individual-V1 surface, verified against original run manifests.",
   "retraining_verified": false,
   "runs": {
     "primary": {
       "directory": "data/publication/figure2/primary",
-      "metadata_status": "reconstructed from saved sweep.json; not an original training manifest",
-      "b1": 0.00014,
-      "b2": 10.0,
-      "b3": 0.0001,
-      "seed": 4,
-      "iterations": 1500,
-      "magnification": -0.5,
+      "metadata_status": "original training manifest with portable asset paths",
+      "seed": 13,
+      "iterations": 2000,
+      "magnification": -0.05,
       "prototype_count": 2000,
       "map_h": 80,
       "map_w": 8,
-      "boundary_retinotopy": "synthetic-waters-supported",
-      "training_surface": "data/waters2019/derived/WatersV1_NormalConditionalMedian_borders.svg",
-      "final_checkpoint": "y-0.00014-10-0.0001-01500.data",
-      "source_sweep": "artifacts/figure2_remake/primary_fit/seed-004/sweep.json",
-      "source_sweep_sha256": "db84f142488b472400a6367b040acde6a223dcd23ad1e91eb0b8f7141a123eba"
+      "boundary_retinotopy": "synthetic-rebalanced",
+      "training_surface": "data/waters2019/derived/WatersV1_IndividualV1Median_borders.svg",
+      "final_checkpoint": "y-0.00035-20-0.001-02000.data",
+      "b1": 0.00035,
+      "b2": 20.0,
+      "b3": 0.001
     },
     "high_smoothness": {
       "directory": "data/publication/figure2/high_smoothness",
-      "metadata_status": "reconstructed from saved sweep.json; not an original training manifest",
-      "b1": 0.001,
-      "b2": 10.0,
-      "b3": 0.0001,
-      "seed": 4,
-      "iterations": 1500,
-      "magnification": -0.5,
+      "metadata_status": "original training manifest with portable asset paths",
+      "seed": 13,
+      "iterations": 2000,
+      "magnification": -0.05,
       "prototype_count": 2000,
       "map_h": 80,
       "map_w": 8,
-      "boundary_retinotopy": "synthetic-waters-supported",
-      "training_surface": "data/waters2019/derived/WatersV1_NormalConditionalMedian_borders.svg",
-      "final_checkpoint": "y-0.001-10-0.0001-01500.data",
-      "source_sweep": "artifacts/figure2_remake/high_b1_fit/seed-004/sweep.json",
-      "source_sweep_sha256": "7ce755a9ae6729fd7c46b6bf6e3edc184959f1b36a56300e09d86c33c0cf4916"
+      "boundary_retinotopy": "synthetic-rebalanced",
+      "training_surface": "data/waters2019/derived/WatersV1_IndividualV1Median_borders.svg",
+      "final_checkpoint": "y-0.002-20-0.001-02000.data",
+      "b1": 0.002,
+      "b2": 20.0,
+      "b3": 0.001
     }
   },
   "files": {
     "data/publication/figure2/primary/boundary.csv": {
-      "sha256": "2e67c1ec459bcbf9d90800986bbcf04b51f4670caf13b59419fee2b197c492f1",
-      "source": "artifacts/figure2_remake/primary_fit/seed-004/b1-1.400e-04/boundary.csv"
-    },
-    "data/publication/figure2/primary/vf.csv": {
-      "sha256": "8eea752110a1751b12be344de53f7e6c28df8e3d9b107c8d1cc20b63e223a1c4",
-      "source": "artifacts/figure2_remake/primary_fit/seed-004/b1-1.400e-04/vf.csv"
+      "sha256": "de7c1438b34e67a13395ca666827467f1401efdc84d88f272088a11d55cc5849",
+      "source": "results/waters_top5_20seeds_exact_2000/family-1/b1_0.00035/b2_20/b3_0.001/seed_013/boundary.csv"
     },
     "data/publication/figure2/primary/init.csv": {
-      "sha256": "40510788be4e1372091fcb1bb755d1893a832bf5bfc5b735eae83b0c44a6f212",
-      "source": "artifacts/figure2_remake/primary_fit/seed-004/b1-1.400e-04/init.csv"
+      "sha256": "ce6588a34ab6eaf7bb041d9ba75a82c1e3ce3b05f332de5d5b4f7e09273e93ff",
+      "source": "results/waters_top5_20seeds_exact_2000/family-1/b1_0.00035/b2_20/b3_0.001/seed_013/init.csv"
     },
-    "data/publication/figure2/primary/y-0.00014-10-0.0001-01500.data": {
-      "sha256": "5e9bdac151b34bf73f461131d52f14b71677c51da9a51f593f78c0073ba75a4e",
-      "source": "artifacts/figure2_remake/primary_fit/seed-004/b1-1.400e-04/y-0.00014-10-0.0001-01500.data"
+    "data/publication/figure2/primary/vf.csv": {
+      "sha256": "276e4aa570c229b23ba69b314313403b36a477c94b32cd6c0dd017af4d937a39",
+      "source": "results/waters_top5_20seeds_exact_2000/family-1/b1_0.00035/b2_20/b3_0.001/seed_013/vf.csv"
+    },
+    "data/publication/figure2/primary/y-0.00035-20-0.001-02000.data": {
+      "sha256": "9354d960b14a923007dfcf6787c48a0417347d9773f190e5616b331cd068313a",
+      "source": "results/waters_top5_20seeds_exact_2000/family-1/b1_0.00035/b2_20/b3_0.001/seed_013/y-0.00035-20-0.001-02000.data"
     },
     "data/publication/figure2/primary/run-manifest.json": {
-      "sha256": "da34b465c9fe2e6332be5aa88d4def8e6ca01e6faa049127f7528a5f584b8128",
-      "source": "reconstructed metadata"
+      "sha256": "cead9137503f77fa47f2473354b915529b0c7150137461e4b352d5d1307e729f",
+      "source": "results/waters_top5_20seeds_exact_2000/family-1/b1_0.00035/b2_20/b3_0.001/seed_013/run-manifest.json",
+      "original_sha256": "8d3f60b8d96a699c8a438a95bd46d78c71f2c8945f3e75f386c2d64c383407b6"
     },
     "data/publication/figure2/high_smoothness/boundary.csv": {
-      "sha256": "2e67c1ec459bcbf9d90800986bbcf04b51f4670caf13b59419fee2b197c492f1",
-      "source": "artifacts/figure2_remake/high_b1_fit/seed-004/b1-1.000e-03/boundary.csv"
-    },
-    "data/publication/figure2/high_smoothness/vf.csv": {
-      "sha256": "8eea752110a1751b12be344de53f7e6c28df8e3d9b107c8d1cc20b63e223a1c4",
-      "source": "artifacts/figure2_remake/high_b1_fit/seed-004/b1-1.000e-03/vf.csv"
+      "sha256": "de7c1438b34e67a13395ca666827467f1401efdc84d88f272088a11d55cc5849",
+      "source": "results/figure2_seed13_highsmooth_2000/runs/b1_0.002/b2_20/b3_0.001/seed_013/boundary.csv"
     },
     "data/publication/figure2/high_smoothness/init.csv": {
-      "sha256": "40510788be4e1372091fcb1bb755d1893a832bf5bfc5b735eae83b0c44a6f212",
-      "source": "artifacts/figure2_remake/high_b1_fit/seed-004/b1-1.000e-03/init.csv"
+      "sha256": "ce6588a34ab6eaf7bb041d9ba75a82c1e3ce3b05f332de5d5b4f7e09273e93ff",
+      "source": "results/figure2_seed13_highsmooth_2000/runs/b1_0.002/b2_20/b3_0.001/seed_013/init.csv"
     },
-    "data/publication/figure2/high_smoothness/y-0.001-10-0.0001-01500.data": {
-      "sha256": "a7e9e108ecb512cdc2f16e90852cff68f2baa33a17c5aa91e82f9884e9de2e51",
-      "source": "artifacts/figure2_remake/high_b1_fit/seed-004/b1-1.000e-03/y-0.001-10-0.0001-01500.data"
+    "data/publication/figure2/high_smoothness/vf.csv": {
+      "sha256": "276e4aa570c229b23ba69b314313403b36a477c94b32cd6c0dd017af4d937a39",
+      "source": "results/figure2_seed13_highsmooth_2000/runs/b1_0.002/b2_20/b3_0.001/seed_013/vf.csv"
+    },
+    "data/publication/figure2/high_smoothness/y-0.002-20-0.001-02000.data": {
+      "sha256": "4ca9246bedc9c38d2e68ec8ea757cc9c6304d10c5f7ceddc170842cae721373a",
+      "source": "results/figure2_seed13_highsmooth_2000/runs/b1_0.002/b2_20/b3_0.001/seed_013/y-0.002-20-0.001-02000.data"
     },
     "data/publication/figure2/high_smoothness/run-manifest.json": {
-      "sha256": "77c345c96eaf7244932241a69fb394f8b74b470c8b4d585459c6bcf8d1a68134",
-      "source": "reconstructed metadata"
-    },
-    "data/waters2019/derived/WatersV1_NormalConditionalMedian_borders.svg": {
-      "sha256": "cbbf3f7a3d3357a3dd31a03941a12a999eb91e8e4776a4bf4c040840c0ef819b",
-      "source": "data/waters2019/derived/WatersV1_NormalConditionalMedian_borders.svg"
+      "sha256": "1af9dacbd4e6a2ab42fc5be143dcb458ec1f4135e36d02974493953fd8485daa",
+      "source": "results/figure2_seed13_highsmooth_2000/runs/b1_0.002/b2_20/b3_0.001/seed_013/run-manifest.json",
+      "original_sha256": "b0c06c10a419745d0cd78edaff448478c74170f932fa3f3963e19cf2250d55da"
     },
     "data/waters2019/derived/WatersV1_IndividualV1Median_borders.svg": {
       "sha256": "903b915e203380dce09cd384efdcee2be579ce9a5665406fc19c94ce41d1087b",
       "source": "data/waters2019/derived/WatersV1_IndividualV1Median_borders.svg"
     },
-    "data/reference/MouseV1_synthetic_boundary_Waters_supported_80.csv": {
-      "sha256": "16a0209f861197737158c8a9d60dd7cd7591171045323a4bbb555c13828e08c1",
-      "source": "data/reference/MouseV1_synthetic_boundary_Waters_supported_80.csv"
+    "data/reference/MouseV1_synthetic_boundary_Waters_row0_anchored_80.csv": {
+      "sha256": "5062b841c1154947db499d8678c116fe6fbfd5a03182efe010a9a5f70eccd4ad",
+      "source": "data/reference/MouseV1_synthetic_boundary_Waters_row0_anchored_80.csv"
+    },
+    "data/publication/figure2/partition-reference.npz": {
+      "sha256": "0c817311a052ecbefbab6cb6f8bc4a0a04a666f4b9189d6e34285b62167559bb",
+      "source": "fig2/output/b1_0p00035_b2_20_b3_0p001_seed13_no_apex/partition.npz"
     }
   }
 }

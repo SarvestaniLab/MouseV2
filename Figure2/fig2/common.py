@@ -14,7 +14,8 @@ sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(PROJECT_ROOT / "elastictopy"))
 
 from scripts.verify_figure2_freeze import verify as verify_figure2_freeze  # noqa: E402
-from scripts.make_figure2_updated import build_figure, save_figure  # noqa: E402
+from scripts.make_figure2_updated import save_figure
+from scripts.make_figure2_manuscript import build_manuscript_figure  # noqa: E402
 
 
 DEFAULT_HIGH_B1_RUN = (
@@ -24,7 +25,7 @@ DEFAULT_PRIMARY_RUN = (
     PROJECT_ROOT / "data" / "publication" / "figure2" / "primary"
 )
 # Pin the renderer's current geometry independently of future model defaults.
-# The saved runs used conditional-normal training geometry; freeze.json records both.
+# The manuscript runs used this same individual-V1 training geometry.
 DEFAULT_SURFACE_SVG = (
     PROJECT_ROOT / "data" / "waters2019" / "derived"
     / "WatersV1_IndividualV1Median_borders.svg"
@@ -53,7 +54,7 @@ def build_from_args(args):
     if (args.high_b1_run_dir.resolve() == DEFAULT_HIGH_B1_RUN.resolve()
             or args.primary_run_dir.resolve() == DEFAULT_PRIMARY_RUN.resolve()):
         verify_figure2_freeze(PROJECT_ROOT)
-    return build_figure(
+    return build_manuscript_figure(
         args.high_b1_run_dir.resolve(),
         args.primary_run_dir.resolve(),
         args.surface_svg.resolve(),

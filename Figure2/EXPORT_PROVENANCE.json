@@ -1,8 +1,8 @@
 {
   "status": "review-draft",
-  "source_commit": "b07a7e318d89b53fdfd36505d747750d3a383b3e",
+  "source_commit": "022443dacd085fc07ea56e6c9eb6dc3b6f1d423f",
   "snapshot_kind": "working-tree allowlist; consult per-file commit matches",
-  "manifest_sha256": "4b4c90740ae6a645cd45fde353fb15adcf37ad4fd20f7b2d35f2e849e2e51dba",
+  "manifest_sha256": "9c46d38b41dcc1ad8480dfeae0edfde058947110254181dd54e62b969128093d",
   "files": [
     {
       "source": ".python-version",
@@ -154,29 +154,29 @@
     {
       "source": "publication/templates/README.md",
       "destination": "README.md",
-      "bytes": 1591,
-      "sha256": "354fd25c059bb60a453b0ed1ef7efb3adca5cacd56baf75e3413abaad1a3dfd2",
+      "bytes": 1648,
+      "sha256": "11b5cae9007e85d140ac7c22714e8ccb91f89f7490221974108656945ebe8958",
       "matches_source_commit": true
     },
     {
       "source": "publication/templates/DATA.md",
       "destination": "DATA.md",
-      "bytes": 2049,
-      "sha256": "a5b0ff156f1320948a701800fec2bc44c57c4e3f52aef95003705c16965527bb",
+      "bytes": 2025,
+      "sha256": "2335fe1b3a976326c1c1eb62fedbe884b40c89c1b2e21dbe6ee0cb173de61240",
       "matches_source_commit": true
     },
     {
       "source": "publication/templates/REPRODUCING.md",
       "destination": "REPRODUCING.md",
-      "bytes": 2701,
-      "sha256": "4faca1af82ed35c94f669f28bc8bff1baf420e4b0d2c3cc40b5b160a57487349",
+      "bytes": 2430,
+      "sha256": "a9464ae8c4022fab7c607b4b08e4a2a2f085a8e90cacf90a6143a5c1cefbd2ca",
       "matches_source_commit": true
     },
     {
       "source": "publication/templates/KNOWN_LIMITATIONS.md",
       "destination": "KNOWN_LIMITATIONS.md",
-      "bytes": 1584,
-      "sha256": "c4e4ec66dd92efe61ffb4a960586a9aeecba46677002cc09fa5e8a4118ed03bd",
+      "bytes": 1784,
+      "sha256": "54e90606c63cf44a6d841f28143fd3ba9cb1022f6b5fae136b7880cd6d8fa227",
       "matches_source_commit": true
     },
     {
@@ -196,113 +196,99 @@
     {
       "source": "data/publication/figure2/README.md",
       "destination": "data/publication/figure2/README.md",
-      "bytes": 3338,
-      "sha256": "567250bc72e39dc4c32696329a93247d123a7091de67be730f504c02b5648afd",
+      "bytes": 1011,
+      "sha256": "b6d5b7ab3a099a2d3127bea21f64536ba4317458278cbfdf72fee67c296969fe",
       "matches_source_commit": true
     },
     {
       "source": "data/publication/figure2/freeze.json",
       "destination": "data/publication/figure2/freeze.json",
-      "bytes": 5299,
-      "sha256": "502929609a0435f1d4ee117036224f02d440ab4fe60ccaeeec16b3fcba072b41",
+      "bytes": 5337,
+      "sha256": "63a5ca5cc609e2c8d902a36e3aa757feed9cd1a7347ae09cfaf65794ee2eda09",
       "matches_source_commit": true
     },
     {
       "source": "data/publication/figure2/high_smoothness/boundary.csv",
       "destination": "data/publication/figure2/high_smoothness/boundary.csv",
-      "bytes": 1797,
-      "sha256": "2e67c1ec459bcbf9d90800986bbcf04b51f4670caf13b59419fee2b197c492f1",
+      "bytes": 1613,
+      "sha256": "de7c1438b34e67a13395ca666827467f1401efdc84d88f272088a11d55cc5849",
       "matches_source_commit": true
     },
     {
       "source": "data/publication/figure2/high_smoothness/init.csv",
       "destination": "data/publication/figure2/high_smoothness/init.csv",
-      "bytes": 17984,
-      "sha256": "40510788be4e1372091fcb1bb755d1893a832bf5bfc5b735eae83b0c44a6f212",
+      "bytes": 12921,
+      "sha256": "ce6588a34ab6eaf7bb041d9ba75a82c1e3ce3b05f332de5d5b4f7e09273e93ff",
       "matches_source_commit": true
     },
     {
       "source": "data/publication/figure2/high_smoothness/run-manifest.json",
       "destination": "data/publication/figure2/high_smoothness/run-manifest.json",
-      "bytes": 633,
-      "sha256": "77c345c96eaf7244932241a69fb394f8b74b470c8b4d585459c6bcf8d1a68134",
+      "bytes": 2317,
+      "sha256": "1af9dacbd4e6a2ab42fc5be143dcb458ec1f4135e36d02974493953fd8485daa",
       "matches_source_commit": true
     },
     {
       "source": "data/publication/figure2/high_smoothness/vf.csv",
       "destination": "data/publication/figure2/high_smoothness/vf.csv",
-      "bytes": 56203,
-      "sha256": "8eea752110a1751b12be344de53f7e6c28df8e3d9b107c8d1cc20b63e223a1c4",
-      "matches_source_commit": true
-    },
-    {
-      "source": "data/publication/figure2/high_smoothness/y-0.001-10-0.0001-01500.data",
-      "destination": "data/publication/figure2/high_smoothness/y-0.001-10-0.0001-01500.data",
-      "bytes": 12921,
-      "sha256": "a7e9e108ecb512cdc2f16e90852cff68f2baa33a17c5aa91e82f9884e9de2e51",
+      "bytes": 40344,
+      "sha256": "276e4aa570c229b23ba69b314313403b36a477c94b32cd6c0dd017af4d937a39",
       "matches_source_commit": true
     },
     {
       "source": "data/publication/figure2/primary/boundary.csv",
       "destination": "data/publication/figure2/primary/boundary.csv",
-      "bytes": 1797,
-      "sha256": "2e67c1ec459bcbf9d90800986bbcf04b51f4670caf13b59419fee2b197c492f1",
+      "bytes": 1613,
+      "sha256": "de7c1438b34e67a13395ca666827467f1401efdc84d88f272088a11d55cc5849",
       "matches_source_commit": true
     },
     {
       "source": "data/publication/figure2/primary/init.csv",
       "destination": "data/publication/figure2/primary/init.csv",
-      "bytes": 17984,
-      "sha256": "40510788be4e1372091fcb1bb755d1893a832bf5bfc5b735eae83b0c44a6f212",
+      "bytes": 12921,
+      "sha256": "ce6588a34ab6eaf7bb041d9ba75a82c1e3ce3b05f332de5d5b4f7e09273e93ff",
       "matches_source_commit": true
     },
     {
       "source": "data/publication/figure2/primary/run-manifest.json",
       "destination": "data/publication/figure2/primary/run-manifest.json",
-      "bytes": 637,
-      "sha256": "da34b465c9fe2e6332be5aa88d4def8e6ca01e6faa049127f7528a5f584b8128",
+      "bytes": 2218,
+      "sha256": "cead9137503f77fa47f2473354b915529b0c7150137461e4b352d5d1307e729f",
       "matches_source_commit": true
     },
     {
       "source": "data/publication/figure2/primary/vf.csv",
       "destination": "data/publication/figure2/primary/vf.csv",
-      "bytes": 56203,
-      "sha256": "8eea752110a1751b12be344de53f7e6c28df8e3d9b107c8d1cc20b63e223a1c4",
-      "matches_source_commit": true
-    },
-    {
-      "source": "data/publication/figure2/primary/y-0.00014-10-0.0001-01500.data",
-      "destination": "data/publication/figure2/primary/y-0.00014-10-0.0001-01500.data",
-      "bytes": 12876,
-      "sha256": "5e9bdac151b34bf73f461131d52f14b71677c51da9a51f593f78c0073ba75a4e",
+      "bytes": 40344,
+      "sha256": "276e4aa570c229b23ba69b314313403b36a477c94b32cd6c0dd017af4d937a39",
       "matches_source_commit": true
     },
     {
       "source": "scripts/verify_figure2_freeze.py",
       "destination": "scripts/verify_figure2_freeze.py",
-      "bytes": 963,
-      "sha256": "84c28c2b66eff2588a08f0f0097d9f39ba41b4c522af5c8d7a6a4ec1862ef6b6",
+      "bytes": 1055,
+      "sha256": "57034801da8c684f52e4b00abcbe79a52168bf09c242bfdd82ced686b235a325",
       "matches_source_commit": true
     },
     {
       "source": "tests/test_figure2_freeze.py",
       "destination": "tests/test_figure2_freeze.py",
-      "bytes": 2090,
-      "sha256": "4e2de7e4d3073f5d62c9ed2f94586a4839fb4bd89a2963bde70a7e6ecbeeafef",
+      "bytes": 2091,
+      "sha256": "94aa9b932fc9977240593bf04b90e172e36fdc35e82213153b8300aa8f39679f",
       "matches_source_commit": true
     },
     {
       "source": "fig2/common.py",
       "destination": "fig2/common.py",
-      "bytes": 2609,
-      "sha256": "1e4cb819c99a12ebc4bb7b1768d335150e508769bb8d3d767f100c79db8c7ae2",
+      "bytes": 2658,
+      "sha256": "707fb581a46cb1fb6aab575e88fe075a29d99c1965f68fdbe029e04a837c19fb",
       "matches_source_commit": true
     },
     {
       "source": "fig2/compose_figure.py",
       "destination": "fig2/compose_figure.py",
-      "bytes": 700,
-      "sha256": "87ed078a63641908b10e6f3381c6409d33e08718cca62bc3e64220732dc0f14a",
+      "bytes": 778,
+      "sha256": "ada9fde2e83794df0c16ac6aa52e13593ff3cfbff59ddce2757ea4fdcd5e8770",
       "matches_source_commit": true
     },
     {
@@ -315,8 +301,8 @@
     {
       "source": "scripts/make_figure2_updated.py",
       "destination": "scripts/make_figure2_updated.py",
-      "bytes": 33013,
-      "sha256": "4bf3a51f20b9687f17bc37606d69173ff43b28b97b2c1fe779fe44d74fba72c6",
+      "bytes": 32977,
+      "sha256": "9f064ee83cbb1252ba143d5fdafa6c3908be6b3990b71e1df6403c4152a584d7",
       "matches_source_commit": true
     },
     {
@@ -352,6 +338,48 @@
       "destination": "data/zhuang2017/ZhuangFig9_panel_d_border_mask.mat",
       "bytes": 195512,
       "sha256": "d0f777722c9b7159fe3cf4dbab0f4a5d6989e2be47b4fb59d8ccf7164c74e920",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/publication/figure2/primary/y-0.00035-20-0.001-02000.data",
+      "destination": "data/publication/figure2/primary/y-0.00035-20-0.001-02000.data",
+      "bytes": 12912,
+      "sha256": "9354d960b14a923007dfcf6787c48a0417347d9773f190e5616b331cd068313a",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/publication/figure2/high_smoothness/y-0.002-20-0.001-02000.data",
+      "destination": "data/publication/figure2/high_smoothness/y-0.002-20-0.001-02000.data",
+      "bytes": 12903,
+      "sha256": "4ca9246bedc9c38d2e68ec8ea757cc9c6304d10c5f7ceddc170842cae721373a",
+      "matches_source_commit": true
+    },
+    {
+      "source": "fig2/manuscript_partition.py",
+      "destination": "fig2/manuscript_partition.py",
+      "bytes": 1610,
+      "sha256": "2cb33b27260065ad4643fb695d96f267de535d6489b274c4b0cad698bf1885ac",
+      "matches_source_commit": true
+    },
+    {
+      "source": "scripts/make_figure2_manuscript.py",
+      "destination": "scripts/make_figure2_manuscript.py",
+      "bytes": 11911,
+      "sha256": "12e9c81451cd3a35717a8246f3d74d3c6001c993fa2a9af019796b8e90a4847d",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/publication/figure2/partition-reference.npz",
+      "destination": "data/publication/figure2/partition-reference.npz",
+      "bytes": 5546,
+      "sha256": "0c817311a052ecbefbab6cb6f8bc4a0a04a666f4b9189d6e34285b62167559bb",
+      "matches_source_commit": true
+    },
+    {
+      "source": "tests/test_manuscript_figure2.py",
+      "destination": "tests/test_manuscript_figure2.py",
+      "bytes": 2229,
+      "sha256": "f77b05a7ea84a7e76dd70d5549dd7d85d96564ad05e93e767d571065bdc21a4f",
       "matches_source_commit": true
     }
   ]

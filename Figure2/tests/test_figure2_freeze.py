@@ -15,8 +15,8 @@ from verify_figure2_freeze import verify
 class Figure2FreezeTests(unittest.TestCase):
     def test_frozen_inputs_verify(self):
         freeze = verify(ROOT)
-        self.assertEqual(freeze["runs"]["primary"]["seed"], 4)
-        self.assertEqual(freeze["runs"]["primary"]["iterations"], 1500)
+        self.assertEqual(freeze["runs"]["primary"]["seed"], 13)
+        self.assertEqual(freeze["runs"]["primary"]["iterations"], 2000)
 
     def test_changed_checkpoint_and_geometry_are_rejected(self):
         freeze = verify(ROOT)

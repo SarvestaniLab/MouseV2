@@ -1,58 +1,46 @@
-# Reproducing the draft snapshot
+# Reproduce bioRxiv Figure 2
 
-Use Python 3.8 and the supplied uv.lock. From the lab repository root, run
-`cd Figure2` before the commands below. If already in this directory,
-do not change directories again.
-Create the environment with `uv sync --locked --group notebooks`.
-
-## Train the selected model
-
-The frozen primary example and its panel B comparator use this explicit recipe:
+The target is Figure 2 on page 6 of `2026_10_01_biorxiv_DPR.pdf`.
+From the lab repository root enter `Figure2/`, then run:
 
 ```sh
-uv run --locked --group notebooks python scripts/run_mouse_v2.py \
-  --seed 4 --beta1 0.00014 0.001 --beta2 10 --beta3 0.0001 \
-  --iterations 1500 --prototype-count 2000 --map-h 80 --map-w 8 \
-  --magnification -0.5 --boundary-retinotopy synthetic-waters-supported \
-  --surface-svg data/waters2019/derived/WatersV1_NormalConditionalMedian_borders.svg \
-  --sigma 1.2 --save-interval 0 --output-root results/figure2-retraining
-```
-
-For an execution check, change `--iterations 1500` to `--iterations 2` and use
-`--output-root results/figure2-smoke`. The runner refuses to overwrite a nonempty
-seed directory. Full retraining parity with the frozen checkpoints is unverified.
-The saved checkpoints remain authoritative. The generic runner's defaults are
-not this recipe. Available boundary modes are limited to included assets.
-
-## Render Figure 2
-
-```sh
-python scripts/verify_figure2_freeze.py
+uv sync --locked --group notebooks
+uv run --locked --group notebooks python scripts/verify_figure2_freeze.py
 uv run --locked --group notebooks python fig2/compose_figure.py
+uv run --locked --group notebooks python -m unittest discover -s tests -v
 ```
 
-This renders the frozen maps to SVG, PDF, and PNG under `fig2/output/full/`.
-Panel F needs three included Zhuang MAT arrays in `data/zhuang2017/`, the Zhuang
-border tracing, and the Waters geometry calibration manifest. Training uses the
-conditional-normal surface; rendering preserves the current individual-V1
-surface. This difference still needs scientific review.
+The composition is exported as `fig2/output/full/fig2.png`, `.pdf` and `.svg`.
+The default uses the frozen seed-13 primary and matched comparator:
+beta1=0.00035 and 0.002 respectively, beta2=20, beta3=0.001,
+magnification=-0.05, 2,000 prototypes, 2,000 iterations, and an 80 x 8 grid.
+Both use the same individual-V1 training/rendering surface and synthetic-rebalanced
+boundary. Panel E uses the saved eight-area recipe, without a forced apex cut.
 
-## Checks and provenance
+`scripts/make_figure2_manuscript.py` applies the manuscript layout to the shared
+renderer. It retains the original panel D interpolation. Later periodic-ribbon
+and explanatory-layout revisions are not used. Arial is preferred; when absent,
+Liberation Sans is used as a metric-compatible fallback. Exact typography and
+PDF bytes can therefore differ from the typeset manuscript. The manuscript
+caption says nine areas, whereas its displayed panel E and these results show eight.
 
-Run `uv run --locked --group notebooks python -m unittest discover -s tests -v`.
-The included existing tests check model energy and gradient equivalence and
-cortical geometry. They are a subset of the development suite and do not
-validate all manuscript claims.
+## What is reproduced
 
-`EXPORT_PROVENANCE.json` records SHA-256 hashes, the development HEAD, and
-whether each exported file matched that commit. It describes working-tree
-contents, so HEAD alone is not a complete identifier when any file differs.
-The export manifest is preserved separately. No development Git history is copied.
+Rendering uses included final checkpoints, not a new optimization or search.
+The tests compare the computed partition and field-sign map with the archived
+seed-13 export and check that frozen checkpoint/geometry drift is rejected.
+The two saved runs share initialization, boundary, prototypes and trainer hashes.
+The generic model runner remains available for experiments; it is not a verified
+bit-for-bit retraining recipe for these historical runs. Historical trainer hashes
+are provenance and do not assert that the current generic trainer is identical.
+Full retraining parity remains unfinished.
 
-## Still required for the paper
+## Export provenance and remaining work
 
-Verify full retraining and resolve the training/rendering geometry distinction.
-Finish the seed-versus-mouse variability and parameter sensitivity analyses,
-and finalize citation, licensing, and data redistribution.
-The included historical Zhuang arrays require source/permission review before
-public release. This is a locally tested draft.
+`EXPORT_PROVENANCE.json` records the development HEAD, per-file SHA-256 hashes,
+and whether each exported file matched that commit. No private Git history,
+parameter-search drivers, or bulk sweep results are copied.
+Only the two final selected runs are included.
+
+Finalize citation, licensing and data redistribution review, and the planned
+variability/sensitivity work before treating this draft as the final paper release.

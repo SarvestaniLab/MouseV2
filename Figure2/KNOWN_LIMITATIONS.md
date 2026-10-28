@@ -18,10 +18,12 @@ The default visual-field envelope is synthetic. Waters border extension is a
 modeling transform. Current cortical geometry is detection-conditional, and
 prototype-density fitting remains provisional.
 
-The Figure 2 example and comparator are frozen from their saved seed-4 runs.
-Their conditional-normal training geometry differs from the individual-V1
-rendering geometry used by the current figure code. Full retraining parity and
-this geometry difference remain to be reviewed.
+The Figure 2 example and comparator are frozen from the manuscript's seed-13 runs.
+Training and rendering use the same individual-V1 geometry. Full retraining parity
+remains unverified. The layout was reconstructed from the manuscript PDF; font
+substitution and vector/raster export differences prevent a byte-identical claim.
+The caption says nine areas, although panel E displays eight; this package preserves
+the displayed eight-area result and does not edit the manuscript.
 
 The variability figure, sensitivity
 results, software license, citation authors, and data redistribution review
