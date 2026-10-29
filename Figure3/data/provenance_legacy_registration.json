@@ -1,0 +1,55 @@
+{
+  "artifact": "han2022_figure3fg.csv",
+  "artifact_sha256": "e9704ac3c81f977bb02370ede617e59c456afdc0f4f8f0316a2a6e1eb5eb7247",
+  "generated_on": "2026-08-24",
+  "generator": "figure3/extract_han2022_data.py",
+  "row_count": 26046,
+  "finite_registered_retinotopy_count": 23499,
+  "source": {
+    "citation": "Han X, Vermaercke B, Bonin V (2022). Diversity of spatiotemporal coding reveals specialized visual processing streams in the mouse cortex. Nature Communications 13:3249.",
+    "doi": "10.1038/s41467-022-29656-z"
+  },
+  "source_files": [
+    {
+      "file": "dataset_meta.mat",
+      "bytes": 8464586,
+      "sha256": "2e2804c94e956378fcdf9f09349235788fa55df9653332225722dfb4f737626b"
+    },
+    {
+      "file": "s_retinomaps.mat",
+      "bytes": 70698779,
+      "sha256": "baaeb0d759670f6d817d94d6160c6fc26f2c6bcacdc16ac369243b6c34ca5610"
+    },
+    {
+      "file": "s_roi_location_all_8areas.mat",
+      "bytes": 175759745,
+      "sha256": "91e8679434e3c8bd4194aceed5a077610d081227d752082fff83e4d67d09d427"
+    },
+    {
+      "file": "ZhuangFig9_panel_c_altitudes_interpolated.mat",
+      "bytes": 1562616,
+      "sha256": "742939bbecc63a542b9850516d13dea65bf85b51841b1995909d03345e89a9d6"
+    },
+    {
+      "file": "ZhuangFig9_panel_d_azimuth_interpolated.mat",
+      "bytes": 1562616,
+      "sha256": "a1cbc4e85e12e5964892deb82e4680804ecb2404a8802b85fda5531548c4e6ed"
+    },
+    {
+      "file": "code_dependency/data_script_spatial_organization.m",
+      "bytes": 6856,
+      "sha256": "e4702c95bab2a3f684c6605e8ea4007bd732db78f022c83a4917668023813506"
+    },
+    {
+      "file": "spatial organization/retino_map.png",
+      "bytes": 23493,
+      "sha256": "a47dc9dda024733511c6b74ca37638b95aebf1c1026bdee06719eb991e82b8c0"
+    }
+  ],
+  "notes": [
+    "Only reliable cells selected by the historical registration workflow are retained.",
+    "The table includes V1 and POR/P for provenance; the submitted F/G analysis excludes them.",
+    "Zhuang-registered altitude is clipped to [-40, 40] degrees and azimuth to [0, 100] degrees, matching the historical MATLAB script.",
+    "Eccentricity is Euclidean distance from the focea at azimuth 0 degrees and elevation +20 degrees."
+  ]
+}

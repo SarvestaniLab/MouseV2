@@ -1,0 +1,148 @@
+{
+  "status": "release-candidate",
+  "source_commit": "c9fabfd745a2dd42aac45318023b4e1acbe06053",
+  "snapshot_kind": "working-tree allowlist; per-file commit matches use Git clean filters for cross-platform text handling",
+  "manifest_sha256": "28f09476ab90c9198d177afabfae11ae58e80c2ae51571f1e1f5f984cf4e58a4",
+  "files": [
+    {
+      "source": "publication/figure3/templates/.gitignore",
+      "destination": ".gitignore",
+      "bytes": 76,
+      "sha256": "0ed27924715e0d1a4b8e4f6d66f06d5d2e4f3cde09aa5f371850786b501776a3",
+      "matches_source_commit": true
+    },
+    {
+      "source": "publication/figure3/templates/README.md",
+      "destination": "README.md",
+      "bytes": 2553,
+      "sha256": "84b78dc7413cfcab77f055a8545793ba60331cde64e51d27f8f8967f45070c11",
+      "matches_source_commit": true
+    },
+    {
+      "source": "publication/figure3/templates/REPRODUCING.md",
+      "destination": "REPRODUCING.md",
+      "bytes": 2311,
+      "sha256": "4b02e54022139cffc1f1d03935a3f8a11d18484d9480094653bddc187d77396c",
+      "matches_source_commit": true
+    },
+    {
+      "source": "publication/figure3/templates/DATA.md",
+      "destination": "DATA.md",
+      "bytes": 2379,
+      "sha256": "fd3bfd85208f1e033e0c4ffa371c598c499049281c1e007357db123de9f85978",
+      "matches_source_commit": true
+    },
+    {
+      "source": "publication/figure3/templates/KNOWN_LIMITATIONS.md",
+      "destination": "KNOWN_LIMITATIONS.md",
+      "bytes": 1734,
+      "sha256": "54e2eef4e36c9c2a98247ceee80ce231d0d6d4bf4549375f62ccfa816c5620e6",
+      "matches_source_commit": true
+    },
+    {
+      "source": "publication/figure3/templates/SOURCE_RECONSTRUCTION.md",
+      "destination": "SOURCE_RECONSTRUCTION.md",
+      "bytes": 1917,
+      "sha256": "36e4d6e6ed9fd061f3a59fc38eaf1d895c1844c17e70ad73f0121d1b99e3cbde",
+      "matches_source_commit": true
+    },
+    {
+      "source": "audits/han_public_reconstruction/RESULTS.md",
+      "destination": "PUBLIC_DATA_AUDIT.md",
+      "bytes": 2730,
+      "sha256": "c955cd67713278c4acaaad69b32b625f53dfcf5d1aafa75e86adced8372998af",
+      "matches_source_commit": true
+    },
+    {
+      "source": "publication/figure3/templates/requirements.txt",
+      "destination": "requirements.txt",
+      "bytes": 83,
+      "sha256": "e5cb1bbb55180e8f6068c34c82fd89ed680e1ee8419366fa49b81ac672280aea",
+      "matches_source_commit": true
+    },
+    {
+      "source": "figure3/panels_fg.py",
+      "destination": "panels_fg.py",
+      "bytes": 20149,
+      "sha256": "dcda681c5a6e4c38f323c1da7446b42dbaa25be83907b720210901e2001c52cb",
+      "matches_source_commit": true
+    },
+    {
+      "source": "figure3/generate_panels_fg.py",
+      "destination": "generate_panels_fg.py",
+      "bytes": 2131,
+      "sha256": "6eb7aa3a310350436ad19cdc90dd3f475f2cf91d5cc303172e15a2cfde5737bd",
+      "matches_source_commit": true
+    },
+    {
+      "source": "figure3/refine_panels_fg.py",
+      "destination": "refine_panels_fg.py",
+      "bytes": 6500,
+      "sha256": "a729f4b88307f3da90671604bbb37c576b422041e56b9cae2bd5f3a2be080c38",
+      "matches_source_commit": true
+    },
+    {
+      "source": "publication/figure3/templates/METHODS.md",
+      "destination": "METHODS.md",
+      "bytes": 5087,
+      "sha256": "c1103809edb29b3235838eaf292b9299125d37759b2e0f3ac29212ba1fe5f850",
+      "matches_source_commit": true
+    },
+    {
+      "source": "figure3/data/han2022_figure3fg_legacy_registration.csv",
+      "destination": "data/han2022_figure3fg_legacy_registration.csv",
+      "bytes": 1805813,
+      "sha256": "e9704ac3c81f977bb02370ede617e59c456afdc0f4f8f0316a2a6e1eb5eb7247",
+      "matches_source_commit": true
+    },
+    {
+      "source": "figure3/data/provenance_legacy_registration.json",
+      "destination": "data/provenance_legacy_registration.json",
+      "bytes": 2254,
+      "sha256": "92f691fb86fd1f4bba44c73009759b0f9559e08c68de812b98fd809e0742baf3",
+      "matches_source_commit": true
+    },
+    {
+      "source": "figure3/extract_han2022_data.py",
+      "destination": "source_reconstruction/extract_han2022_data.py",
+      "bytes": 13204,
+      "sha256": "dfe43d9b712fffd95b288d1b63e88d41d90a42a49c1ae11cd1a77c0f9fd77a3d",
+      "matches_source_commit": true
+    },
+    {
+      "source": "figure3/registration.py",
+      "destination": "source_reconstruction/registration.py",
+      "bytes": 11416,
+      "sha256": "adc8e5d30cf4336391961d32a27d5067cd129a39bd6c7887a13dedddb352bfdf",
+      "matches_source_commit": true
+    },
+    {
+      "source": "audits/han_public_reconstruction/fetch_public_han_inputs.py",
+      "destination": "source_reconstruction/fetch_public_han_inputs.py",
+      "bytes": 3041,
+      "sha256": "d7f3838ae2bf78218f8e398d575a2435d588b11b8715032cffe46f8356588bd9",
+      "matches_source_commit": true
+    },
+    {
+      "source": "audits/han_public_reconstruction/compare_reconstruction.py",
+      "destination": "source_reconstruction/compare_reconstruction.py",
+      "bytes": 2302,
+      "sha256": "0576a90d241eafa2d647965cf8f9cd4df8b82423b5b89a9961475402c3de331f",
+      "matches_source_commit": true
+    },
+    {
+      "source": "figure3/legacy_matlab/EMcheck.m",
+      "destination": "legacy_matlab/EMcheck.m",
+      "bytes": 1262,
+      "sha256": "92ef212c06aaf68363ee58c16e0d503ff025b048acd9aef71380686bf13c4288",
+      "matches_source_commit": true
+    },
+    {
+      "source": "publication/figure3/tests/test_panels_fg.py",
+      "destination": "tests/test_panels_fg.py",
+      "bytes": 3355,
+      "sha256": "c78b2555387602135cee9b9e12282d0124909760aac94665c9db9511f12ea155",
+      "matches_source_commit": true
+    }
+  ]
+}
