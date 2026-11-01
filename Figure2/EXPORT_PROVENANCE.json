@@ -1,0 +1,386 @@
+{
+  "status": "review-draft",
+  "source_commit": "022443dacd085fc07ea56e6c9eb6dc3b6f1d423f",
+  "snapshot_kind": "working-tree allowlist; consult per-file commit matches",
+  "manifest_sha256": "9c46d38b41dcc1ad8480dfeae0edfde058947110254181dd54e62b969128093d",
+  "files": [
+    {
+      "source": ".python-version",
+      "destination": ".python-version",
+      "bytes": 4,
+      "sha256": "5b02189ab1f9bb5caa7611320f35cd6a072da88db0533f62c4b3194f8bee4b79",
+      "matches_source_commit": true
+    },
+    {
+      "source": "pyproject.toml",
+      "destination": "pyproject.toml",
+      "bytes": 903,
+      "sha256": "297290c991721b274e26e692a7c685b44f3a545b428e6097ca71336491117235",
+      "matches_source_commit": true
+    },
+    {
+      "source": "uv.lock",
+      "destination": "uv.lock",
+      "bytes": 145931,
+      "sha256": "0de1884c3fed273ae104365567d342d1816e8e7d7f976dce5dd590eb57e3ec62",
+      "matches_source_commit": true
+    },
+    {
+      "source": "elastictopy/__init__.py",
+      "destination": "elastictopy/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "matches_source_commit": true
+    },
+    {
+      "source": "elastictopy/elastic_net_mouse.py",
+      "destination": "elastictopy/elastic_net_mouse.py",
+      "bytes": 18100,
+      "sha256": "a3d156efb32d48978a0a7409dabbc682cda7f1458d542021f24cb5b574f253c5",
+      "matches_source_commit": true
+    },
+    {
+      "source": "elastictopy/helpers.py",
+      "destination": "elastictopy/helpers.py",
+      "bytes": 1112,
+      "sha256": "33c64c5613ff685c714e2b4a8817e700757be363256d1a5784fe37ebd61bc0b5",
+      "matches_source_commit": true
+    },
+    {
+      "source": "elastictopy/mouse_surface.py",
+      "destination": "elastictopy/mouse_surface.py",
+      "bytes": 12839,
+      "sha256": "3593ba2856e85d782ddde0e9fcfc23c6289a7ad1cc9b0b7bc655bb0cfc6f5242",
+      "matches_source_commit": true
+    },
+    {
+      "source": "elastictopy/legacy_plotting.py",
+      "destination": "elastictopy/legacy_plotting.py",
+      "bytes": 56970,
+      "sha256": "cad5a17f5f198918294aecbcba255eb27757e5a20dade17a19963dab472064c1",
+      "matches_source_commit": true
+    },
+    {
+      "source": "elastictopy/vf.py",
+      "destination": "elastictopy/vf.py",
+      "bytes": 9747,
+      "sha256": "c8979164e584c8e5af2be24d98ebda8bda6e93665b5d4e99146a10954df67a63",
+      "matches_source_commit": true
+    },
+    {
+      "source": "scripts/run_mouse_v2.py",
+      "destination": "scripts/run_mouse_v2.py",
+      "bytes": 15900,
+      "sha256": "f9cc6b7cc20a3057dddbf429bea52027cb5d6371e55fe57ea03ef372e46fe968",
+      "matches_source_commit": true
+    },
+    {
+      "source": "scripts/check_environment.py",
+      "destination": "scripts/check_environment.py",
+      "bytes": 3059,
+      "sha256": "f6c03fb55f996d72e365b2872fcff2cd4e8bdcc3a97c2d2bbec962244eaa3d7b",
+      "matches_source_commit": true
+    },
+    {
+      "source": "tests/test_edge_regularizers.py",
+      "destination": "tests/test_edge_regularizers.py",
+      "bytes": 3348,
+      "sha256": "7b0e7e0c229cba49354526c6e458d351120eda05d3dd68342a941d0b5bf9cf6c",
+      "matches_source_commit": true
+    },
+    {
+      "source": "tests/test_registered_border.py",
+      "destination": "tests/test_registered_border.py",
+      "bytes": 3031,
+      "sha256": "4e6e2a2b7976c95331be350908b4f48c394e0a909b76f0d7ef9b037b1e6ebc46",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/reference/MouseV1_synthetic_boundary_Waters_row0_anchored_80.csv",
+      "destination": "data/reference/MouseV1_synthetic_boundary_Waters_row0_anchored_80.csv",
+      "bytes": 6800,
+      "sha256": "5062b841c1154947db499d8678c116fe6fbfd5a03182efe010a9a5f70eccd4ad",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/reference/MouseV1_synthetic_boundary_Waters_row0_anchored_80.json",
+      "destination": "data/reference/MouseV1_synthetic_boundary_Waters_row0_anchored_80.json",
+      "bytes": 1383,
+      "sha256": "666e00c99095b4f4fd5b1b48a48880892fb742e5928277fe7bbccf6781fd79e3",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/reference/MouseV1_synthetic_boundary_Waters_supported_80.csv",
+      "destination": "data/reference/MouseV1_synthetic_boundary_Waters_supported_80.csv",
+      "bytes": 6905,
+      "sha256": "16a0209f861197737158c8a9d60dd7cd7591171045323a4bbb555c13828e08c1",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/reference/MouseV1_synthetic_coverage_summary.json",
+      "destination": "data/reference/MouseV1_synthetic_coverage_summary.json",
+      "bytes": 1546,
+      "sha256": "100a67847be56d3ec45d958ebb356a415cad00e7e34942429833c6cdcd310bbb",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/waters2019/derived/WatersV1_IndividualV1Median_borders.svg",
+      "destination": "data/waters2019/derived/WatersV1_IndividualV1Median_borders.svg",
+      "bytes": 5589,
+      "sha256": "903b915e203380dce09cd384efdcee2be579ce9a5665406fc19c94ce41d1087b",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/waters2019/derived/WatersV1_IndividualV1Median_borders.json",
+      "destination": "data/waters2019/derived/WatersV1_IndividualV1Median_borders.json",
+      "bytes": 1270,
+      "sha256": "601d65bfbc86027b6007fdeb896fde8ba17e7bc566c07d29ab0ec55b96b09681",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/waters2019/derived/WatersV1_NormalConditionalMedian_borders.svg",
+      "destination": "data/waters2019/derived/WatersV1_NormalConditionalMedian_borders.svg",
+      "bytes": 2369,
+      "sha256": "cbbf3f7a3d3357a3dd31a03941a12a999eb91e8e4776a4bf4c040840c0ef819b",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/waters2019/derived/WatersV1_RegisteredMouseMedian_borders.svg",
+      "destination": "data/waters2019/derived/WatersV1_RegisteredMouseMedian_borders.svg",
+      "bytes": 2649,
+      "sha256": "7d328e6e98ab5081cb8b1aa97f52eccd5ef10d8d392aa16f90c63b3ce90d5542",
+      "matches_source_commit": true
+    },
+    {
+      "source": "publication/templates/README.md",
+      "destination": "README.md",
+      "bytes": 1648,
+      "sha256": "11b5cae9007e85d140ac7c22714e8ccb91f89f7490221974108656945ebe8958",
+      "matches_source_commit": true
+    },
+    {
+      "source": "publication/templates/DATA.md",
+      "destination": "DATA.md",
+      "bytes": 2025,
+      "sha256": "2335fe1b3a976326c1c1eb62fedbe884b40c89c1b2e21dbe6ee0cb173de61240",
+      "matches_source_commit": true
+    },
+    {
+      "source": "publication/templates/REPRODUCING.md",
+      "destination": "REPRODUCING.md",
+      "bytes": 2430,
+      "sha256": "a9464ae8c4022fab7c607b4b08e4a2a2f085a8e90cacf90a6143a5c1cefbd2ca",
+      "matches_source_commit": true
+    },
+    {
+      "source": "publication/templates/KNOWN_LIMITATIONS.md",
+      "destination": "KNOWN_LIMITATIONS.md",
+      "bytes": 1784,
+      "sha256": "54e90606c63cf44a6d841f28143fd3ba9cb1022f6b5fae136b7880cd6d8fa227",
+      "matches_source_commit": true
+    },
+    {
+      "source": "publication/templates/CITATION.cff",
+      "destination": "CITATION.cff",
+      "bytes": 232,
+      "sha256": "8bf7c2ab07058951d520ec07d97b47eb9d86293f6dfe198612ae0f808d2eaa12",
+      "matches_source_commit": true
+    },
+    {
+      "source": "publication/templates/.gitignore",
+      "destination": ".gitignore",
+      "bytes": 97,
+      "sha256": "588613c37c7b7b5c1758fd6e95d1b7b78bc77de5a273759c4cbdf6694e07ad6e",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/publication/figure2/README.md",
+      "destination": "data/publication/figure2/README.md",
+      "bytes": 1011,
+      "sha256": "b6d5b7ab3a099a2d3127bea21f64536ba4317458278cbfdf72fee67c296969fe",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/publication/figure2/freeze.json",
+      "destination": "data/publication/figure2/freeze.json",
+      "bytes": 5337,
+      "sha256": "63a5ca5cc609e2c8d902a36e3aa757feed9cd1a7347ae09cfaf65794ee2eda09",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/publication/figure2/high_smoothness/boundary.csv",
+      "destination": "data/publication/figure2/high_smoothness/boundary.csv",
+      "bytes": 1613,
+      "sha256": "de7c1438b34e67a13395ca666827467f1401efdc84d88f272088a11d55cc5849",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/publication/figure2/high_smoothness/init.csv",
+      "destination": "data/publication/figure2/high_smoothness/init.csv",
+      "bytes": 12921,
+      "sha256": "ce6588a34ab6eaf7bb041d9ba75a82c1e3ce3b05f332de5d5b4f7e09273e93ff",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/publication/figure2/high_smoothness/run-manifest.json",
+      "destination": "data/publication/figure2/high_smoothness/run-manifest.json",
+      "bytes": 2317,
+      "sha256": "1af9dacbd4e6a2ab42fc5be143dcb458ec1f4135e36d02974493953fd8485daa",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/publication/figure2/high_smoothness/vf.csv",
+      "destination": "data/publication/figure2/high_smoothness/vf.csv",
+      "bytes": 40344,
+      "sha256": "276e4aa570c229b23ba69b314313403b36a477c94b32cd6c0dd017af4d937a39",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/publication/figure2/primary/boundary.csv",
+      "destination": "data/publication/figure2/primary/boundary.csv",
+      "bytes": 1613,
+      "sha256": "de7c1438b34e67a13395ca666827467f1401efdc84d88f272088a11d55cc5849",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/publication/figure2/primary/init.csv",
+      "destination": "data/publication/figure2/primary/init.csv",
+      "bytes": 12921,
+      "sha256": "ce6588a34ab6eaf7bb041d9ba75a82c1e3ce3b05f332de5d5b4f7e09273e93ff",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/publication/figure2/primary/run-manifest.json",
+      "destination": "data/publication/figure2/primary/run-manifest.json",
+      "bytes": 2218,
+      "sha256": "cead9137503f77fa47f2473354b915529b0c7150137461e4b352d5d1307e729f",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/publication/figure2/primary/vf.csv",
+      "destination": "data/publication/figure2/primary/vf.csv",
+      "bytes": 40344,
+      "sha256": "276e4aa570c229b23ba69b314313403b36a477c94b32cd6c0dd017af4d937a39",
+      "matches_source_commit": true
+    },
+    {
+      "source": "scripts/verify_figure2_freeze.py",
+      "destination": "scripts/verify_figure2_freeze.py",
+      "bytes": 1055,
+      "sha256": "57034801da8c684f52e4b00abcbe79a52168bf09c242bfdd82ced686b235a325",
+      "matches_source_commit": true
+    },
+    {
+      "source": "tests/test_figure2_freeze.py",
+      "destination": "tests/test_figure2_freeze.py",
+      "bytes": 2091,
+      "sha256": "94aa9b932fc9977240593bf04b90e172e36fdc35e82213153b8300aa8f39679f",
+      "matches_source_commit": true
+    },
+    {
+      "source": "fig2/common.py",
+      "destination": "fig2/common.py",
+      "bytes": 2658,
+      "sha256": "707fb581a46cb1fb6aab575e88fe075a29d99c1965f68fdbe029e04a837c19fb",
+      "matches_source_commit": true
+    },
+    {
+      "source": "fig2/compose_figure.py",
+      "destination": "fig2/compose_figure.py",
+      "bytes": 778,
+      "sha256": "ada9fde2e83794df0c16ac6aa52e13593ff3cfbff59ddce2757ea4fdcd5e8770",
+      "matches_source_commit": true
+    },
+    {
+      "source": "fig2/zhuang_v1.py",
+      "destination": "fig2/zhuang_v1.py",
+      "bytes": 6963,
+      "sha256": "adcdd5f150cb4a58a7e554556f91a26c9ee150c34e04addf630fc03416323135",
+      "matches_source_commit": true
+    },
+    {
+      "source": "scripts/make_figure2_updated.py",
+      "destination": "scripts/make_figure2_updated.py",
+      "bytes": 32977,
+      "sha256": "9f064ee83cbb1252ba143d5fdafa6c3908be6b3990b71e1df6403c4152a584d7",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/ZhuangTracing9_borders.svg",
+      "destination": "data/ZhuangTracing9_borders.svg",
+      "bytes": 1855,
+      "sha256": "b26bf328b51b86e8d75eea825bedf5cee89189e05be8f209ce4e24152f948b12",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/waters2019/derived/manifest.json",
+      "destination": "data/waters2019/derived/manifest.json",
+      "bytes": 6298,
+      "sha256": "751e0483134890217c893d17fc434411859f1c203798244144fab4cc6b1516fa",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/zhuang2017/ZhuangFig9_panel_c_altitudes_interpolated.mat",
+      "destination": "data/zhuang2017/ZhuangFig9_panel_c_altitudes_interpolated.mat",
+      "bytes": 1562616,
+      "sha256": "742939bbecc63a542b9850516d13dea65bf85b51841b1995909d03345e89a9d6",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/zhuang2017/ZhuangFig9_panel_d_azimuth_interpolated.mat",
+      "destination": "data/zhuang2017/ZhuangFig9_panel_d_azimuth_interpolated.mat",
+      "bytes": 1562616,
+      "sha256": "a1cbc4e85e12e5964892deb82e4680804ecb2404a8802b85fda5531548c4e6ed",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/zhuang2017/ZhuangFig9_panel_d_border_mask.mat",
+      "destination": "data/zhuang2017/ZhuangFig9_panel_d_border_mask.mat",
+      "bytes": 195512,
+      "sha256": "d0f777722c9b7159fe3cf4dbab0f4a5d6989e2be47b4fb59d8ccf7164c74e920",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/publication/figure2/primary/y-0.00035-20-0.001-02000.data",
+      "destination": "data/publication/figure2/primary/y-0.00035-20-0.001-02000.data",
+      "bytes": 12912,
+      "sha256": "9354d960b14a923007dfcf6787c48a0417347d9773f190e5616b331cd068313a",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/publication/figure2/high_smoothness/y-0.002-20-0.001-02000.data",
+      "destination": "data/publication/figure2/high_smoothness/y-0.002-20-0.001-02000.data",
+      "bytes": 12903,
+      "sha256": "4ca9246bedc9c38d2e68ec8ea757cc9c6304d10c5f7ceddc170842cae721373a",
+      "matches_source_commit": true
+    },
+    {
+      "source": "fig2/manuscript_partition.py",
+      "destination": "fig2/manuscript_partition.py",
+      "bytes": 1610,
+      "sha256": "2cb33b27260065ad4643fb695d96f267de535d6489b274c4b0cad698bf1885ac",
+      "matches_source_commit": true
+    },
+    {
+      "source": "scripts/make_figure2_manuscript.py",
+      "destination": "scripts/make_figure2_manuscript.py",
+      "bytes": 11911,
+      "sha256": "12e9c81451cd3a35717a8246f3d74d3c6001c993fa2a9af019796b8e90a4847d",
+      "matches_source_commit": true
+    },
+    {
+      "source": "data/publication/figure2/partition-reference.npz",
+      "destination": "data/publication/figure2/partition-reference.npz",
+      "bytes": 5546,
+      "sha256": "0c817311a052ecbefbab6cb6f8bc4a0a04a666f4b9189d6e34285b62167559bb",
+      "matches_source_commit": true
+    },
+    {
+      "source": "tests/test_manuscript_figure2.py",
+      "destination": "tests/test_manuscript_figure2.py",
+      "bytes": 2229,
+      "sha256": "f77b05a7ea84a7e76dd70d5549dd7d85d96564ad05e93e767d571065bdc21a4f",
+      "matches_source_commit": true
+    }
+  ]
+}

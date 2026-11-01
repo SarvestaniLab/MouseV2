@@ -1,0 +1,37 @@
+{
+  "central_anchor": {
+    "row": 40,
+    "visual_deg_az_el": [
+      0.0,
+      25.0
+    ]
+  },
+  "peripheral_anchor": {
+    "row": 0,
+    "visual_deg_az_el": [
+      140.0,
+      -13.0
+    ]
+  },
+  "intervals_per_branch": 40,
+  "retained_total_integrated_cortical_length_mm": 6.488430251117135,
+  "target_integrated_cortical_length_per_branch_mm": 3.2442151255585676,
+  "cortical_step_mm": 0.0811053781389642,
+  "posterior": {
+    "original_integrated_length_mm": 3.773142040624944,
+    "instantaneous_speed_multiplier": 1.1630369425564246,
+    "original_linear_deg_per_mm": 20.213625453631597,
+    "original_quadratic_deg_per_mm2": 10.332068177014298,
+    "adjusted_linear_deg_per_mm": 23.509193145572414,
+    "adjusted_quadratic_deg_per_mm2": 13.975722954161778
+  },
+  "anterior": {
+    "original_integrated_length_mm": 2.715288210492192,
+    "instantaneous_speed_multiplier": 0.8369630574435755,
+    "original_linear_deg_per_mm": 22.368444611837354,
+    "original_quadratic_deg_per_mm2": 21.338886972133373,
+    "adjusted_linear_deg_per_mm": 18.721561792580665,
+    "adjusted_quadratic_deg_per_mm2": 14.948043100280533
+  },
+  "interpretation": "The overall integrated cortical perimeter is retained. Constant branch-wise multipliers rebalance instantaneous tangential visual speed so the posterior and anterior synthetic-border paths each occupy exactly 40 model intervals."
+}

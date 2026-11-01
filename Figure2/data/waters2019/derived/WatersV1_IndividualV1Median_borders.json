@@ -1,0 +1,23 @@
+{
+  "candidate_source": "outputs/border_options/individual_v1_widths.npz",
+  "candidate_sha256": "70a5ca0b09ed5e2b3d492fc28471d58a5dd0cce01d87cfa49ed581f33a152ed6",
+  "method": "individual-v1",
+  "transform": [
+    -3.502351218078616,
+    -0.15180764700815216,
+    -2.5533002498261244,
+    -0.07502614146699545
+  ],
+  "gap_mm": 0.1,
+  "aggregation": "Mean finite sessions within each mouse, then median across mice",
+  "smoothing": "Individual-V1 HVA thickness; nearest registered V1 correspondence; contour sigma 0.03 mm and width sigma 0.05 mm. No extra export smoothing; polygon simplification tolerance 0.015 SVG units.",
+  "topology_repair": "Raster union of quadrilateral strips from the common V1 reference to adjacent measured outer samples, hole filling, then longest 0.5 contour.",
+  "inner_source": "data/waters2019/derived/WatersV1_NormalConditionalMedian_borders.svg",
+  "inner_source_sha256": "cbbf3f7a3d3357a3dd31a03941a12a999eb91e8e4776a4bf4c040840c0ef819b",
+  "included_inferred_areas": [
+    "LI_inferred"
+  ],
+  "inferred_li_source": "data/waters2019/derived/waters_li_like_analysis/li-like-anatomically-constrained-masks.npz",
+  "inferred_li_source_sha256": "e93af4e540be07dea6c23cf9e58c4041c9e27a05d19b9ef91e29823b33aad5ff",
+  "outer_points": 249
+}
