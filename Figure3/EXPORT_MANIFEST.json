@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "status": "release-candidate",
+  "files": [
+    {"source": "publication/figure3/templates/.gitignore", "destination": ".gitignore"},
+    {"source": "publication/figure3/templates/README.md", "destination": "README.md"},
+    {"source": "publication/figure3/templates/REPRODUCING.md", "destination": "REPRODUCING.md"},
+    {"source": "publication/figure3/templates/DATA.md", "destination": "DATA.md"},
+    {"source": "publication/figure3/templates/KNOWN_LIMITATIONS.md", "destination": "KNOWN_LIMITATIONS.md"},
+    {"source": "publication/figure3/templates/SOURCE_RECONSTRUCTION.md", "destination": "SOURCE_RECONSTRUCTION.md"},
+    {"source": "audits/han_public_reconstruction/RESULTS.md", "destination": "PUBLIC_DATA_AUDIT.md"},
+    {"source": "publication/figure3/templates/requirements.txt", "destination": "requirements.txt"},
+    {"source": "figure3/panels_fg.py", "destination": "panels_fg.py"},
+    {"source": "figure3/generate_panels_fg.py", "destination": "generate_panels_fg.py"},
+    {"source": "figure3/refine_panels_fg.py", "destination": "refine_panels_fg.py"},
+    {"source": "publication/figure3/templates/METHODS.md", "destination": "METHODS.md"},
+    {"source": "figure3/data/han2022_figure3fg_legacy_registration.csv", "destination": "data/han2022_figure3fg_legacy_registration.csv"},
+    {"source": "figure3/data/provenance_legacy_registration.json", "destination": "data/provenance_legacy_registration.json"},
+    {"source": "figure3/extract_han2022_data.py", "destination": "source_reconstruction/extract_han2022_data.py"},
+    {"source": "figure3/registration.py", "destination": "source_reconstruction/registration.py"},
+    {"source": "audits/han_public_reconstruction/fetch_public_han_inputs.py", "destination": "source_reconstruction/fetch_public_han_inputs.py"},
+    {"source": "audits/han_public_reconstruction/compare_reconstruction.py", "destination": "source_reconstruction/compare_reconstruction.py"},
+    {"source": "figure3/legacy_matlab/EMcheck.m", "destination": "legacy_matlab/EMcheck.m"},
+    {"source": "publication/figure3/tests/test_panels_fg.py", "destination": "tests/test_panels_fg.py"}
+  ]
+}
