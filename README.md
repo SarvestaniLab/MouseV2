@@ -18,7 +18,7 @@ single place for the paper's public data links and analysis code.
 
 | Paper figure | What it shows | Code | Data |
 | --- | --- | --- | --- |
-| **Figure 2** | Retinotopic (elastic-net) simulations of a single complex V2 | [`Figure2/`](Figure2/) *(review draft)* | Simulated |
+| **Figure 2** | Retinotopic (elastic-net) simulations of a single complex V2 | [`Figure2/`](Figure2/) | Simulated |
 | **Figure 4** | The OpenScope dataset and example neurons | [`ephys_getting_started.ipynb`](ephys_getting_started.ipynb), [`02_ophys_getting_started.ipynb`](02_ophys_getting_started.ipynb) | [DANDI:001568](https://dandiarchive.org/dandiset/001568), [DANDI:001709](https://dandiarchive.org/dandiset/001709) |
 | **Figure 5** | A within-V1 benchmark for functional differences among HVAs | [`Figure5/`](Figure5/) | Bundled tables; raw recordings from [DANDI:001568](https://dandiarchive.org/dandiset/001568) and the [Allen Visual Coding – Neuropixels](https://allensdk.readthedocs.io/en/latest/visual_coding_neuropixels.html) dataset |
 
