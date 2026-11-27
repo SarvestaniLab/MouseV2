@@ -1,0 +1,42 @@
+{
+  "config": {
+    "id": "family_05_seed_2026111604",
+    "seed": 2026111604,
+    "b1": 1.45e-05,
+    "b2": 100.0,
+    "b3": 0.03,
+    "steps": 3000
+  },
+  "comparisons": {
+    "initial": {
+      "exact": true,
+      "max_abs": 0.0
+    },
+    "step_2500": {
+      "exact": true,
+      "max_abs": 0.0
+    },
+    "step_3000": {
+      "exact": true,
+      "max_abs": 0.0
+    },
+    "final": {
+      "exact": true,
+      "max_abs": 0.0
+    }
+  },
+  "all_saved_checkpoints_bitwise_equal": true,
+  "tensorflow": "2.17.1",
+  "seconds": 18.4211915130727,
+  "checkpoint_interval": 25,
+  "schedule": {
+    "steps": 3000,
+    "eta0": 0.1,
+    "momentum": 0.8,
+    "eta_decay": 0.9933221725495059,
+    "kappa0": 44.0,
+    "kappa_decay": 0.001533921712758013
+  },
+  "backend": "original expanded-mesh GPU float64 graph",
+  "temporal_interpolation": false
+}

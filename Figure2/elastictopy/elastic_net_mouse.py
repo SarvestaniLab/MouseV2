@@ -1,20 +1,20 @@
 # This code was written for Tensorflow 1. For Tensorflow 2, use the compatibility mode
 import tensorflow.compat.v1 as tf
+
 tf.disable_v2_behavior()
 
 import numpy as np
-from helpers import checkpoint_stem, full_filename
-from mouse_surface import DEFAULT_BORDER_SVG, generate_mouse_surface_grid
+from .mouse_surface import DEFAULT_BORDER_SVG, generate_mouse_surface_grid
 
-# Provisional defaults for the corrected Waters workflow.  Beta1 is the center
-# of the single-seed smoothness window that reduced RF-grid distortion without
-# collapsing most field-sign reversals.  Beta2 balances V1-boundary RMSE against
-# coverage and near-zero cells.  Beta3 is the low, nonzero value that minimized
-# along-versus-outward RF neighbor-RMS imbalance; the historical 3e-12 value is
-# effectively zero at the current cost scale.  Confirm all three across seeds.
-DEFAULT_MOUSE_BETA1 = 2.25e-5
-DEFAULT_MOUSE_BETA2 = 0.2
-DEFAULT_MOUSE_BETA3 = 3.0e-6
+# Defaults for the selected Figure 2 run. The replay supplies its parameters
+# explicitly from training/training_config.json.
+DEFAULT_MOUSE_BETA1 = 1.45e-5
+DEFAULT_MOUSE_BETA2 = 100.0
+DEFAULT_MOUSE_BETA3 = 0.03
+
+B3_LEGACY_GLOBAL_AXIS_BALANCE = "legacy_global_axis_balance"
+B3_LOCAL_METRIC_ISOTROPY = "local_metric_isotropy"
+B3_OBJECTIVES = (B3_LEGACY_GLOBAL_AXIS_BALANCE, B3_LOCAL_METRIC_ISOTROPY)
 
 # map_h is the side that has a boundary
 # this geometry is defined by neighborhood()
@@ -27,19 +27,20 @@ DEFAULT_MOUSE_BETA3 = 3.0e-6
 #    x 4 9 14
 # x is boundary
 
+
 def neighborhood(h, w):
     """
-        Numbers {0...h*w-1} arranged in a h x w grid, produce a list of neighboring numbers.
-        The ith element of the list is a list of numbers that neighbor i
+    Numbers {0...h*w-1} arranged in a h x w grid, produce a list of neighboring numbers.
+    The ith element of the list is a list of numbers that neighbor i
     """
-    
+
     # this line defines how the geometry is coded
     # for (h, w) = (4, 2)
     # 0 4
     # 1 5
     # 2 6
     # 3 7
-    x = np.transpose(np.array(range(h*w)).reshape([w, h]))
+    x = np.transpose(np.array(range(h * w)).reshape([w, h]))
 
     if h < 2 or w < 1:
         raise ValueError("cyclic neighborhood requires h >= 2 and w >= 1")
@@ -53,13 +54,16 @@ def neighborhood(h, w):
                         neighbor = x[(j + jj) % h, i + ii]
                         if neighbor not in neighbors:
                             neighbors.append(neighbor)
-            lst.append(neighbors) #neighbors[indx] 0..h*w-1, inside of borders have eight (nine?),
+            lst.append(
+                neighbors
+            )  # neighbors[indx] 0..h*w-1, inside of borders have eight (nine?),
     return lst
+
 
 def neighborhood_x(h, w):
     """
-        numbers {0...h*w-1} arranged in a hxw grid, produce a list of neighboring numbers.
-        The ith element of the list is a list of numbers that neighbor i
+    numbers {0...h*w-1} arranged in a hxw grid, produce a list of neighboring numbers.
+    The ith element of the list is a list of numbers that neighbor i
     """
     # this line defines how the geometry is coded
     # for (h, w) = (4, 2)
@@ -67,7 +71,7 @@ def neighborhood_x(h, w):
     # 1 5
     # 2 6
     # 3 7
-    x = np.transpose(np.array(range(h*w)).reshape([w, h]))
+    x = np.transpose(np.array(range(h * w)).reshape([w, h]))
     if h < 2 or w < 1:
         raise ValueError("cyclic neighborhood requires h >= 2 and w >= 1")
     lst = []
@@ -81,10 +85,11 @@ def neighborhood_x(h, w):
             lst.append(neighbors)
     return lst
 
+
 def neighborhood_y(h, w):
     """
-        numbers {0...h*w-1} arranged in a hxw grid, produce a list of neighboring numbers.
-        The ith element of the list is a list of numbers that neighbor i
+    numbers {0...h*w-1} arranged in a hxw grid, produce a list of neighboring numbers.
+    The ith element of the list is a list of numbers that neighbor i
     """
     # this line defines how the geometry is coded
     # for (h, w) = (4, 2)
@@ -92,7 +97,7 @@ def neighborhood_y(h, w):
     # 1 5
     # 2 6
     # 3 7
-    x = np.transpose(np.array(range(h*w)).reshape([w, h]))
+    x = np.transpose(np.array(range(h * w)).reshape([w, h]))
     lst = []
     for column in range(w):
         for row in range(h):
@@ -103,6 +108,7 @@ def neighborhood_y(h, w):
                     neighbors.append(x[row, neighbor_column])
             lst.append(neighbors)
     return lst
+
 
 def make_distance_weighted_smoothness_mask(cortical_x, cortical_y, neighbors):
     """Weight each neighbor pair by inverse squared cortical distance.
@@ -152,68 +158,165 @@ def make_mask_from_traces(h, w, neighbors, surface_svg=DEFAULT_BORDER_SVG):
     assembled for analysis.  The ``w`` trainable columns therefore correspond
     to surface columns 1 through ``w``.
     """
-    surface = generate_mouse_surface_grid(
-        svg_path=surface_svg, map_h=h, map_w=w
-    )
+    surface = generate_mouse_surface_grid(svg_path=surface_svg, map_h=h, map_w=w)
     model_nodes = surface[:, 1 : w + 1]
     return make_distance_weighted_smoothness_mask(
         model_nodes[:, :, 0], model_nodes[:, :, 1], neighbors
     )
 
-def make_boundary_mask(n,w):
+
+def make_model_node_area_weights(h, w, surface_svg=DEFAULT_BORDER_SVG):
+    """Return unit-mean cortical quadrature weights for trainable nodes."""
+    surface = generate_mouse_surface_grid(svg_path=surface_svg, map_h=h, map_w=w)
+    next_rows = np.roll(surface, -1, axis=0)
+    p00, p10 = surface[:, :-1], next_rows[:, :-1]
+    p01, p11 = surface[:, 1:], next_rows[:, 1:]
+    cell_area = 0.5 * (
+        np.abs(np.cross(p10 - p00, p11 - p00)) + np.abs(np.cross(p11 - p00, p01 - p00))
+    )
+    weights = np.zeros(surface.shape[:2], dtype=np.float64)
+    quarter = 0.25 * cell_area
+    previous_quarter = np.roll(quarter, 1, axis=0)
+    weights[:, :-1] += quarter + previous_quarter
+    weights[:, 1:] += quarter + previous_quarter
+    model_weights = weights[:, 1 : w + 1].reshape(-1, order="F")
+    if not np.all(np.isfinite(model_weights)) or np.any(model_weights <= 0.0):
+        raise ValueError("physical cortical node areas must be finite and positive")
+    return model_weights / np.mean(model_weights)
+
+
+def make_grid8_local_isotropy_geometry(h, w, surface_svg=DEFAULT_BORDER_SVG):
+    """Precompute a cyclic, topology-aware local Jacobian operator.
+
+    Each trainable node is connected to its immediate axial and diagonal grid
+    neighbors. Rows wrap around the closed cortical ribbon; columns remain
+    open. The SVG coordinates define local directions only: the normalized
+    isotropy energy below is unchanged by a uniform rescaling of the SVG.
     """
-        n: numer of elements on the boundary
-        return a n*n array
+    if h < 3 or w < 2:
+        raise ValueError("local metric isotropy requires h >= 3 and w >= 2")
+    surface = generate_mouse_surface_grid(svg_path=surface_svg, map_h=h, map_w=w)
+    positions = np.asarray(surface[:, 1 : w + 1], dtype=np.float64).reshape(
+        (-1, 2), order="F"
+    )
+    pairs = {
+        tuple(sorted((source, target)))
+        for source, node_neighbors in enumerate(neighborhood(h, w))
+        for target in node_neighbors
+        if source != target
+    }
+    undirected = np.asarray(sorted(pairs), dtype=np.int64).reshape((-1, 2))
+    edges = np.concatenate((undirected, undirected[:, ::-1]), axis=0)
+    deltas = positions[edges[:, 1]] - positions[edges[:, 0]]
+    distance_squared = np.einsum("ij,ij->i", deltas, deltas)
+    if np.any(distance_squared <= 0.0):
+        raise ValueError("local metric isotropy contains coincident cortical nodes")
+    weights = 1.0 / distance_squared
+
+    node_count = len(positions)
+    cortical_moment = np.zeros((node_count, 2, 2), dtype=np.float64)
+    contributions = weights[:, None, None] * deltas[:, :, None] * deltas[:, None, :]
+    np.add.at(cortical_moment, edges[:, 0], contributions)
+    valid_nodes = np.linalg.matrix_rank(cortical_moment, tol=1e-10) == 2
+    if not np.all(valid_nodes):
+        raise ValueError(
+            "local metric isotropy requires a two-dimensional neighborhood "
+            "at every cortical node"
+        )
+    inverse_moment = np.linalg.pinv(cortical_moment, rcond=1e-10)
+    edge_coefficients = np.einsum(
+        "eab,eb->ea",
+        inverse_moment[edges[:, 0]],
+        weights[:, None] * deltas,
+    )
+
+    operator_indices = []
+    operator_values = []
+    nodes = np.arange(node_count, dtype=np.int64)
+    for component in range(2):
+        row_offset = component * node_count
+        off_diagonal = np.column_stack((row_offset + edges[:, 0], edges[:, 1]))
+        diagonal = np.column_stack((row_offset + nodes, nodes))
+        diagonal_values = -np.bincount(
+            edges[:, 0],
+            weights=edge_coefficients[:, component],
+            minlength=node_count,
+        )
+        operator_indices.append(np.concatenate((off_diagonal, diagonal), axis=0))
+        operator_values.append(
+            np.concatenate((edge_coefficients[:, component], diagonal_values))
+        )
+    operator_indices = np.concatenate(operator_indices, axis=0)
+    operator_values = np.concatenate(operator_values)
+    order = np.lexsort((operator_indices[:, 1], operator_indices[:, 0]))
+    return {
+        "positions": positions,
+        "undirected_edges": undirected,
+        "valid_nodes": valid_nodes,
+        "derivative_operator_indices": operator_indices[order],
+        "derivative_operator_values": operator_values[order],
+        "derivative_operator_shape": np.asarray(
+            (2 * node_count, node_count), dtype=np.int64
+        ),
+    }
+
+
+def local_metric_isotropy_energy(visual_positions, geometry, name="reg3_local"):
+    """Sum rotation-independent local anisotropy over cortical nodes.
+
+    A weighted least-squares Jacobian maps local cortical displacement to
+    visual displacement. For its metric ``G = J J^T``, the normalized
+    deviatoric energy is zero for equal stretch in every direction and treats
+    axis-aligned and diagonal anisotropy equally. Overall visual magnification
+    remains controlled by the other objective terms.
     """
-    #horizontal connections need to be modulated, colmult as above. only need to consider cols directly above and below (+-1)
+    dtype = visual_positions.dtype.base_dtype
+    node_count = len(geometry["valid_nodes"])
+    with tf.name_scope(name):
+        operator = tf.SparseTensor(
+            indices=tf.constant(
+                geometry["derivative_operator_indices"], dtype=tf.int64
+            ),
+            values=tf.constant(geometry["derivative_operator_values"], dtype=dtype),
+            dense_shape=tf.constant(
+                geometry["derivative_operator_shape"], dtype=tf.int64
+            ),
+        )
+        derivatives = tf.sparse_tensor_dense_matmul(operator, visual_positions)
+        jacobian = tf.transpose(tf.reshape(derivatives, (2, node_count, 2)), (1, 0, 2))
+        metric = tf.matmul(jacobian, jacobian, transpose_b=True)
+        g00 = metric[:, 0, 0]
+        g11 = metric[:, 1, 1]
+        g01 = metric[:, 0, 1]
+        trace = g00 + g11
+        epsilon = tf.cast(np.finfo(dtype.as_numpy_dtype).eps, dtype)
+        node_energy = (tf.square(g00 - g11) + 4.0 * tf.square(g01)) / (
+            tf.square(trace) + epsilon
+        )
+        return tf.reduce_sum(node_energy)
+
+
+def make_boundary_mask(n, w):
+    """
+    n: numer of elements on the boundary
+    return a n*n array
+    """
+    # horizontal connections need to be modulated, colmult as above. only need to consider cols directly above and below (+-1)
 
     if n < 2:
         raise ValueError("cyclic boundary mask requires at least two rows")
     x = np.zeros([n, n], dtype=np.float64)
     for i in range(n):
-        col=np.floor(i/n) # column of map, 0 to w
+        col = np.floor(i / n)  # column of map, 0 to w
         # weights are different depending on row/column, need to use trapezoids or diagonals won't be reciprical
-        #neighbours that are out of bounds have already been removed (hopefully)
-        colmult=1.0+col*1.0/w  #from 0.5 to 1, corresponding to 6mm inner to 12mm outer circumference (this also gets shrunk by the bevels to ~11mm)
+        # neighbours that are out of bounds have already been removed (hopefully)
+        colmult = (
+            1.0 + col * 1.0 / w
+        )  # from 0.5 to 1, corresponding to 6mm inner to 12mm outer circumference (this also gets shrunk by the bevels to ~11mm)
         for j in [-1, 0, 1]:
-            x[i, (i + j) % n] = 1/colmult
+            x[i, (i + j) % n] = 1 / colmult
     return x
 
-def initialize_map(h, w, x, filename="", random_seed=None, initial_values=None):
-    """
-        Initialize cortical map, save to a file, and create a tensorflow variable "y"
-
-        initialze a cortical map of the size map_w * map_h
-        each point on the map is randomly assigned to prototypes on the visual field (x) with some added noise
-    """
-
-    # if random_seed:
-        # np.random.seed(random_seed)
-    np.random.seed(random_seed)
-    tf.set_random_seed(random_seed)
-    map_size = h * w
-
-    if initial_values is None:
-        idx = np.random.randint(x.shape[0], size = map_size)
-        y = x[idx, :] # randomly sample from x with replacement
-        n = np.random.normal(0.0, 1.0, y.shape) # the standard deviation is set to 5.0 deg
-        res = y + n
-    else:
-        res = np.asarray(initial_values, dtype=np.float64)
-        if res.shape != (map_size, 2):
-            raise ValueError(
-                "initial_values must have shape ({}, 2); got {}".format(
-                    map_size, res.shape
-                )
-            )
-        res = res.copy()
-
-    if filename:
-        np.savetxt(filename, res, fmt='%f', delimiter=",")
-
-    y = tf.get_variable("y", dtype = tf.float64, initializer = res)
-    
-    return y
 
 def prototype_squared_distances(x, y):
     """Two-coordinate distances without a (nodes, prototypes, 2) temporary.
@@ -226,20 +329,42 @@ def prototype_squared_distances(x, y):
     return tf.square(dx) + tf.square(dy)
 
 
-def main_cost(x, y, kappa):
+def main_cost(x, y, kappa, stable_logsumexp=False, node_area_weights=None):
     yx_normsq = prototype_squared_distances(x, y)
 
+    log_kernel = -1.0 * yx_normsq / (2.0 * kappa * kappa)
+    if node_area_weights is not None:
+        weights = np.asarray(node_area_weights, dtype=np.float64)
+        node_count = y.shape.as_list()[0]
+        if weights.shape != (node_count,):
+            raise ValueError("node_area_weights must have one value per node")
+        if not np.all(np.isfinite(weights)) or np.any(weights <= 0.0):
+            raise ValueError("node_area_weights must be finite and positive")
+        weights = weights / np.mean(weights)
+        log_kernel = (
+            log_kernel + tf.log(tf.constant(weights, dtype=tf.float64))[:, None]
+        )
+    if stable_logsumexp:
+        log_yx_gauss_sum = tf.reduce_logsumexp(log_kernel, axis=0)
+        yx_cost = -1.0 * kappa * tf.reduce_sum(log_yx_gauss_sum)
+        # Retain the historical diagnostic return type. Extremely small sums
+        # may underflow here, but the optimized cost and its gradient do not.
+        return yx_cost, tf.exp(log_yx_gauss_sum)
+
     # note that all entries are between 0.0 and 1.0
-    yx_gauss = tf.exp(-1.0 * yx_normsq / (2.0 * kappa * kappa))
+    yx_gauss = tf.exp(log_kernel)
 
     yx_gauss_sum = tf.reduce_sum(yx_gauss, axis=0)
     yx_gauss_sum = yx_gauss_sum
 
-    # to protect the log from becoming -inf 
-    yx_gauss_sum = tf.clip_by_value(yx_gauss_sum, clip_value_min=1.0e-306, clip_value_max=1.0e+306)
+    # to protect the log from becoming -inf
+    yx_gauss_sum = tf.clip_by_value(
+        yx_gauss_sum, clip_value_min=1.0e-306, clip_value_max=1.0e306
+    )
 
     yx_cost = -1.0 * kappa * tf.reduce_sum(tf.log(yx_gauss_sum))
     return yx_cost, yx_gauss_sum
+
 
 def weighted_edge_energy(left, right, mask, name="edge_energy"):
     """Exact weighted squared-distance objective on nonzero directed edges.
@@ -257,206 +382,149 @@ def weighted_edge_energy(left, right, mask, name="edge_energy"):
 
 
 def generate_elastic_net(
-    vf_prototypes, boundary_retinotopy, y, map_h, map_w,
+    vf_prototypes,
+    boundary_retinotopy,
+    y,
+    map_h,
+    map_w,
     surface_svg=DEFAULT_BORDER_SVG,
     include_reg1=True,
     include_reg2=True,
     include_reg3=True,
+    prototype_batch_size=None,
+    prototype_batch_seed=None,
+    prototype_cost_scale=1.0,
+    b3_objective=B3_LEGACY_GLOBAL_AXIS_BALANCE,
+    stable_coverage=False,
+    physical_node_area_weights=False,
 ):
     # beta1: within-area smoothness
     # beta2: between-area congruence
     # kappa: annealing parameter
     beta1 = tf.placeholder(tf.float64, shape=(), name="b1")
     beta2 = tf.placeholder(tf.float64, shape=(), name="b2")
-    beta3 = tf.placeholder(tf.float64, shape=(), name="b3") #even x,y gradients
+    beta3 = tf.placeholder(tf.float64, shape=(), name="b3")  # even x,y gradients
     kappa = tf.placeholder(tf.float64, shape=(), name="k")
 
-    x = tf.constant(vf_prototypes, dtype=tf.float64, name='x')
-    b = tf.constant(boundary_retinotopy, dtype=tf.float64, name='b')
+    prototype_count = len(vf_prototypes)
+    if prototype_batch_size is not None:
+        prototype_batch_size = int(prototype_batch_size)
+        if prototype_batch_size <= 0 or prototype_batch_size > prototype_count:
+            raise ValueError(
+                "prototype_batch_size must be in [1, {}]; got {}".format(
+                    prototype_count, prototype_batch_size
+                )
+            )
+    x_full = tf.constant(vf_prototypes, dtype=tf.float64, name="x_full")
+    if prototype_batch_size is None or prototype_batch_size == prototype_count:
+        x = tf.identity(x_full, name="x")
+    else:
+        # A fresh without-replacement subset is drawn for every optimizer step.
+        # Keeping the batch at the historical 2,000 prototypes preserves the
+        # data-term mass, and therefore the meaning of the frozen beta values,
+        # while a larger pool supplies denser visual-field coverage over time.
+        x = tf.random_shuffle(
+            x_full, seed=prototype_batch_seed, name="prototype_shuffle"
+        )[:prototype_batch_size]
+    b = tf.constant(boundary_retinotopy, dtype=tf.float64, name="b")
 
     # this is the boundary of the cortical map
     yb = y[:map_h]
 
-    yx_cost, yx_gauss = main_cost(x, y, kappa)
-    
+    yx_cost, yx_gauss = main_cost(
+        x,
+        y,
+        kappa,
+        stable_logsumexp=stable_coverage,
+        node_area_weights=(
+            make_model_node_area_weights(map_h, map_w, surface_svg=surface_svg)
+            if physical_node_area_weights
+            else None
+        ),
+    )
+    prototype_cost_scale = float(prototype_cost_scale)
+    if not np.isfinite(prototype_cost_scale) or prototype_cost_scale <= 0:
+        raise ValueError("prototype_cost_scale must be finite and positive")
+    if prototype_cost_scale != 1.0:
+        yx_cost = tf.multiply(
+            tf.constant(prototype_cost_scale, dtype=tf.float64),
+            yx_cost,
+            name="scaled_prototype_cost",
+        )
+
     # Masks are static geometry. Evaluate only their nonzero directed edges;
     # retain both orientations and the original weights (no normalization).
     def regularizer(mask, left=y, right=y, name="regularizer"):
         return weighted_edge_energy(left, right, mask, name=name)
 
     if include_reg1:
-        reg1 = regularizer(make_mask_from_traces(
-            map_h, map_w, neighborhood(map_h, map_w), surface_svg=surface_svg
-        ), name="reg1")
+        reg1 = regularizer(
+            make_mask_from_traces(
+                map_h, map_w, neighborhood(map_h, map_w), surface_svg=surface_svg
+            ),
+            name="reg1",
+        )
     else:
         reg1 = tf.constant(0.0, dtype=tf.float64, name="reg1_disabled")
 
     if include_reg2:
-        reg2 = regularizer(make_boundary_mask(map_h, map_w),
-                           left=yb, right=b, name="reg2")
+        reg2 = regularizer(
+            make_boundary_mask(map_h, map_w), left=yb, right=b, name="reg2"
+        )
     else:
         reg2 = tf.constant(0.0, dtype=tf.float64, name="reg2_disabled")
 
-    if include_reg3:
-        ex = regularizer(make_mask_from_traces(
-            map_h, map_w, neighborhood_x(map_h, map_w), surface_svg=surface_svg
-        ), name="reg3_x")
-        ey = regularizer(make_mask_from_traces(
-            map_h, map_w, neighborhood_y(map_h, map_w), surface_svg=surface_svg
-        ), name="reg3_y")
+    if b3_objective not in B3_OBJECTIVES:
+        raise ValueError(
+            "b3_objective must be one of {}; got {!r}".format(
+                B3_OBJECTIVES, b3_objective
+            )
+        )
+
+    if include_reg3 and b3_objective == B3_LEGACY_GLOBAL_AXIS_BALANCE:
+        ex = regularizer(
+            make_mask_from_traces(
+                map_h, map_w, neighborhood_x(map_h, map_w), surface_svg=surface_svg
+            ),
+            name="reg3_x",
+        )
+        ey = regularizer(
+            make_mask_from_traces(
+                map_h, map_w, neighborhood_y(map_h, map_w), surface_svg=surface_svg
+            ),
+            name="reg3_y",
+        )
         reg3 = tf.abs(ex - ey)
+    elif include_reg3:
+        reg3 = local_metric_isotropy_energy(
+            y,
+            make_grid8_local_isotropy_geometry(map_h, map_w, surface_svg=surface_svg),
+        )
     else:
         reg3 = tf.constant(0.0, dtype=tf.float64, name="reg3_disabled")
 
     ##### total cost
-    cost = yx_cost + beta1 * reg1 + beta2 * reg2 + beta3 *reg3
+    cost = yx_cost + beta1 * reg1 + beta2 * reg2 + beta3 * reg3
 
     total_cost = cost
     partial_costs = [yx_cost, reg1, reg2, reg3]
     tf_placeholders = [beta1, beta2, beta3, kappa]
     return total_cost, partial_costs, tf_placeholders, yx_gauss
 
-def generate_optimizer(cost, eta0 = 0.05, m = 0.8, eta_decay=0.99):
+
+def generate_optimizer(cost, eta0=0.05, m=0.8, eta_decay=0.99):
     """
     cost - the cost function
     eta0 - initial learning rate
     m - momentum
     """
-    
+
     global_step = tf.Variable(0, trainable=False)
-    current_eta = tf.train.exponential_decay(eta0, global_step, 10, eta_decay, staircase=False)
+    current_eta = tf.train.exponential_decay(
+        eta0, global_step, 10, eta_decay, staircase=False
+    )
 
-    opt = tf.train.RMSPropOptimizer(current_eta, momentum = m).minimize(cost, global_step = global_step)
+    opt = tf.train.RMSPropOptimizer(current_eta, momentum=m).minimize(
+        cost, global_step=global_step
+    )
     return opt
-
-def save_map(sess, y, b1, b2, b3, i, outdir="", save_interval=0, quiet=False, suffix=''):
-    if (outdir!="") and save_interval>0:
-        if i%save_interval==0:
-            filename = checkpoint_stem((b1, b2, b3), i)
-            zz = sess.run(y)
-            
-            if (not quiet):
-                print("saving {filename}".format(filename=filename))
-                
-            np.savetxt(full_filename(filename, outdir, ext=".data", suffix=suffix),
-                       np.array(zz), fmt = "%f", delimiter=",")
-
-def report_and_log(partial_costs, tf_placeholders, i, k, b1, b2, b3, sess, reportP=True, logP=True, logfile='log'):
-    if not reportP and not logP:
-        return
-
-    yx_cost = partial_costs[0]
-    reg1    = partial_costs[1]
-    reg2    = partial_costs[2]
-    reg3    = partial_costs[3]
-    kappa   = tf_placeholders[3]
-
-    [e0, e1, e2, e3] = sess.run([yx_cost, reg1, reg2, reg3], {kappa: k})
-    tt = e0 + b1*e1 + b2*e2 + b3*e3
-    if reportP:
-        print("%d\t%5f\t%6.4f"%(i, k, tt)) # total cost
-        print("\t\t%10.4f\t%10.4f\t%10.4f"%(e0, e1, e2))
-
-    if logP and logfile:
-        logstring = "%10.4f,%10.4f,%10.4f,%d,%10.4f,%10.4f,%10.4f,%10.4f,%10.4f,%10.4f\n"%(b1, b2, b3, i, k, tt, e0, e1, e2, e3)
-        with open(logfile, 'a') as logfp:
-            logfp.write(logstring)
-
-def train(opt, total_cost, partial_costs, tf_placeholders, y, b1, b2, b3, outdir="", save_interval=0, n=1000, k0=30.0, kr=0.005, quiet_save=False, report_iterations = True, log_iterations = True, logfile='log', suffix='', yx_gauss=None):
-    """
-    b1:              weights for the smoothness term
-    b2:              weights for the congruency term
-    n:               number of iterations
-    k0:              initial annealing parameter
-    kr:              reduction of the annealing parameter at each iteration
-    outdir:          where to save the results.
-    save_intervals:  save map every several iterations. if set to 0, saving is disabled
-    """
-
-    yx_cost = partial_costs[0]
-    reg1    = partial_costs[1]
-    reg2    = partial_costs[2]
-    reg3    = partial_costs[3]
-    beta1   = tf_placeholders[0]
-    beta2   = tf_placeholders[1]
-    beta3   = tf_placeholders[2]
-    kappa   = tf_placeholders[3]
-
-    with tf.Session() as sess:
-        sess.run(tf.global_variables_initializer())
-
-        # save initial map
-        #      always save the initial map (by setting save_interval to 1)
-        save_map(sess, y, b1, b2, b3, 0, outdir, save_interval=1, quiet=quiet_save, suffix=suffix)
-
-        k = k0
-        for i in range(1, n+1):
-            # itertaively optimize the total cost function
-            sess.run(opt, {kappa: k, beta1: b1, beta2: b2, beta3: b3})
-
-            report_and_log(partial_costs, tf_placeholders, i, k, b1, b2, b3, sess,
-                           reportP = report_iterations,
-                           logP = log_iterations,
-                           logfile=full_filename(logfile, outdir, suffix=suffix))
-
-            if i>0:
-                save_map(sess, y, b1, b2, b3, i, outdir, save_interval, quiet=quiet_save, suffix=suffix)
-
-            k = k - k*kr
-    
-        # Save the final result unless the regular checkpoint cadence just wrote it.
-        if save_interval <= 0 or i % save_interval:
-            save_map(sess, y, b1, b2, b3, i, outdir, save_interval=1, quiet=quiet_save, suffix=suffix)
-    
-        report_and_log(partial_costs, tf_placeholders, i, k, b1, b2, b3, sess,
-                       reportP = False,
-                       logP = log_iterations,
-                       logfile = full_filename(logfile, outdir, suffix=suffix))
-
-def optimize(x0, b0, b1, b2, b3, map_h, map_w, y, outdir="", save_interval=0, n=1000, k0=30.0, kr=0.005, eta0 = 0.05, m = 0.8, quiet_save = False, report_iterations = True, log_iterations = True, logfile="log", suffix="", surface_svg=DEFAULT_BORDER_SVG):
-    """
-    Easy interface to train()
-    x0             - visual field prototypes
-    b0             - boundary retinotopy
-    b1             - model weights
-    b2             - model weights
-    map_h          - height of the cortical map
-    map_w          - width of the cortical map
-    y              - the cortical map to learn (tf variable)
-    outdir:        directory to save the file to
-    save_interval: save map for how many iterations (if 0, do not save intermediate maps)
-    n:             how many iterations to update
-    quiet_save:    do not print "saving to...."
-    report_iterations: report every iteration?
-    surface_svg:       two-path cortical boundary SVG; defaults to the Waters
-                       conditional-normal tracing
-    """
-    
-    diagnostics_enabled = report_iterations or log_iterations
-    (total_cost, partial_costs, tf_placeholders, yx_gauss) = generate_elastic_net(
-        x0,
-        b0,
-        y,
-        map_h,
-        map_w,
-        surface_svg=surface_svg,
-        include_reg1=(b1 != 0 or diagnostics_enabled),
-        include_reg2=(b2 != 0 or diagnostics_enabled),
-        include_reg3=(b3 != 0 or diagnostics_enabled),
-    )
-    opt = generate_optimizer(total_cost, eta0 = eta0, m = m)
-    
-    train(opt,
-          total_cost, partial_costs, tf_placeholders, y, b1, b2, b3,
-          outdir = outdir,
-          save_interval = save_interval,
-          n = n,
-          k0 = k0,
-          kr = kr,
-          quiet_save = quiet_save,
-          report_iterations = report_iterations,
-          log_iterations = log_iterations,
-          logfile = logfile,
-          suffix = suffix,
-          yx_gauss = yx_gauss
-    )
