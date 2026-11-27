@@ -1,7 +1,8 @@
 """Build the mouse V2 surface grid used by the elastic-net regularizer.
 
-The default source is the Waters individual-V1, detection-conditional boundary.
-The previous Zhuang tracing remains available explicitly for legacy parity.
+The default source is the included expanded Figure 2 outline. Exact training
+replay uses the frozen surface array rather than resampling this SVG.
+Normal-projection interpolation can be requested explicitly with normal_across=True.
 Distance calculation is kept separate and accepts coordinates of any
 dimensionality, so a future 3D atlas surface can use the same interface.
 """
@@ -15,27 +16,9 @@ import numpy as np
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-LEGACY_ZHUANG_BORDER_SVG = PROJECT_ROOT / "data" / "ZhuangTracing9_borders.svg"
-WATERS_CONDITIONAL_BORDER_SVG = (
-    PROJECT_ROOT
-    / "data"
-    / "waters2019"
-    / "derived"
-    / "WatersV1_NormalConditionalMedian_borders.svg"
-)
-WATERS_REGISTERED_MOUSE_MEDIAN_BORDER_SVG = (
-    WATERS_CONDITIONAL_BORDER_SVG.parent
-    / "WatersV1_RegisteredMouseMedian_borders.svg"
-)
-WATERS_INDIVIDUAL_V1_BORDER_SVG = (
-    WATERS_CONDITIONAL_BORDER_SVG.parent
-    / "WatersV1_IndividualV1Median_borders.svg"
-)
-DEFAULT_BORDER_SVG = WATERS_INDIVIDUAL_V1_BORDER_SVG
+DEFAULT_BORDER_SVG = PROJECT_ROOT / "fit_sources" / "expanded_footprint.svg"
 
-_TOKEN_RE = re.compile(
-    r"[MmLlHhVvCcSsZz]|[-+]?(?:\d*\.\d+|\d+\.?)(?:[eE][-+]?\d+)?"
-)
+_TOKEN_RE = re.compile(r"[MmLlHhVvCcSsZz]|[-+]?(?:\d*\.\d+|\d+\.?)(?:[eE][-+]?\d+)?")
 
 
 def _sample_line(start, end, samples):
@@ -116,9 +99,7 @@ def sample_svg_path(path_data, step=0.001):
             if relative:
                 values += current
             control1, control2, target = values
-            points.append(
-                _sample_cubic(current, control1, control2, target, samples)
-            )
+            points.append(_sample_cubic(current, control1, control2, target, samples))
             current = target
             previous_control = control2
         elif operation == "S":
@@ -132,9 +113,7 @@ def sample_svg_path(path_data, step=0.001):
                 if previous_control is not None
                 else current.copy()
             )
-            points.append(
-                _sample_cubic(current, control1, control2, target, samples)
-            )
+            points.append(_sample_cubic(current, control1, control2, target, samples))
             current = target
             previous_control = control2
         elif operation == "Z":
@@ -236,9 +215,7 @@ def outward_normal_intersections(inner, outer):
         ray_distance[usable] = (
             cross(offset[usable], segment_vector[usable]) / denominator[usable]
         )
-        segment_fraction[usable] = (
-            cross(offset[usable], normal) / denominator[usable]
-        )
+        segment_fraction[usable] = cross(offset[usable], normal) / denominator[usable]
         hits = (
             usable
             & (ray_distance >= -1e-10)
@@ -282,20 +259,12 @@ def surface_grid_distances(surface, cyclic_along=False):
     across = np.linalg.norm(surface[:, 1:] - surface[:, :-1], axis=2)
 
     top_right = np.full((height, width), np.nan)
-    top_right[1:] = np.linalg.norm(
-        surface[:-1, 1:] - surface[1:, :-1], axis=2
-    )
+    top_right[1:] = np.linalg.norm(surface[:-1, 1:] - surface[1:, :-1], axis=2)
     lower_right = np.full((height, width), np.nan)
-    lower_right[:-1] = np.linalg.norm(
-        surface[1:, 1:] - surface[:-1, :-1], axis=2
-    )
+    lower_right[:-1] = np.linalg.norm(surface[1:, 1:] - surface[:-1, :-1], axis=2)
     if cyclic_along:
-        top_right[0] = np.linalg.norm(
-            surface[-1, 1:] - surface[0, :-1], axis=1
-        )
-        lower_right[-1] = np.linalg.norm(
-            surface[0, 1:] - surface[-1, :-1], axis=1
-        )
+        top_right[0] = np.linalg.norm(surface[-1, 1:] - surface[0, :-1], axis=1)
+        lower_right[-1] = np.linalg.norm(surface[0, 1:] - surface[-1, :-1], axis=1)
     return {
         "griddist_along": along,
         "griddist_across": across,
@@ -306,8 +275,12 @@ def surface_grid_distances(surface, cyclic_along=False):
 
 @lru_cache(maxsize=None)
 def generate_mouse_surface_grid(
-    svg_path=DEFAULT_BORDER_SVG, map_h=80, map_w=8, step=0.001,
-    cyclic_along=True, normal_across=None,
+    svg_path=DEFAULT_BORDER_SVG,
+    map_h=80,
+    map_w=8,
+    step=0.001,
+    cyclic_along=True,
+    normal_across=None,
 ):
     """Reconstruct the cortical sheet from the selected two-path SVG.
 
@@ -318,23 +291,26 @@ def generate_mouse_surface_grid(
     svg_path = Path(svg_path)
     outer_path, inner_path = load_svg_paths(svg_path, step=step)
     if normal_across is None:
-        normal_across = svg_path.resolve() in {
-            WATERS_CONDITIONAL_BORDER_SVG.resolve(),
-            WATERS_REGISTERED_MOUSE_MEDIAN_BORDER_SVG.resolve(),
-            WATERS_INDIVIDUAL_V1_BORDER_SVG.resolve(),
-        }
+        normal_across = False
     # Loadup_borders.m reverses both paths before arclength sampling.
     builder = build_normal_surface_grid if normal_across else build_surface_grid
     return builder(
-        inner_path[::-1], outer_path[::-1], n_along=map_h, n_across=map_w + 1,
+        inner_path[::-1],
+        outer_path[::-1],
+        n_along=map_h,
+        n_across=map_w + 1,
         cyclic_along=cyclic_along,
     )
 
 
 @lru_cache(maxsize=None)
 def generate_mouse_surface_distances(
-    svg_path=DEFAULT_BORDER_SVG, map_h=80, map_w=8, step=0.001,
-    cyclic_along=True, normal_across=None,
+    svg_path=DEFAULT_BORDER_SVG,
+    map_h=80,
+    map_w=8,
+    step=0.001,
+    cyclic_along=True,
+    normal_across=None,
 ):
     """Calculate cortical grid distances, including the cyclic seam by default."""
     return surface_grid_distances(

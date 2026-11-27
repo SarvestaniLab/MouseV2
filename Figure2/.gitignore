@@ -1,8 +1,7 @@
-.venv/
+.venv*/
 __pycache__/
 *.py[cod]
-.pytest_cache/
-.ipynb_checkpoints/
-.DS_Store
+reconstruction/
+**/mpl_cache/
+figure2_compositions/
 results/
-fig2/output/

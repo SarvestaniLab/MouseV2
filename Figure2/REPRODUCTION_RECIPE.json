@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "target": {
+    "reference_pdf": "figure2.pdf",
+    "bytes": 12222133,
+    "sha256": "19281a4338937a72534838a06b5b0762ef8d6906a35e1780bc6024b50a39e97b",
+    "acceptance_rule": "The newly generated PDF must match this SHA-256 exactly."
+  },
+  "learning_pipeline": {
+    "run_id": "family_05_seed_2026111604",
+    "seed": 2026111604,
+    "seed_role": "Passed to training/model.py:seeded_initial to create the surrounding-cortex initial state from training/training_inputs.npz.",
+    "parameters": {
+      "b1": 1.45e-05,
+      "b2": 100.0,
+      "b3": 0.03
+    },
+    "schedule": {
+      "steps": 3000,
+      "eta0": 0.1,
+      "momentum": 0.8,
+      "eta_decay": 0.9933221725495059,
+      "kappa0": 44.0,
+      "kappa_decay": 0.001533921712758013,
+      "checkpoint_interval": 25
+    },
+    "inputs": "training/training_inputs.npz",
+    "training_source": "training/model.py",
+    "optimizer_source": "training/optimizer.py",
+    "backend": "TensorFlow 2.17.1 GPU, float64 graph",
+    "replay_entrypoint": "replay_learning.py",
+    "archived_checkpoint_evidence": "training/replay-verification.json",
+    "endpoint": "fit_sources/hva_maps.npz",
+    "exactness_scope": "The archived replay matched initial, step_2500, step_3000, and final arrays bit for bit on the recorded GPU/TensorFlow backend.",
+    "saved_checkpoints": "fit_sources/hva_maps.npz"
+  },
+  "render_pipeline": {
+    "source_arrays": "data/figure2_data.npz",
+    "entrypoints": [
+      "render_clean_AB.py",
+      "render_panel_C_dense.py",
+      "render_clean_DE.py",
+      "assemble_clean.py"
+    ],
+    "python_major_minor": [
+      3,
+      12
+    ],
+    "distributions": {
+      "contourpy": "1.4.0",
+      "cycler": "0.12.1",
+      "fonttools": "4.59.0",
+      "kiwisolver": "1.5.1",
+      "matplotlib": "3.10.8",
+      "numpy": "2.4.2",
+      "packaging": "26.4",
+      "pillow": "12.1.0",
+      "pyparsing": "3.3.3",
+      "pypdf": "6.10.0",
+      "pypdfium2": "5.14.0",
+      "python-dateutil": "4.0.0",
+      "scipy": "1.18.1",
+      "tzdata": "2026.6"
+    },
+    "expected_png_sha256": "48748e37e4595b8b684c0920d79416269f17b75f9ca31b9fbe8a18b664362c89",
+    "svg_byte_exactness_required": false,
+    "svg_note": "Matplotlib-generated internal SVG IDs can vary; PDF byte identity is the acceptance criterion and PNG byte identity is an additional check."
+  },
+  "pipeline_order": [
+    "Seed 2026111604 creates the initial surrounding-cortex state.",
+    "The frozen 3000-step learning schedule produces the surrounding-cortex endpoint.",
+    "The endpoint, matched V1 fit, saved partition, and injection mapping are frozen into data/figure2_data.npz.",
+    "The four render entrypoints generate panels A-E and assemble the one-page PDF.",
+    "reproduce.py rejects the run unless the new PDF SHA-256 equals the committed reference."
+  ],
+  "methods_pipeline": {
+    "v1_entrypoint": "training/v1.py",
+    "analysis_entrypoint": "build_figure_data.py",
+    "v1_cortical_boundary": "training/v1_boundary_cortex.npy",
+    "default_fit_inputs": "archived V1/HVA endpoints; explicit --v1-fit and --hva-maps accept new endpoints",
+    "reference_array_atol": 1e-09,
+    "reference_array_rtol": 0,
+    "byte_exact_pdf_required": false,
+    "hva_gpu_replay_validated_on_this_host": false
+  }
+}

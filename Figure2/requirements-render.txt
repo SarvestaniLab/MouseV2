@@ -1,0 +1,15 @@
+# Python 3.12; includes transitive pins for byte-exact rendering.
+contourpy==1.4.0
+cycler==0.12.1
+fonttools==4.59.0
+kiwisolver==1.5.1
+matplotlib==3.10.8
+numpy==2.4.2
+packaging==26.4
+pillow==12.1.0
+pyparsing==3.3.3
+pypdf==6.10.0
+pypdfium2==5.14.0
+python-dateutil==4.0.0
+scipy==1.18.1
+tzdata==2026.6

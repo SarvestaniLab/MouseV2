@@ -1,30 +1,23 @@
-# Scientific limitations and unfinished work
+# Scientific and reproduction limitations
 
-The model is a constructive feasibility example, not a detailed reconstruction
-of mouse cortex. Selected examples arose through exploratory parameter and seed
-searches. Search orchestration and ranking utilities are excluded from this
-snapshot, but selection must be disclosed in the final methods.
+This selected seed is a constructive feasibility example, not evidence of
+robustness across seeds or parameters.
 
-Model organization depends on parameters and initialization. A selected map does
-not establish robustness. The release must report distributions across seeds
-and a specified parameter grid, including failed and atypical runs.
+The raw experimental geometry, RF boundary, prototypes, injection locations and
+selected analysis parameters remain supplied inputs. V1 fitting, segmentation,
+injection mapping and registration can now be regenerated with the included
+methods. The CPU V1 replay matches the archived endpoint in the validated
+Python 3.11 environment when using the exact original boundary samples.
+This does not guarantee parity across arbitrary numerical backends.
+Panel C uses display smoothing; quantitative field-sign evidence comes from
+the fitted maps, not the illustrative registered surface.
 
-Existing development analyses compare fixed-parameter seed variation with Waters
-mouse and repeated-session variation. Their cortical support differs, and pairs
-share maps. Pairwise counts are not independent replicate counts. A final figure
-must address support and distinguish seed, mouse, and session variation.
+Exact PDF reconstruction is checked independently from training. GPU learning
+parity depends on TensorFlow, numerical libraries and hardware. The archived
+replay passed; consult any new replay receipt for the current machine.
 
-The default visual-field envelope is synthetic. Waters border extension is a
-modeling transform. Current cortical geometry is detection-conditional, and
-prototype-density fitting remains provisional.
-
-The Figure 2 example and comparator are frozen from the manuscript's seed-13 runs.
-Training and rendering use the same individual-V1 geometry. Full retraining parity
-remains unverified. The layout was reconstructed from the manuscript PDF; font
-substitution and vector/raster export differences prevent a byte-identical claim.
-The caption says nine areas, although panel E displays eight; this package preserves
-the displayed eight-area result and does not edit the manuscript.
-
-The variability figure, sensitivity
-results, software license, citation authors, and data redistribution review
-remain unfinished. These items must be resolved before treating this draft as the final paper release.
+Author metadata, licensing and derived-data redistribution review remain
+unfinished. This review draft does not grant a new software or data license.
+The model is adapted from Yu et al. (2020), *A twisted visual field map in the
+primate dorsomedial cortex predicted by topographic continuity*, Science
+Advances 6, eaaz8673.

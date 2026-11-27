@@ -1,24 +1,20 @@
-# Data availability for the publication draft
+# Included inputs
 
-The export includes compact inputs needed by the selected entry points. Inclusion
-in this review draft does not establish redistribution permission. Confirm the
-licenses and attribution for all derived inputs before the final release.
+- `training/training_inputs.npz`: fixed cortical surface, visual-field prototypes
+  and V1 boundary for the selected run.
+- `training/v1_boundary_cortex.npy`: 160 original V1 cortical perimeter samples
+  in SVG coordinates, before the selected cyclic offset. These are geometry
+  inputs, not learned RF values; their exact rounding matters during training.
+- `fit_sources/hva_maps.npz`: initialization and selected training checkpoints.
+- `fit_sources/expanded_footprint.svg`: selected cortical outline.
+- `data/figure2_data.npz`: matched V1 and surrounding-cortex maps, cortical grids,
+  partition, injection memberships and display geometry.
+- `data/panel_B_partition_field.npz`: field-sign map matching the saved partition.
+- `data/figure2_shared_model.json`: panel parameters and model metadata.
+- `ribbon_local/ribbon_smoothing_variants.npz` and `cumulative_height_audit.json`:
+  frozen illustrative registration and scale for panel C.
 
-| Inputs | Role and provenance | Remaining work |
-| --- | --- | --- |
-| `data/publication/figure2/` | Frozen model checkpoints and inputs, original run metadata with portable paths, and checksums | Verify retraining parity |
-| `data/reference/MouseV1_synthetic*` | Schematic visual-field boundary and companion metadata; informed by Wagor and Garrett with Waters anchoring | Finalize source citations and distinguish synthetic assumptions from observations |
-| `data/waters2019/derived/WatersV1_*` | Waters-derived cortical borders; companion JSON where available | Confirm redistribution and document raw-to-derived preparation |
-| `data/zhuang2017/*.mat`, `data/ZhuangTracing9_borders.svg` | Three historical Zhuang interpolation/mask arrays and tracing used by Figure 2F | Confirm source provenance and redistribution permission |
-| `data/waters2019/derived/manifest.json` | Cortical coordinate scale calibration used by Figure 2 | Retain source provenance |
-
-The historical Zhuang arrays were obtained from the local Han/Bonin data archive;
-the original Zhuang attribution and redistribution terms still need review.
-Archive reference: Han, Vermaercke and Bonin (2022), *Diversity of spatiotemporal coding reveals
-specialized visual processing streams in the mouse cortex*, Nature
-Communications 13, 3249: https://doi.org/10.1038/s41467-022-29656-z.
-
-Raw Waters arrays, bulk Han/Bonin source data, literature images, exploratory fits,
-and large output bundles are excluded. The documented model and Figure 2 commands use the included inputs. Raw-data regeneration is a separate,
-uncompleted release requirement. References to excluded files inside provenance
-metadata describe historical inputs, not dependencies of those panel commands.
+The package includes the inputs and reference outputs needed to reproduce
+Figure 2. File checksums are recorded in `package_manifest.json`; model and
+rendering parameters are in `REPRODUCTION_RECIPE.json`. Raw-to-derived
+preparation and redistribution permissions remain part of the publication review.

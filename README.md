@@ -48,12 +48,15 @@ cd MouseV2
 
 ### Reproduce Figure 2
 
-Figure 2 uses its own locked Python 3.8 environment and frozen model checkpoints:
+Figure 2 uses a pinned Python 3.12 rendering environment and the frozen seed-2026111604 endpoint.
+The package also includes CPU V1 fitting and regeneration of segmentation,
+injection mapping, and registration; see [Figure 2 instructions](Figure2/README.md).
 
 ```bash
 cd Figure2
-uv sync --locked --group notebooks
-uv run --locked --group notebooks python fig2/compose_figure.py
+python3.12 -m venv .venv
+.venv/bin/python -m pip install -r requirements-render.txt
+.venv/bin/python reproduce.py
 cd ..
 ```
 
